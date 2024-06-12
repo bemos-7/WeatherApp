@@ -7,8 +7,10 @@ import com.bemos.weatherapp.di.modules.DataModule
 import com.bemos.weatherapp.di.modules.DomainModule
 import com.bemos.weatherapp.di.modules.RetrofitModule
 import com.bemos.weatherapp.di.modules.RoomModule
+import com.bemos.weatherapp.presentation.screen.main_activity.MainActivity
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Inject
 
 @Component(
     modules = [
@@ -20,6 +22,8 @@ import dagger.Component
     ]
 )
 interface AppComponent {
+
+    fun inject(mainActivity: MainActivity)
 
     @Component.Factory
     interface Factory {
