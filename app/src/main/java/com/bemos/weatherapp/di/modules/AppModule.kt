@@ -1,6 +1,7 @@
 package com.bemos.weatherapp.di.modules
 
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
 import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsScreenViewModelFactory
@@ -13,10 +14,12 @@ class AppModule {
 
     @Provides
     fun provideDetailsScreenViewModelFacroty(
-        getWeatherUseCase: GetWeatherUseCase
+        getWeatherUseCase: GetWeatherUseCase,
+        getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase
     ) : DetailsScreenViewModelFactory {
         return DetailsScreenViewModelFactory(
-            getWeatherUseCase
+            getWeatherUseCase = getWeatherUseCase,
+            getWeatherAndWeekUseCase = getWeatherAndWeekUseCase
         )
     }
 

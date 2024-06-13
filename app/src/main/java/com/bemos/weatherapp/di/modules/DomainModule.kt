@@ -4,6 +4,7 @@ import com.bemos.weatherapp.data.local.room.dao.LocationDao
 import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
 import com.bemos.weatherapp.data.remote.retrofit.WeatherApi
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
 import dagger.Module
@@ -31,6 +32,15 @@ class DomainModule {
         repository: LocationRepository
     ) : InsertLocationUseCase {
         return InsertLocationUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetWeatherAndWeekUseCase(
+        weatherApi: WeatherApi
+    ) : GetWeatherAndWeekUseCase {
+        return GetWeatherAndWeekUseCase(
+            weatherApi
+        )
     }
 
 }

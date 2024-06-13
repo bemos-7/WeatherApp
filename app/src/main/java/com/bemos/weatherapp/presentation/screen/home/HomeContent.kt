@@ -29,7 +29,7 @@ fun HomeContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(5.dp)
+            .padding(10.dp)
     ) {
 
         Text(

@@ -4,12 +4,16 @@ import com.bemos.weatherapp.data.remote.retrofit.WeatherApi
 import com.bemos.weatherapp.data.remote.retrofit.models.Weather
 import retrofit2.Response
 
-class GetWeatherUseCase(
+class GetWeatherAndWeekUseCase(
     private val weatherApi: WeatherApi
 ) {
 
-    suspend fun execute(city: String): Response<Weather> {
-        return weatherApi.getWeatherByCity(city)
+    suspend fun execute(
+        city: String
+    ) : Response<Weather> {
+        return weatherApi.getWeatherAndWeek(
+            city = city
+        )
     }
 
 }

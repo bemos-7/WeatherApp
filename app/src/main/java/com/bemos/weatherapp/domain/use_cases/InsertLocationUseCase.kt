@@ -4,7 +4,7 @@ import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
 import com.bemos.weatherapp.domain.model.Location
 
 class InsertLocationUseCase(
-    val repository: LocationRepository
+    private val repository: LocationRepository
 ) {
 
     suspend fun execute(location: Location) {
