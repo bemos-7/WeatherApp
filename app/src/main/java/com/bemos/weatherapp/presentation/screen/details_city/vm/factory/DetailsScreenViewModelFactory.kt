@@ -1,18 +1,16 @@
-package com.bemos.weatherapp.presentation.screen.cities.vm.factory
+package com.bemos.weatherapp.presentation.screen.details_city.vm.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
-import com.bemos.weatherapp.data.remote.retrofit.WeatherApi
 import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
-import com.bemos.weatherapp.presentation.screen.cities.vm.CitiesViewModel
+import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsScreenViewModel
 
-class CitiesViewModelFactory(
+class DetailsScreenViewModelFactory(
     val getWeatherUseCase: GetWeatherUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CitiesViewModel(
+        return DetailsScreenViewModel(
             getWeatherUseCase = getWeatherUseCase
         ) as T
     }

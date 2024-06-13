@@ -1,8 +1,7 @@
 package com.bemos.weatherapp.di.modules
 
-import com.bemos.weatherapp.data.remote.retrofit.WeatherApi
 import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
-import com.bemos.weatherapp.presentation.screen.cities.vm.factory.CitiesViewModelFactory
+import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsScreenViewModelFactory
 import dagger.Module
 import dagger.Provides
 
@@ -10,10 +9,10 @@ import dagger.Provides
 class AppModule {
 
     @Provides
-    fun provideCitiesViewModelFactory(
+    fun provideDetailsScreenViewModelFacroty(
         getWeatherUseCase: GetWeatherUseCase
-    ) : CitiesViewModelFactory {
-        return CitiesViewModelFactory(
+    ) : DetailsScreenViewModelFactory {
+        return DetailsScreenViewModelFactory(
             getWeatherUseCase
         )
     }

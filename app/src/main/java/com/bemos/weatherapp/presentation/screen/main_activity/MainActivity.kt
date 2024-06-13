@@ -8,17 +8,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.bemos.weatherapp.di.appComponent
-import com.bemos.weatherapp.presentation.screen.cities.CitiesScreen
-import com.bemos.weatherapp.presentation.screen.cities.vm.CitiesViewModel
-import com.bemos.weatherapp.presentation.screen.cities.vm.factory.CitiesViewModelFactory
+import com.bemos.weatherapp.presentation.screen.details_city.DetailsCityScreen
+import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsScreenViewModel
+import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsWeatherIntentViewModel
+import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var citiesViewModelFactory: CitiesViewModelFactory
+    lateinit var detailsScreenViewModelFactory: DetailsScreenViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +30,14 @@ class MainActivity : ComponentActivity() {
         appComponent.inject(this)
 
         setContent {
+            val navController = rememberNavController()
 
-            val viewModel = viewModel<CitiesViewModel>(
-                factory = citiesViewModelFactory
+
+            val detailsViewModel = viewModel<DetailsScreenViewModel>(
+                factory = detailsScreenViewModelFactory
             )
+
+            val detailsWeatherIntentViewModel = viewModel<DetailsWeatherIntentViewModel>()
 
             WeatherAppTheme {
                 // A surface container using the 'background' color from the theme
@@ -37,9 +45,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    CitiesScreen(
-                        viewModel = viewModel
-                    )
+                    NavHost(
+                        navController = navController,
+                        startDestination = "detailsCity"
+                    ) {
+                        composable(
+                            route = "detailsCity"
+                        ) {
+                            DetailsCityScreen(
+                                navController = navController,
+                                detailsWeatherIntentViewModel = detailsWeatherIntentViewModel,
+                                detailsScreenViewModel = detailsViewModel
+                            )
+                        }
+                    }
                 }
             }
         }
