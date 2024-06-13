@@ -18,6 +18,12 @@ class LocationRepositoryImpl(
             }
     }
 
+    override suspend fun insertLocation(location: Location) {
+        locationDao.insertLocation(
+            location = toEntity(location)
+        )
+    }
+
     private fun toEntity(location: Location): LocationEntity {
         return LocationEntity(
             location.id,

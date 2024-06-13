@@ -130,7 +130,7 @@ fun DetailsCityContentPreview() {
             weatherDetails = WeatherDetails(
                 "Moscow",
                 "12",
-                "sunny"
+                "олыфварлофыауцуатвыдлафо"
             )
         )
     }

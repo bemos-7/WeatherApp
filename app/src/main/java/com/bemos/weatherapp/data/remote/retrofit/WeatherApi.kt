@@ -11,7 +11,7 @@ interface WeatherApi {
     @GET("v1/current.json?key=$API_KEY")
     suspend fun getWeather(
         @Query("q") city: String,
-        @Query("aqi") aqi: String = "no"
+        @Query("aqi") aqi: String = "no",
     ) : Response<Weather>
 
     companion object {

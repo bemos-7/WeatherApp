@@ -16,6 +16,9 @@ import com.bemos.weatherapp.presentation.screen.details_city.DetailsCityScreen
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsScreenViewModel
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsWeatherIntentViewModel
 import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsScreenViewModelFactory
+import com.bemos.weatherapp.presentation.screen.home.HomeScreen
+import com.bemos.weatherapp.presentation.screen.home.vm.HomeScreenViewModel
+import com.bemos.weatherapp.presentation.screen.home.vm.factory.HomeScreenViewModelFactory
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 import javax.inject.Inject
 
@@ -23,6 +26,9 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var detailsScreenViewModelFactory: DetailsScreenViewModelFactory
+
+    @Inject
+    lateinit var homeScreenViewModelFactory: HomeScreenViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +38,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
 
-
             val detailsViewModel = viewModel<DetailsScreenViewModel>(
                 factory = detailsScreenViewModelFactory
             )
 
             val detailsWeatherIntentViewModel = viewModel<DetailsWeatherIntentViewModel>()
+
+            val homeViewModel = viewModel<HomeScreenViewModel>(
+                factory = homeScreenViewModelFactory
+            )
 
             WeatherAppTheme {
                 // A surface container using the 'background' color from the theme
@@ -47,8 +56,18 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = "detailsCity"
+                        startDestination = "home"
                     ) {
+                        composable(
+                            route = "home"
+                        ) {
+                            HomeScreen(
+                                navController = navController,
+                                homeViewModel = homeViewModel,
+                                detailsWeatherIntentViewModel
+                            )
+                        }
+
                         composable(
                             route = "detailsCity"
                         ) {
