@@ -1,6 +1,5 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,16 +8,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -27,12 +26,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.weatherapp.R
-import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherDetails
+import com.bemos.weatherapp.data.remote.retrofit.models.Hour
+import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastDayItem
+import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastItem
+import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherDetailsAndMore
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 
 @Composable
 fun DetailsCityContent(
-    weatherDetails: WeatherDetails
+    weatherDetailsAndMore: WeatherDetailsAndMore
 ) {
 
     Scaffold(
@@ -85,14 +87,14 @@ fun DetailsCityContent(
                     Spacer(modifier = Modifier.size(width = 0.dp, height = 50.dp))
 
                     Text(
-                        text = weatherDetails.city,
+                        text = weatherDetailsAndMore.city,
                         fontSize = 20.sp,
                     )
 
                     Spacer(modifier = Modifier.size(width = 0.dp, height = 5.dp))
 
                     Text(
-                        text = "${weatherDetails.temp}°C",
+                        text = "${weatherDetailsAndMore.temp}°C",
                         fontWeight = FontWeight.Bold,
                         fontSize = 40.sp,
                     )
@@ -100,7 +102,7 @@ fun DetailsCityContent(
                     Spacer(modifier = Modifier.size(width = 0.dp, height = 5.dp))
 
                     Text(
-                        text = weatherDetails.weather,
+                        text = weatherDetailsAndMore.weather,
                         fontSize = 20.sp,
                     )
 
@@ -110,13 +112,49 @@ fun DetailsCityContent(
 
             //-------------------
 
+            val hourList = remember {
+                mutableListOf<Hour>()
+            }
+
+            weatherDetailsAndMore.forecastDay.forEach { forecastday ->
+                forecastday.hour.forEach {
+                    if (hourList.size < 24) {
+                        hourList.add(it)
+                    }
+                }
+            }
+
+            //------------------
+
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .size(height = 150.dp, width = 100.dp)
                     .padding(5.dp)
             ) {
+                LazyRow {
+                    items(
+                        items = hourList
+                    ) {
+                        ForecastDayItem(
+                            it
+                        )
+                    }
+                }
+            }
 
+            Column(
+                modifier = Modifier
+                    .padding(5.dp)
+            ) {
+                LazyColumn() {
+                    items(
+                        items = weatherDetailsAndMore.forecastDay
+                    ) {
+                        ForecastItem(
+                            forecastday = it
+                        )
+                    }
+                }
             }
         }
     }
@@ -127,10 +165,11 @@ fun DetailsCityContent(
 fun DetailsCityContentPreview() {
     WeatherAppTheme {
         DetailsCityContent(
-            weatherDetails = WeatherDetails(
+            weatherDetailsAndMore = WeatherDetailsAndMore(
                 "Moscow",
-                "12",
-                "sunny"
+                "23",
+                weather = "Clear",
+                forecastDay = listOf()
             )
         )
     }

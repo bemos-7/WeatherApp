@@ -22,15 +22,15 @@ fun DetailsCityScreen(
     Log.d("PogodaPloxaiPogodar", weatherDetails)
 
     LaunchedEffect(Unit) {
-        detailsScreenViewModel.getWeatherByCity(
+        detailsScreenViewModel.getWeatherAndWeek(
             weatherDetails
         )
     }
 
-    val weather by detailsScreenViewModel.weather.collectAsState()
+    val weatherAndMore by detailsScreenViewModel.weatherAndMore.collectAsState()
 
     DetailsCityContent(
-        weatherDetails = weather
+        weatherDetailsAndMore = weatherAndMore
     )
 
 }

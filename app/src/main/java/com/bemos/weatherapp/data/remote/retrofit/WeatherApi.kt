@@ -16,7 +16,7 @@ interface WeatherApi {
     @GET("v1/forecast.json?key=$API_KEY")
     suspend fun getWeatherAndWeek(
         @Query("q") city: String,
-        @Query("days") days: String = "1",
+        @Query("days") days: String = "10",
         @Query("api") api: String = "no",
         @Query("alerts") alerts: String = "no"
     ) : Response<Weather>

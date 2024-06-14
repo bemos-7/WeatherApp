@@ -28,6 +28,7 @@ class DetailsScreenViewModel(
             city = "",
             temp = "",
             weather = "",
+            forecastDay = listOf()
         )
     )
 
@@ -62,6 +63,7 @@ class DetailsScreenViewModel(
                     city = response.body()!!.location.name,
                     temp = response.body()!!.current.temp_c.toString(),
                     weather = response.body()!!.current.condition.text,
+                    forecastDay = response.body()!!.forecast.forecastday
                 )
             }
         }
