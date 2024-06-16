@@ -1,7 +1,6 @@
 package com.bemos.weatherapp.presentation.screen.details_city.model
 
-import com.bemos.weatherapp.data.remote.retrofit.models.Forecast
-import com.bemos.weatherapp.data.remote.retrofit.models.Forecastday
+import com.bemos.weatherapp.data.remote.retrofit.weather.models.Forecastday
 
 data class WeatherDetailsAndMore(
     val city: String,

@@ -1,4 +1,4 @@
-package com.bemos.weatherapp.data.remote.retrofit.models
+package com.bemos.weatherapp.data.remote.retrofit.weather.models
 
 data class Weather(
     val current: Current,

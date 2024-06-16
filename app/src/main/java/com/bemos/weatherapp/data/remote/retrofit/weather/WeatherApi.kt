@@ -1,6 +1,6 @@
-package com.bemos.weatherapp.data.remote.retrofit
+package com.bemos.weatherapp.data.remote.retrofit.weather
 
-import com.bemos.weatherapp.data.remote.retrofit.models.Weather
+import com.bemos.weatherapp.data.remote.retrofit.weather.models.Weather
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.weatherapp.R
-import com.bemos.weatherapp.data.remote.retrofit.models.Hour
+import com.bemos.weatherapp.data.remote.retrofit.weather.models.Hour
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastDayItem
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastItem
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherDetailsAndMore

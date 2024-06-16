@@ -1,14 +1,16 @@
 package com.bemos.weatherapp.di.modules
 
-import com.bemos.weatherapp.data.local.room.dao.LocationDao
 import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
-import com.bemos.weatherapp.data.remote.retrofit.WeatherApi
+import com.bemos.weatherapp.data.remote.retrofit.city.CityApi
+import com.bemos.weatherapp.data.remote.retrofit.weather.WeatherApi
+import com.bemos.weatherapp.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 @Module
 class DomainModule {
@@ -40,6 +42,15 @@ class DomainModule {
     ) : GetWeatherAndWeekUseCase {
         return GetWeatherAndWeekUseCase(
             weatherApi
+        )
+    }
+
+    @Provides
+    fun provideGetAllCitiesUseCase(
+        @Named("City") cityApi: CityApi
+    ) : GetAllCitiesUseCase {
+        return GetAllCitiesUseCase(
+            cityApi
         )
     }
 
