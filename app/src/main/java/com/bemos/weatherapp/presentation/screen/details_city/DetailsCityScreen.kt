@@ -1,6 +1,5 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -19,18 +18,28 @@ fun DetailsCityScreen(
 
     val weatherDetails by detailsWeatherIntentViewModel.weather.collectAsState()
 
-    Log.d("PogodaPloxaiPogodar", weatherDetails)
+    val weatherAndMore by detailsScreenViewModel.weatherAndForecast.collectAsState()
+
+    val weatherByTheHour by detailsScreenViewModel.weatherByTheHour.collectAsState()
+
+    val addCheck by detailsScreenViewModel.insertChecker.collectAsState()
 
     LaunchedEffect(Unit) {
-        detailsScreenViewModel.getWeatherAndWeek(
+        detailsScreenViewModel.getWeatherAndForecast(
             weatherDetails
         )
     }
 
-    val weatherAndMore by detailsScreenViewModel.weatherAndMore.collectAsState()
-
     DetailsCityContent(
-        weatherDetailsAndMore = weatherAndMore
+        weatherDetailsAndMore = weatherAndMore,
+        weatherByTheHour = weatherByTheHour,
+        onBackClick = {
+            navController.navigate("home")
+        },
+        onPlusClick = {
+
+        },
+        addCheck
     )
 
 }

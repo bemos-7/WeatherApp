@@ -19,9 +19,6 @@ import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsS
 import com.bemos.weatherapp.presentation.screen.home.HomeScreen
 import com.bemos.weatherapp.presentation.screen.home.vm.HomeScreenViewModel
 import com.bemos.weatherapp.presentation.screen.home.vm.factory.HomeScreenViewModelFactory
-import com.bemos.weatherapp.presentation.screen.search_city.SearchCityScreen
-import com.bemos.weatherapp.presentation.screen.search_city.vm.SearchCityViewModel
-import com.bemos.weatherapp.presentation.screen.search_city.vm.factory.SearchCityViewModelFactory
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 import javax.inject.Inject
 
@@ -32,9 +29,6 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var homeScreenViewModelFactory: HomeScreenViewModelFactory
-
-    @Inject
-    lateinit var searchCityViewModelFactory: SearchCityViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +48,6 @@ class MainActivity : ComponentActivity() {
                 factory = homeScreenViewModelFactory
             )
 
-            val searchCityViewModel = viewModel<SearchCityViewModel>(
-                factory = searchCityViewModelFactory
-            )
-
             WeatherAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -66,7 +56,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = "searchCity"
+                        startDestination = "home"
                     ) {
                         composable(
                             route = "home"
@@ -85,14 +75,6 @@ class MainActivity : ComponentActivity() {
                                 navController = navController,
                                 detailsWeatherIntentViewModel = detailsWeatherIntentViewModel,
                                 detailsScreenViewModel = detailsViewModel
-                            )
-                        }
-
-                        composable(
-                            route = "searchCity"
-                        ) {
-                            SearchCityScreen(
-                                searchCityViewModel = searchCityViewModel
                             )
                         }
                     }

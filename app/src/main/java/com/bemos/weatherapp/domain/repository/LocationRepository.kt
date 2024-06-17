@@ -10,4 +10,6 @@ interface LocationRepository {
 
     suspend fun insertLocation(location: Location)
 
+    suspend fun getLocationByCity(city: String) : Flow<List<Location>>
+
 }

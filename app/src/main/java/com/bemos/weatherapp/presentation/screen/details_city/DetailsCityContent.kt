@@ -1,5 +1,6 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,12 +12,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,8 +37,16 @@ import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 
 @Composable
 fun DetailsCityContent(
-    weatherDetailsAndMore: WeatherDetailsAndMore
+    weatherDetailsAndMore: WeatherDetailsAndMore,
+    weatherByTheHour: List<Hour>,
+    onBackClick: () -> Unit,
+    onPlusClick: () -> Unit,
+    addCheck: Boolean
 ) {
+
+    val isAdded = remember {
+        mutableStateOf(addCheck)
+    }
 
     Scaffold(
         Modifier.fillMaxSize(),
@@ -51,6 +62,9 @@ fun DetailsCityContent(
                         )
                 ) {
                     Icon(
+                        modifier = Modifier.clickable {
+                            onBackClick()
+                        },
                         painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
                         contentDescription = "backBtn",
                         tint = MaterialTheme.colorScheme.primary
@@ -60,11 +74,16 @@ fun DetailsCityContent(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.End
                     ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.baseline_add_24),
-                            contentDescription = "addBtn",
-                            tint = MaterialTheme.colorScheme.primary
-                        )
+                        if (isAdded.value) {
+                            Icon(
+                                modifier = Modifier.clickable {
+                                    onPlusClick()
+                                },
+                                painter = painterResource(id = R.drawable.baseline_add_24),
+                                contentDescription = "addBtn",
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                        }
                     }
                 }
             }
@@ -110,22 +129,6 @@ fun DetailsCityContent(
                 }
             }
 
-            //-------------------
-
-            val hourList = remember {
-                mutableListOf<Hour>()
-            }
-
-            weatherDetailsAndMore.forecastDay.forEach { forecastday ->
-                forecastday.hour.forEach {
-                    if (hourList.size < 24) {
-                        hourList.add(it)
-                    }
-                }
-            }
-
-            //------------------
-
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -133,7 +136,7 @@ fun DetailsCityContent(
             ) {
                 LazyRow {
                     items(
-                        items = hourList
+                        items = weatherByTheHour
                     ) {
                         ForecastDayItem(
                             it
@@ -170,7 +173,11 @@ fun DetailsCityContentPreview() {
                 "23",
                 weather = "Clear",
                 forecastDay = listOf()
-            )
+            ),
+            listOf(),
+            onBackClick = {},
+            onPlusClick = {},
+            true
         )
     }
 }

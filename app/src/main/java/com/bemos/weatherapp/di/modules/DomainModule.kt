@@ -5,6 +5,7 @@ import com.bemos.weatherapp.data.remote.retrofit.city.CityApi
 import com.bemos.weatherapp.data.remote.retrofit.weather.WeatherApi
 import com.bemos.weatherapp.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.weatherapp.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
@@ -51,6 +52,15 @@ class DomainModule {
     ) : GetAllCitiesUseCase {
         return GetAllCitiesUseCase(
             cityApi
+        )
+    }
+
+    @Provides
+    fun provideGetLocationByCityUseCase(
+        repository: LocationRepository
+    ) : GetLocationByCityUseCase {
+        return GetLocationByCityUseCase(
+            repository
         )
     }
 

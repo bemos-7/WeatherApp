@@ -7,7 +7,6 @@ import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
 import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.weatherapp.presentation.screen.home.vm.factory.HomeScreenViewModelFactory
-import com.bemos.weatherapp.presentation.screen.search_city.vm.factory.SearchCityViewModelFactory
 import dagger.Module
 import dagger.Provides
 
@@ -28,19 +27,12 @@ class AppModule {
     @Provides
     fun provideHomeScreenViewModelFactory(
         getAllLoationsUseCase: GetAllLoationsUseCase,
-        insertLocationUseCase: InsertLocationUseCase
+        insertLocationUseCase: InsertLocationUseCase,
+        getAllCitiesUseCase: GetAllCitiesUseCase
     ) : HomeScreenViewModelFactory {
         return HomeScreenViewModelFactory(
             getAllLoationsUseCase = getAllLoationsUseCase,
-            insertLocationUseCase = insertLocationUseCase
-        )
-    }
-
-    @Provides
-    fun provideSearchCityViewModelFactory(
-        getAllCitiesUseCase: GetAllCitiesUseCase
-    ) : SearchCityViewModelFactory {
-        return SearchCityViewModelFactory(
+            insertLocationUseCase = insertLocationUseCase,
             getAllCitiesUseCase = getAllCitiesUseCase
         )
     }

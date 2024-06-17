@@ -1,4 +1,4 @@
-package com.bemos.weatherapp.presentation.screen.home.item
+package com.bemos.weatherapp.presentation.screen.home.items
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

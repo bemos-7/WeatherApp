@@ -24,6 +24,15 @@ class LocationRepositoryImpl(
         )
     }
 
+    override suspend fun getLocationByCity(city: String): Flow<List<Location>> {
+        return locationDao.getLocationByCity(city)
+            .map { locationEntityList ->
+                locationEntityList.map { locationEntity ->
+                    toDomain(locationEntity)
+                }
+            }
+    }
+
     private fun toEntity(location: Location): LocationEntity {
         return LocationEntity(
             location.id,
