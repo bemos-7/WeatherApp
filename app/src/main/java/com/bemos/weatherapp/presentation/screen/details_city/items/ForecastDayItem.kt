@@ -10,9 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.bemos.weatherapp.data.remote.retrofit.weather.models.Hour
+import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 
 @Composable
 fun ForecastDayItem(
@@ -25,8 +27,9 @@ fun ForecastDayItem(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Text(
-            text = hour.temp_c.toString()
+            text = hour.time
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -40,8 +43,9 @@ fun ForecastDayItem(
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
-            text = hour.time
+            text = "${hour.temp_c}°"
         )
+
     }
 
 }

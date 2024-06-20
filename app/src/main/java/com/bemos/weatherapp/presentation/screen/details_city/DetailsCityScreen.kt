@@ -1,13 +1,16 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsScreenViewModel
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsWeatherIntentViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun DetailsCityScreen(
@@ -22,13 +25,17 @@ fun DetailsCityScreen(
 
     val weatherByTheHour by detailsScreenViewModel.weatherByTheHour.collectAsState()
 
-    val addCheck by detailsScreenViewModel.insertChecker.collectAsState()
+    val insertChecker by detailsScreenViewModel.insertChecker.collectAsState()
+
+
 
     LaunchedEffect(Unit) {
-        detailsScreenViewModel.getWeatherAndForecast(
-            weatherDetails
-        )
+        detailsScreenViewModel.getLocationByCity(weatherDetails)
+        Log.d("ffeuebnnbsadf", insertChecker.toString())
+        detailsScreenViewModel.getWeatherAndForecast(weatherDetails)
     }
+
+
 
     DetailsCityContent(
         weatherDetailsAndMore = weatherAndMore,
@@ -37,9 +44,9 @@ fun DetailsCityScreen(
             navController.navigate("home")
         },
         onPlusClick = {
-
+            detailsScreenViewModel.insertLocationRunWithScope(it)
         },
-        addCheck
+        addCheck = insertChecker
     )
 
 }

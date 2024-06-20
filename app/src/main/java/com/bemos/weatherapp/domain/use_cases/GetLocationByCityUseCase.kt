@@ -8,7 +8,7 @@ class GetLocationByCityUseCase(
     private val repository: LocationRepository
 ) {
 
-    suspend fun execute(city: String) : Flow<List<Location>> {
+    fun execute(city: String) : Flow<List<Location>> {
         return repository.getLocationByCity(city)
     }
 

@@ -6,5 +6,6 @@ data class WeatherDetailsAndMore(
     val city: String,
     val temp: String,
     val weather: String,
-    val forecastDay: List<Forecastday>
+    val forecastDay: List<Forecastday>,
+    val image: String
 )

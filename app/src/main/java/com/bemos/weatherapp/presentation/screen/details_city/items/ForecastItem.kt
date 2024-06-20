@@ -50,7 +50,7 @@ fun ForecastItem(
                 horizontalAlignment = Alignment.End
             ) {
                 Text(
-                    text = forecastday.day.maxtemp_c.toString(),
+                    text = "${forecastday.day.maxtemp_c}°",
                     fontSize = 40.sp,
                     fontWeight = FontWeight.Bold
                 )

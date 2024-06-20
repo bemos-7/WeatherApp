@@ -2,8 +2,8 @@ package com.bemos.weatherapp.di.modules
 
 import com.bemos.weatherapp.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.weatherapp.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
-import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
 import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.weatherapp.presentation.screen.home.vm.factory.HomeScreenViewModelFactory
@@ -14,13 +14,15 @@ import dagger.Provides
 class AppModule {
 
     @Provides
-    fun provideDetailsScreenViewModelFacroty(
-        getWeatherUseCase: GetWeatherUseCase,
-        getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase
+    fun provideDetailsScreenViewModelFactory(
+        getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase,
+        insertLocationUseCase: InsertLocationUseCase,
+        getLocationByCityUseCase: GetLocationByCityUseCase
     ) : DetailsScreenViewModelFactory {
         return DetailsScreenViewModelFactory(
-            getWeatherUseCase = getWeatherUseCase,
-            getWeatherAndWeekUseCase = getWeatherAndWeekUseCase
+            getWeatherAndWeekUseCase = getWeatherAndWeekUseCase,
+            insertLocationUseCase = insertLocationUseCase,
+            getLocationByCityUseCase = getLocationByCityUseCase
         )
     }
 
