@@ -33,6 +33,14 @@ class LocationRepositoryImpl(
             }
     }
 
+    override suspend fun deleteLocation(location: Location) {
+        locationDao.deleteLocation(
+            toEntity(
+                location
+            )
+        )
+    }
+
     private fun toEntity(location: Location): LocationEntity {
         return LocationEntity(
             location.id,
@@ -42,7 +50,7 @@ class LocationRepositoryImpl(
 
     private fun toDomain(locationEntity: LocationEntity): Location {
         return Location(
-            locationEntity.id!!,
+            locationEntity.id,
             locationEntity.city
         )
     }

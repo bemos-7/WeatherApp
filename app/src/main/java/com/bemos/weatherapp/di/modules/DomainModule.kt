@@ -3,6 +3,7 @@ package com.bemos.weatherapp.di.modules
 import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
 import com.bemos.weatherapp.data.remote.retrofit.city.CityApi
 import com.bemos.weatherapp.data.remote.retrofit.weather.WeatherApi
+import com.bemos.weatherapp.domain.use_cases.DeleteLocationUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
 import com.bemos.weatherapp.domain.use_cases.GetLocationByCityUseCase
@@ -60,6 +61,15 @@ class DomainModule {
         repository: LocationRepository
     ) : GetLocationByCityUseCase {
         return GetLocationByCityUseCase(
+            repository
+        )
+    }
+
+    @Provides
+    fun provideDeleteLocationUseCase(
+        repository: LocationRepository
+    ) : DeleteLocationUseCase {
+        return DeleteLocationUseCase(
             repository
         )
     }
