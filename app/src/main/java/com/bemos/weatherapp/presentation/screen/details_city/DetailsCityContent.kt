@@ -44,10 +44,6 @@ fun DetailsCityContent(
     addCheck: Boolean
 ) {
 
-    val isAdded = remember {
-        mutableStateOf(addCheck)
-    }
-
     Scaffold(
     Modifier.fillMaxSize(),
     topBar = {
@@ -74,13 +70,12 @@ fun DetailsCityContent(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.End
                 ) {
-                    if (!isAdded.value) {
+                    if (addCheck) {
                         Icon(
                             modifier = Modifier.clickable {
                                 onPlusClick(
                                     weatherDetailsAndMore.city
                                 )
-                                isAdded.value = true
                             },
                             painter = painterResource(id = R.drawable.baseline_add_24),
                             contentDescription = "addBtn",

@@ -102,22 +102,12 @@ class DetailsScreenViewModel(
         city: String
     ) = viewModelScope.launch {
 
-        var location = listOf<Location>()
-
         getLocationByCityUseCase.execute(city)
             .collect { list ->
-                location = list
+                insertChecker.update {
+                    list.isEmpty()
+                }
             }
-
-        if (location.isEmpty()) {
-            insertChecker.update {
-                false
-            }
-        } else {
-            insertChecker.update {
-                true
-            }
-        }
     }
 
 }

@@ -27,15 +27,11 @@ fun DetailsCityScreen(
 
     val insertChecker by detailsScreenViewModel.insertChecker.collectAsState()
 
-
-
     LaunchedEffect(Unit) {
         detailsScreenViewModel.getLocationByCity(weatherDetails)
         Log.d("ffeuebnnbsadf", insertChecker.toString())
         detailsScreenViewModel.getWeatherAndForecast(weatherDetails)
     }
-
-
 
     DetailsCityContent(
         weatherDetailsAndMore = weatherAndMore,
