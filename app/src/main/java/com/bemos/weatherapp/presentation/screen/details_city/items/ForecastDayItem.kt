@@ -14,11 +14,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.bemos.weatherapp.data.remote.retrofit.weather.models.Hour
+import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherByTheHour
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 
 @Composable
 fun ForecastDayItem(
-    hour: Hour
+    weatherByTheHour: WeatherByTheHour
 ) {
 
     Column(
@@ -29,21 +30,21 @@ fun ForecastDayItem(
     ) {
 
         Text(
-            text = hour.time
+            text = weatherByTheHour.time
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         AsyncImage(
             modifier = Modifier.size(64.dp, 64.dp),
-            model = "https:${hour.condition.icon}",
+            model = "https:${weatherByTheHour.hour.condition.icon}",
             contentDescription = null
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
-            text = "${hour.temp_c}°"
+            text = "${weatherByTheHour.hour.temp_c}°"
         )
 
     }

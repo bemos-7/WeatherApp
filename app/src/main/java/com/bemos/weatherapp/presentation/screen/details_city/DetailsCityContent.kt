@@ -7,11 +7,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -32,13 +35,14 @@ import com.bemos.weatherapp.R
 import com.bemos.weatherapp.data.remote.retrofit.weather.models.Hour
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastDayItem
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastItem
+import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherByTheHour
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherDetailsAndMore
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 
 @Composable
 fun DetailsCityContent(
     weatherDetailsAndMore: WeatherDetailsAndMore,
-    weatherByTheHour: List<Hour>,
+    weatherByTheHour: List<WeatherByTheHour>,
     onBackClick: () -> Unit,
     onPlusClick: (String) -> Unit,
     addCheck: Boolean
@@ -91,6 +95,7 @@ fun DetailsCityContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
+                .verticalScroll(rememberScrollState())
         ) {
             Card(
                 Modifier
@@ -142,7 +147,7 @@ fun DetailsCityContent(
             ) {
                 LazyRow {
                     items(
-                        items = weatherByTheHour
+                        items = weatherByTheHour,
                     ) {
                         ForecastDayItem(
                             it
@@ -153,6 +158,7 @@ fun DetailsCityContent(
 
             Column(
                 modifier = Modifier
+                    .height(500.dp)
                     .padding(5.dp)
             ) {
                 LazyColumn() {

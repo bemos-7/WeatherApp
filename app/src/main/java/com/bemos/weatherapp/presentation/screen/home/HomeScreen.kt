@@ -20,7 +20,16 @@ fun HomeScreen(
 
     val searchCities by homeViewModel.searchCities.collectAsState()
 
+    val city by homeViewModel.city.collectAsState()
+
+    val isTrue by homeViewModel.isTrue.collectAsState()
+
     homeViewModel.getAllLocations()
+
+    homeViewModel.OpenDeleteDialog(
+        city = city,
+        isTrueValue = isTrue
+    )
 
     LaunchedEffect(Unit) {
         homeViewModel.getAllCities()
@@ -39,6 +48,12 @@ fun HomeScreen(
         onClickCity = {
             detailsWeatherIntentViewModel.updateCityDate(it)
             navController.navigate("detailsCity")
+        },
+        onLongClick = {
+            homeViewModel.updateIsTrueAndCity(
+                isTrueValue = true,
+                cityValue = it
+            )
         }
     )
 

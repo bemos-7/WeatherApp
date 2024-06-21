@@ -1,6 +1,8 @@
 package com.bemos.weatherapp.presentation.screen.home.items
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,10 +21,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LocationItem(
     cityLoc: String,
-    onClick: (String) -> Unit
+    onClick: (String) -> Unit,
+    onLongClick: (String) -> Unit
 ) {
 
     var city by remember {
@@ -33,9 +37,14 @@ fun LocationItem(
         Modifier
             .fillMaxWidth()
             .height(100.dp)
-            .clickable {
-                onClick(city)
-            }
+            .combinedClickable(
+                onClick = {
+                    onClick(city)
+                },
+                onLongClick = {
+                    onLongClick(city)
+                }
+            )
     ) {
         Column(
             Modifier.padding(10.dp),
@@ -57,7 +66,8 @@ fun LocationItemPreview() {
     WeatherAppTheme {
         LocationItem(
             "Moscow",
-            onClick = {}
+            onClick = {},
+            onLongClick = {}
         )
     }
 }

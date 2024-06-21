@@ -1,17 +1,15 @@
 package com.bemos.weatherapp.presentation.screen.details_city.vm
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bemos.weatherapp.data.remote.retrofit.weather.models.Hour
 import com.bemos.weatherapp.domain.model.Location
 import com.bemos.weatherapp.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
-import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
+import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherByTheHour
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherDetailsAndMore
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -31,7 +29,7 @@ class DetailsScreenViewModel(
         )
     )
 
-    val weatherByTheHour = MutableStateFlow<List<Hour>>(
+    val weatherByTheHour = MutableStateFlow<List<WeatherByTheHour>>(
         listOf()
     )
 
@@ -57,6 +55,10 @@ class DetailsScreenViewModel(
 
             val weatherByTheHourList = mutableListOf<Hour>()
 
+            var time = ""
+
+            val weatherAndTime = mutableListOf<WeatherByTheHour>()
+
             response.body()!!.forecast.forecastday.forEach { forecastday ->
                 forecastday.hour.forEach {
                     if (weatherByTheHourList.size <= 24) {
@@ -65,13 +67,32 @@ class DetailsScreenViewModel(
 
                         val match = timePattern.find(it.time)
 
+                        if (match != null) {
+                            var hour = match.groupValues[1]
+
+                            if (hour.toInt() >= 12) {
+                                hour += " PM"
+                            } else {
+                                hour += " AM"
+                            }
+
+                            time = hour
+                        }
+
                         weatherByTheHourList.add(it)
+
+                        weatherAndTime.add(
+                            WeatherByTheHour(
+                                it,
+                                time
+                            )
+                        )
                     }
                 }
             }
 
             weatherByTheHour.update {
-                weatherByTheHourList
+                weatherAndTime
             }
         }
     }

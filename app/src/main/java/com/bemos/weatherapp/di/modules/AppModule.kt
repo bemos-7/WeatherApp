@@ -1,5 +1,6 @@
 package com.bemos.weatherapp.di.modules
 
+import com.bemos.weatherapp.domain.use_cases.DeleteLocationUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
 import com.bemos.weatherapp.domain.use_cases.GetLocationByCityUseCase
@@ -29,13 +30,13 @@ class AppModule {
     @Provides
     fun provideHomeScreenViewModelFactory(
         getAllLoationsUseCase: GetAllLoationsUseCase,
-        insertLocationUseCase: InsertLocationUseCase,
-        getAllCitiesUseCase: GetAllCitiesUseCase
+        getAllCitiesUseCase: GetAllCitiesUseCase,
+        deleteLocationUseCase: DeleteLocationUseCase
     ) : HomeScreenViewModelFactory {
         return HomeScreenViewModelFactory(
             getAllLoationsUseCase = getAllLoationsUseCase,
-            insertLocationUseCase = insertLocationUseCase,
-            getAllCitiesUseCase = getAllCitiesUseCase
+            getAllCitiesUseCase = getAllCitiesUseCase,
+            deleteLocationUseCase = deleteLocationUseCase
         )
     }
 

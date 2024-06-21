@@ -1,16 +1,13 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsScreenViewModel
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsWeatherIntentViewModel
-import kotlinx.coroutines.launch
 
 @Composable
 fun DetailsCityScreen(
@@ -29,7 +26,6 @@ fun DetailsCityScreen(
 
     LaunchedEffect(Unit) {
         detailsScreenViewModel.getLocationByCity(weatherDetails)
-        Log.d("ffeuebnnbsadf", insertChecker.toString())
         detailsScreenViewModel.getWeatherAndForecast(weatherDetails)
     }
 

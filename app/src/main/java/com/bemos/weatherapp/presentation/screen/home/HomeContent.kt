@@ -31,7 +31,8 @@ fun HomeContent(
     onClick: (String) -> Unit,
     cityList: List<String>,
     searchCity: (String) -> Unit,
-    onClickCity: (String) -> Unit
+    onClickCity: (String) -> Unit,
+    onLongClick: (String) -> Unit
 ) {
 
     val searchText = remember {
@@ -97,7 +98,8 @@ fun HomeContent(
             items(items = listCity) {
                 LocationItem(
                     cityLoc = it.city,
-                    onClick
+                    onClick,
+                    onLongClick
                 )
             }
         }
@@ -121,6 +123,9 @@ fun HomeContentPreview() {
 
             },
             onClickCity = {
+
+            },
+            onLongClick = {
 
             }
         )
