@@ -7,6 +7,7 @@ import com.bemos.weatherapp.domain.use_cases.DeleteLocationUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
 import com.bemos.weatherapp.domain.use_cases.GetLocationByCityUseCase
+import com.bemos.weatherapp.domain.use_cases.GetLocationsByCityUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
@@ -59,8 +60,8 @@ class DomainModule {
     @Provides
     fun provideGetLocationByCityUseCase(
         repository: LocationRepository
-    ) : GetLocationByCityUseCase {
-        return GetLocationByCityUseCase(
+    ) : GetLocationsByCityUseCase {
+        return GetLocationsByCityUseCase(
             repository
         )
     }
@@ -70,6 +71,15 @@ class DomainModule {
         repository: LocationRepository
     ) : DeleteLocationUseCase {
         return DeleteLocationUseCase(
+            repository
+        )
+    }
+
+    @Provides
+    fun getLocationByCityUseCase(
+        repository: LocationRepository
+    ) : GetLocationByCityUseCase {
+        return GetLocationByCityUseCase(
             repository
         )
     }

@@ -4,16 +4,12 @@ import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
 import com.bemos.weatherapp.domain.model.Location
 import kotlinx.coroutines.flow.Flow
 
-class GetLocationByCityUseCase(
+class GetLocationsByCityUseCase(
     private val repository: LocationRepository
 ) {
 
-    fun execute(
-        city: String
-    ) : Flow<Location> {
-        return repository.getLocationByCity(
-            city
-        )
+    fun execute(city: String) : Flow<List<Location>> {
+        return repository.getLocationsByCity(city)
     }
 
 }

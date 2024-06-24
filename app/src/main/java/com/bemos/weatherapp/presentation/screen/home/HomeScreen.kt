@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsWeatherIntentViewModel
+import com.bemos.weatherapp.presentation.screen.home.ui_component.OpenDeleteDialog
 import com.bemos.weatherapp.presentation.screen.home.vm.HomeScreenViewModel
 
 @Composable
@@ -20,15 +21,28 @@ fun HomeScreen(
 
     val searchCities by homeViewModel.searchCities.collectAsState()
 
-    val city by homeViewModel.city.collectAsState()
-
     val isTrue by homeViewModel.isTrue.collectAsState()
+
+    val locationDelete by homeViewModel.locationDelete.collectAsState()
 
     homeViewModel.getAllLocations()
 
-    homeViewModel.OpenDeleteDialog(
-        city = city,
-        isTrueValue = isTrue
+    OpenDeleteDialog(
+        isTrueValue = isTrue,
+        onDismissRequest = {
+            homeViewModel.updateIsTrue(
+                false
+            )
+        },
+        onConfirmButton = {
+            homeViewModel.updateIsTrue(
+                false
+            )
+
+            homeViewModel.deleteLocationScope(
+                locationDelete
+            )
+        }
     )
 
     LaunchedEffect(Unit) {
@@ -50,11 +64,10 @@ fun HomeScreen(
             navController.navigate("detailsCity")
         },
         onLongClick = {
-            homeViewModel.updateIsTrueAndCity(
+            homeViewModel.updateIsTrueAndLocation(
                 isTrueValue = true,
-                cityValue = it
+                location = it
             )
         }
     )
-
 }

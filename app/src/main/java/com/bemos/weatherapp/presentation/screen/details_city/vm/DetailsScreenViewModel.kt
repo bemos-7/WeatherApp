@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bemos.weatherapp.data.remote.retrofit.weather.models.Hour
 import com.bemos.weatherapp.domain.model.Location
-import com.bemos.weatherapp.domain.use_cases.GetLocationByCityUseCase
+import com.bemos.weatherapp.domain.use_cases.GetLocationsByCityUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherByTheHour
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 class DetailsScreenViewModel(
     private val getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase,
     private val insertLocationUseCase: InsertLocationUseCase,
-    private val getLocationByCityUseCase: GetLocationByCityUseCase
+    private val getLocationByCityUseCase: GetLocationsByCityUseCase
 ) : ViewModel() {
 
     val weatherAndForecast = MutableStateFlow(

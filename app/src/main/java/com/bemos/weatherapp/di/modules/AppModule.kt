@@ -4,6 +4,7 @@ import com.bemos.weatherapp.domain.use_cases.DeleteLocationUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.weatherapp.domain.use_cases.GetAllLoationsUseCase
 import com.bemos.weatherapp.domain.use_cases.GetLocationByCityUseCase
+import com.bemos.weatherapp.domain.use_cases.GetLocationsByCityUseCase
 import com.bemos.weatherapp.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.weatherapp.domain.use_cases.InsertLocationUseCase
 import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsScreenViewModelFactory
@@ -18,7 +19,7 @@ class AppModule {
     fun provideDetailsScreenViewModelFactory(
         getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase,
         insertLocationUseCase: InsertLocationUseCase,
-        getLocationByCityUseCase: GetLocationByCityUseCase
+        getLocationByCityUseCase: GetLocationsByCityUseCase
     ) : DetailsScreenViewModelFactory {
         return DetailsScreenViewModelFactory(
             getWeatherAndWeekUseCase = getWeatherAndWeekUseCase,
@@ -29,14 +30,16 @@ class AppModule {
 
     @Provides
     fun provideHomeScreenViewModelFactory(
-        getAllLoationsUseCase: GetAllLoationsUseCase,
+        getAllLocationsUseCase: GetAllLoationsUseCase,
         getAllCitiesUseCase: GetAllCitiesUseCase,
-        deleteLocationUseCase: DeleteLocationUseCase
+        deleteLocationUseCase: DeleteLocationUseCase,
+        getLocationByCityUseCase: GetLocationByCityUseCase
     ) : HomeScreenViewModelFactory {
         return HomeScreenViewModelFactory(
-            getAllLoationsUseCase = getAllLoationsUseCase,
+            getAllLocationsUseCase = getAllLocationsUseCase,
             getAllCitiesUseCase = getAllCitiesUseCase,
-            deleteLocationUseCase = deleteLocationUseCase
+            deleteLocationUseCase = deleteLocationUseCase,
+            getLocationByCityUseCase = getLocationByCityUseCase
         )
     }
 

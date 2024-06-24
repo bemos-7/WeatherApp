@@ -17,8 +17,11 @@ interface LocationDao {
     suspend fun insertLocation(location: LocationEntity)
 
     @Query("SELECT * FROM location WHERE city = :city")
-    fun getLocationByCity(city: String) : Flow<List<LocationEntity>>
+    fun getLocationsByCity(city: String) : Flow<List<LocationEntity>>
 
     @Delete
     suspend fun deleteLocation(locationEntity: LocationEntity)
+
+    @Query("SELECT * FROM location WHERE city = :city")
+    fun getLocationByCity(city: String) : Flow<LocationEntity>
 }

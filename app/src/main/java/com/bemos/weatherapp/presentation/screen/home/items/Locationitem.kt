@@ -19,18 +19,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bemos.weatherapp.domain.model.Location
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LocationItem(
-    cityLoc: String,
+    location: Location,
     onClick: (String) -> Unit,
-    onLongClick: (String) -> Unit
+    onLongClick: (Location) -> Unit
 ) {
 
     var city by remember {
-        mutableStateOf(cityLoc)
+        mutableStateOf(location)
     }
 
     Card(
@@ -39,10 +40,10 @@ fun LocationItem(
             .height(100.dp)
             .combinedClickable(
                 onClick = {
-                    onClick(city)
+                    onClick(city.city)
                 },
                 onLongClick = {
-                    onLongClick(city)
+                    onLongClick(location)
                 }
             )
     ) {
@@ -50,7 +51,7 @@ fun LocationItem(
             Modifier.padding(10.dp),
         ) {
             Text(
-                text = city,
+                text = location.city,
                 fontSize = 18.sp
             )
         }
@@ -65,7 +66,10 @@ fun LocationItem(
 fun LocationItemPreview() {
     WeatherAppTheme {
         LocationItem(
-            "Moscow",
+            Location(
+                1,
+                ""
+            ),
             onClick = {},
             onLongClick = {}
         )

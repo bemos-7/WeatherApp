@@ -24,8 +24,8 @@ class LocationRepositoryImpl(
         )
     }
 
-    override fun getLocationByCity(city: String): Flow<List<Location>> {
-        return locationDao.getLocationByCity(city)
+    override fun getLocationsByCity(city: String): Flow<List<Location>> {
+        return locationDao.getLocationsByCity(city)
             .map { locationEntityList ->
                 locationEntityList.map { locationEntity ->
                     toDomain(locationEntity)
@@ -39,6 +39,13 @@ class LocationRepositoryImpl(
                 location
             )
         )
+    }
+
+    override fun getLocationByCity(city: String): Flow<Location> {
+        return locationDao.getLocationByCity(city)
+            .map { locationEntity ->
+                toDomain(locationEntity)
+            }
     }
 
     private fun toEntity(location: Location): LocationEntity {
