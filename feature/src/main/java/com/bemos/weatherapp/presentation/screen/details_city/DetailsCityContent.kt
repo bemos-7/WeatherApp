@@ -204,7 +204,7 @@ fun DetailsCityContentPreview() {
             onBackClick = {},
             onPlusClick = {},
             true,
-            false
+            true
         )
     }
 }
