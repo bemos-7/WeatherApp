@@ -25,8 +25,6 @@ fun HomeScreen(
 
     val locationDelete by homeViewModel.locationDelete.collectAsState()
 
-    val progressBarState by homeViewModel.progressBarState.collectAsState()
-
     homeViewModel.getAllLocations()
 
     OpenDeleteDialog(
@@ -70,7 +68,6 @@ fun HomeScreen(
                 isTrueValue = true,
                 location = it
             )
-        },
-        progressBarState
+        }
     )
 }

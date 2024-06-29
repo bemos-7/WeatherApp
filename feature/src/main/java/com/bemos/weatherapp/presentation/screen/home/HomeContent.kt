@@ -37,7 +37,6 @@ fun HomeContent(
     searchCity: (String) -> Unit,
     onClickCity: (String) -> Unit,
     onLongClick: (Location) -> Unit,
-    progressBarState: Boolean
 ) {
 
     val searchText = remember {
@@ -109,19 +108,6 @@ fun HomeContent(
             }
         }
 
-        if (!progressBarState) {
-            Column(
-                Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(128.dp),
-                    strokeWidth = 6.dp
-                )
-            }
-        }
-
     }
 
 }
@@ -146,7 +132,6 @@ fun HomeContentPreview() {
             onLongClick = {
 
             },
-            false
         )
     }
 }

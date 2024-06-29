@@ -122,15 +122,9 @@ fun DetailsCityContent(
                     Text(
                         text = "${weatherDetailsAndMore.temp}°C",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 40.sp,
-                    )
+                        fontSize = 40.sp,)
 
-                    if (!progressBarState) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(128.dp),
-                            strokeWidth = 8.dp
-                        )
-                    }
+
 
                     Spacer(modifier = Modifier.size(width = 0.dp, height = 5.dp))
 
@@ -146,6 +140,13 @@ fun DetailsCityContent(
                         text = weatherDetailsAndMore.weather,
                         fontSize = 20.sp,
                     )
+
+                    if (!progressBarState) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(128.dp),
+                            strokeWidth = 8.dp
+                        )
+                    }
 
                     Spacer(modifier = Modifier.size(width = 0.dp, height = 50.dp))
                 }
@@ -203,7 +204,7 @@ fun DetailsCityContentPreview() {
             onBackClick = {},
             onPlusClick = {},
             true,
-            true
+            false
         )
     }
 }
