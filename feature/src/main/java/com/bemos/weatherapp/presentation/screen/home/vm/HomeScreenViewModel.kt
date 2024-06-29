@@ -38,6 +38,8 @@ class HomeScreenViewModel(
 
     val isTrue = MutableStateFlow(false)
 
+    val progressBarState = MutableStateFlow(false)
+
     val locationDelete = MutableStateFlow(
         Location(
             city = ""
@@ -45,10 +47,16 @@ class HomeScreenViewModel(
     )
 
     fun getAllLocations() = viewModelScope.launch {
+        progressBarState.update {
+            false
+        }
         getAllLocationsUseCase.execute()
             .collect { listLocation ->
                 locations.update {
                     listLocation
+                }
+                progressBarState.update {
+                    true
                 }
             }
     }

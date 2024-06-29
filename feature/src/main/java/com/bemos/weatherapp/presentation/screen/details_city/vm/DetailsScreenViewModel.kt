@@ -36,9 +36,15 @@ class DetailsScreenViewModel(
 
     val insertChecker = MutableStateFlow(false)
 
+    val progressBarState = MutableStateFlow(false)
+
     suspend fun getWeatherAndForecast(
         city: String
     ) = viewModelScope.launch {
+        progressBarState.update {
+            false
+        }
+
         val response = getWeatherAndWeekUseCase.execute(
             city
         )
@@ -52,6 +58,9 @@ class DetailsScreenViewModel(
                     forecastDay = response.body()!!.forecastDomain.forecastdayDomain,
                     image = response.body()!!.currentDomain.conditionDomain.icon
                 )
+            }
+            progressBarState.update {
+                true
             }
 
             val weatherByTheHourList = mutableListOf<HourDomain>()
@@ -130,6 +139,21 @@ class DetailsScreenViewModel(
                     list.isEmpty()
                 }
             }
+    }
+
+    fun clearWeatherData() {
+        weatherAndForecast.update {
+            WeatherDetailsAndMore(
+                "",
+                "",
+                "",
+                listOf(),
+                ""
+            )
+        }
+        weatherByTheHour.update {
+            listOf()
+        }
     }
 
 }

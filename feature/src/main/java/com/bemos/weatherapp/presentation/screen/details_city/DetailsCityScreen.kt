@@ -24,6 +24,8 @@ fun DetailsCityScreen(
 
     val insertChecker by detailsScreenViewModel.insertChecker.collectAsState()
 
+    val progressBarState by detailsScreenViewModel.progressBarState.collectAsState()
+
     LaunchedEffect(Unit) {
         detailsScreenViewModel.getLocationByCity(weatherDetails)
         detailsScreenViewModel.getWeatherAndForecast(weatherDetails)
@@ -33,12 +35,13 @@ fun DetailsCityScreen(
         weatherDetailsAndMore = weatherAndMore,
         weatherByTheHour = weatherByTheHour,
         onBackClick = {
-            navController.navigate("home")
+            navController.popBackStack()
         },
         onPlusClick = {
             detailsScreenViewModel.insertLocationRunWithScope(it)
         },
-        addCheck = insertChecker
+        addCheck = insertChecker,
+        progressBarState
     )
 
 }

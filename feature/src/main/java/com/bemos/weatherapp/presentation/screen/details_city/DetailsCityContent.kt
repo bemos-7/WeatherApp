@@ -1,5 +1,6 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
+import android.widget.ProgressBar
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,12 +11,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -45,7 +48,8 @@ fun DetailsCityContent(
     weatherByTheHour: List<WeatherByTheHour>,
     onBackClick: () -> Unit,
     onPlusClick: (String) -> Unit,
-    addCheck: Boolean
+    addCheck: Boolean,
+    progressBarState: Boolean
 ) {
 
     Scaffold(
@@ -121,6 +125,13 @@ fun DetailsCityContent(
                         fontSize = 40.sp,
                     )
 
+                    if (!progressBarState) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(128.dp),
+                            strokeWidth = 8.dp
+                        )
+                    }
+
                     Spacer(modifier = Modifier.size(width = 0.dp, height = 5.dp))
 
                     AsyncImage(
@@ -191,6 +202,7 @@ fun DetailsCityContentPreview() {
             listOf(),
             onBackClick = {},
             onPlusClick = {},
+            true,
             true
         )
     }

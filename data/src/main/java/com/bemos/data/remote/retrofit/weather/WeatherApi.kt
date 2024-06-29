@@ -22,6 +22,8 @@ interface WeatherApi {
     ) : Response<Weather>
 
     companion object {
-        const val API_KEY = "91c262dcdf7b401686e200400241106"
+        const val API_KEY = "d7de071820f14654baf182452242806"
     }
 }
+
+// 91c262dcdf7b401686e200400241106
