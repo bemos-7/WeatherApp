@@ -29,3 +29,7 @@
     </application>
 
 </manifest>
+
+<!--    android:theme="@style/Theme.WeatherApp"-->
+
+<!--    android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"-->

@@ -1,6 +1,8 @@
 package com.bemos.weatherapp.presentation.screen.main_activity
 
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
