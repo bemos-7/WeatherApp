@@ -2,6 +2,7 @@ package com.bemos.weatherapp.presentation.screen.details_city.vm.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.GetLocationsByCityUseCase
 import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.domain.use_cases.GetWeatherUseCase
@@ -11,14 +12,16 @@ import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsScreenVie
 class DetailsScreenViewModelFactory(
     val getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase,
     val insertLocationUseCase: InsertLocationUseCase,
-    val getLocationByCityUseCase: GetLocationsByCityUseCase
+    val getLocationByCityUseCase: GetLocationsByCityUseCase,
+    val checkInternetUseCase: CheckInternetUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return DetailsScreenViewModel(
             getWeatherAndWeekUseCase = getWeatherAndWeekUseCase,
             insertLocationUseCase = insertLocationUseCase,
-            getLocationByCityUseCase = getLocationByCityUseCase
+            getLocationByCityUseCase = getLocationByCityUseCase,
+            checkInternetUseCase = checkInternetUseCase
         ) as T
     }
 

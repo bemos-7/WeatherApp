@@ -1,5 +1,6 @@
 package com.bemos.weatherapp.di.modules
 
+import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
@@ -19,12 +20,14 @@ class AppModule {
     fun provideDetailsScreenViewModelFactory(
         getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase,
         insertLocationUseCase: InsertLocationUseCase,
-        getLocationByCityUseCase: GetLocationsByCityUseCase
+        getLocationByCityUseCase: GetLocationsByCityUseCase,
+        checkInternetUseCase: CheckInternetUseCase
     ) : DetailsScreenViewModelFactory {
         return DetailsScreenViewModelFactory(
             getWeatherAndWeekUseCase = getWeatherAndWeekUseCase,
             insertLocationUseCase = insertLocationUseCase,
-            getLocationByCityUseCase = getLocationByCityUseCase
+            getLocationByCityUseCase = getLocationByCityUseCase,
+            checkInternetUseCase = checkInternetUseCase
         )
     }
 
@@ -33,13 +36,15 @@ class AppModule {
         getAllLocationsUseCase: GetAllLoationsUseCase,
         getAllCitiesUseCase: GetAllCitiesUseCase,
         deleteLocationUseCase: DeleteLocationUseCase,
-        getLocationByCityUseCase: GetLocationByCityUseCase
+        getLocationByCityUseCase: GetLocationByCityUseCase,
+        checkInternetUseCase: CheckInternetUseCase
     ) : HomeScreenViewModelFactory {
         return HomeScreenViewModelFactory(
             getAllLocationsUseCase = getAllLocationsUseCase,
             getAllCitiesUseCase = getAllCitiesUseCase,
             deleteLocationUseCase = deleteLocationUseCase,
-            getLocationByCityUseCase = getLocationByCityUseCase
+            getLocationByCityUseCase = getLocationByCityUseCase,
+            checkInternetUseCase = checkInternetUseCase
         )
     }
 

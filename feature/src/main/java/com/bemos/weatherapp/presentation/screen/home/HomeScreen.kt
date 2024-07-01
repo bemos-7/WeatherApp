@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsWeatherIntentViewModel
 import com.bemos.weatherapp.presentation.screen.home.ui_component.OpenDeleteDialog
+import com.bemos.weatherapp.presentation.ui_component.OpenDeleteDialogNetwork
 import com.bemos.weatherapp.presentation.screen.home.vm.HomeScreenViewModel
 
 @Composable
@@ -25,7 +26,21 @@ fun HomeScreen(
 
     val locationDelete by homeViewModel.locationDelete.collectAsState()
 
+    val networkState by homeViewModel.networkState.collectAsState()
+
+    homeViewModel.checkInternet()
+
     homeViewModel.getAllLocations()
+
+    OpenDeleteDialogNetwork(
+        networkState = networkState,
+        onDismissRequest = {
+            homeViewModel.checkInternet()
+        },
+        onConfirmButton = {
+            homeViewModel.checkInternet()
+        }
+    )
 
     OpenDeleteDialog(
         isTrueValue = isTrue,

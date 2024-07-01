@@ -3,6 +3,7 @@ package com.bemos.weatherapp.presentation.screen.home.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bemos.domain.model.Location
+import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
@@ -15,7 +16,8 @@ class HomeScreenViewModel(
     private val getAllLocationsUseCase: GetAllLoationsUseCase,
     private val getAllCitiesUseCase: GetAllCitiesUseCase,
     private val deleteLocationUseCase: DeleteLocationUseCase,
-    private val getLocationByCityUseCase: GetLocationByCityUseCase
+    private val getLocationByCityUseCase: GetLocationByCityUseCase,
+    private val checkInternetUseCase: CheckInternetUseCase
 ) : ViewModel() {
 
     val locations = MutableStateFlow<List<Location>>(
@@ -38,6 +40,8 @@ class HomeScreenViewModel(
 
     val isTrue = MutableStateFlow(false)
 
+    val networkState = MutableStateFlow(true)
+
     val locationDelete = MutableStateFlow(
         Location(
             city = ""
@@ -54,18 +58,24 @@ class HomeScreenViewModel(
     }
 
     suspend fun getAllCities() = viewModelScope.launch {
-        val response = getAllCitiesUseCase.execute()
+        if (networkState.value) {
+            val response = getAllCitiesUseCase.execute()
 
-        var cityList = mutableListOf<String>()
+            var cityList = mutableListOf<String>()
 
-        if (response.isSuccessful) {
-            response.body()!!.data.forEach { data ->
-                data.cities.forEach {
-                    cityList.add(it)
+            if (response.isSuccessful) {
+                response.body()!!.data.forEach { data ->
+                    data.cities.forEach {
+                        cityList.add(it)
+                    }
+                }
+                cities.update {
+                    cityList
                 }
             }
-            cities.update {
-                cityList
+        } else {
+            networkState.update {
+                false
             }
         }
     }
@@ -111,6 +121,12 @@ class HomeScreenViewModel(
             locationToDelete.update {
                 locationItem
             }
+        }
+    }
+
+    fun checkInternet() {
+        networkState.update {
+            checkInternetUseCase.execute()
         }
     }
 

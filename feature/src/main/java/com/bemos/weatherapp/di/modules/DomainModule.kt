@@ -1,10 +1,13 @@
 package com.bemos.weatherapp.di.modules
 
+import android.content.Context
 import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
 import com.bemos.data.remote.retrofit.city.CityApi
 import com.bemos.data.remote.retrofit.weather.WeatherApi
 import com.bemos.domain.repositories.CityApiRepository
+import com.bemos.domain.repositories.NetworkRepository
 import com.bemos.domain.repositories.WeatherApiRepository
+import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
@@ -83,6 +86,17 @@ class DomainModule {
     ) : GetLocationByCityUseCase {
         return GetLocationByCityUseCase(
             repository
+        )
+    }
+
+    @Provides
+    fun provideCheckInternetUseCase(
+        networkRepository: NetworkRepository,
+        context: Context
+    ) : CheckInternetUseCase {
+        return CheckInternetUseCase(
+            networkRepository,
+            context
         )
     }
 
