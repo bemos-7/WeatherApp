@@ -85,6 +85,9 @@ fun HomeContent(
             }
         ) {
             LazyColumn {
+                item { 
+                    Spacer(modifier = Modifier.height(15.dp))
+                }
                 items(items = cityList) {
                     CityItem(
                         cityName = it,

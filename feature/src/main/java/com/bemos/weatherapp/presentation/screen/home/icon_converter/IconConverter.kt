@@ -8,7 +8,7 @@ class IconConverter {
         textCondition: String,
         time: Int = 5
     ) : Int {
-        if (time > 4 && time < 18) {
+        if (time in 5..18) {
             return when(textCondition.toLowerCase().trim()) {
                 "sunny" -> R.drawable.sun
                 "partly cloudy" -> R.drawable.cloud_sun
