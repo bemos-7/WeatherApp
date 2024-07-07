@@ -1,6 +1,7 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
 import android.graphics.Paint.Align
+import android.util.Log
 import android.widget.ProgressBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
@@ -9,6 +10,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -171,9 +173,15 @@ fun DetailsCityContent(
                             fontSize = 80.sp,
                         )
 
-                        AsyncImage(
+//                        AsyncImage(
+//                            modifier = Modifier.size(200.dp),
+//                            model = "https:${weatherDetailsAndMore.image}",
+//                            contentDescription = null
+//                        )
+
+                        Image(
                             modifier = Modifier.size(200.dp),
-                            model = "https:${weatherDetailsAndMore.image}",
+                            painter = painterResource(id = weatherDetailsAndMore.icon),
                             contentDescription = null
                         )
 
@@ -272,7 +280,8 @@ fun DetailsCityContentPreview() {
                 "23",
                 weather = "Clear",
                 forecastDay = listOf(),
-                ""
+                "",
+                R.drawable.sun
             ),
             listOf(),
             onBackClick = {},

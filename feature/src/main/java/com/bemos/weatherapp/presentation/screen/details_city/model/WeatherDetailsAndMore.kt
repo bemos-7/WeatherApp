@@ -8,5 +8,6 @@ data class WeatherDetailsAndMore(
     val temp: String,
     val weather: String,
     val forecastDay: List<ForecastdayDomain>,
-    val image: String
+    val image: String,
+    val icon: Int
 )

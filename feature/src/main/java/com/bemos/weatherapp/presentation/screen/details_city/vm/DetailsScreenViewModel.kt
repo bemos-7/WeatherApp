@@ -1,5 +1,7 @@
 package com.bemos.weatherapp.presentation.screen.details_city.vm
 
+import android.util.Log
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
@@ -10,8 +12,10 @@ import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.GetLocationsByCityUseCase
 import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.domain.use_cases.InsertLocationUseCase
+import com.bemos.weatherapp.R
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherByTheHour
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherDetailsAndMore
+import com.bemos.weatherapp.presentation.screen.home.icon_converter.IconConverter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -29,7 +33,8 @@ class DetailsScreenViewModel(
             temp = "",
             weather = "",
             forecastDay = listOf(),
-            image = ""
+            image = "",
+            icon = R.drawable.baseline_arrow_circle_down_24_s
         )
     )
 
@@ -55,16 +60,31 @@ class DetailsScreenViewModel(
                 city
             )
 
+            val timePattern = """(\d{2}):(\d{2})""".toRegex()
+            val timeFirstPattern = """(\d{1}):(\d{2})""".toRegex()
+
             if (response.isSuccessful) {
+
+                var timeLocal = timePattern.find(response.body()!!.locationDomain.localtime)
+
+                if (timeLocal == null) {
+                    timeLocal = timeFirstPattern.find(response.body()!!.locationDomain.localtime)
+                }
+
                 weatherAndForecast.update {
                     WeatherDetailsAndMore(
                         city = response.body()!!.locationDomain.name,
                         temp = response.body()!!.currentDomain.temp_c.toString(),
                         weather = response.body()!!.currentDomain.conditionDomain.text,
                         forecastDay = response.body()!!.forecastDomain.forecastdayDomain,
-                        image = response.body()!!.currentDomain.conditionDomain.icon
+                        image = response.body()!!.currentDomain.conditionDomain.icon,
+                        icon = IconConverter().iconConvert(
+                            response.body()!!.currentDomain.conditionDomain.text,
+                            timeLocal!!.groupValues[1].toInt()
+                        )
                     )
                 }
+
                 progressBarState.update {
                     true
                 }
@@ -78,8 +98,6 @@ class DetailsScreenViewModel(
                 response.body()!!.forecastDomain.forecastdayDomain.forEach { forecastday ->
                     forecastday.hourDomain.forEach {
                         if (weatherByTheHourList.size <= 24) {
-
-                            val timePattern = """(\d{2}):(\d{2})""".toRegex()
 
                             val match = timePattern.find(it.time)
 
@@ -97,10 +115,16 @@ class DetailsScreenViewModel(
 
                             weatherByTheHourList.add(it)
 
+                            val icon = IconConverter().iconConvert(
+                                it.conditionDomain.text,
+                                match!!.groupValues[1].toInt()
+                            )
+
                             weatherAndTime.add(
                                 WeatherByTheHour(
                                     it,
-                                    time
+                                    time,
+                                    icon
                                 )
                             )
                         }
@@ -168,7 +192,8 @@ class DetailsScreenViewModel(
                 "",
                 "",
                 listOf(),
-                ""
+                "",
+                0
             )
         }
         weatherByTheHour.update {

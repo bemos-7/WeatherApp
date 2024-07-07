@@ -1,5 +1,6 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState

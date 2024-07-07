@@ -1,5 +1,6 @@
 package com.bemos.weatherapp.presentation.screen.details_city.items
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherByTheHour
@@ -42,10 +44,16 @@ fun ForecastDayItem(
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            AsyncImage(
-                modifier = Modifier.size(64.dp, 64.dp),
-                model = "https:${weatherByTheHour.hour.conditionDomain.icon}",
-                contentDescription = null,
+//            AsyncImage(
+//                modifier = Modifier.size(64.dp, 64.dp),
+//                model = "https:${weatherByTheHour.hour.conditionDomain.icon}",
+//                contentDescription = null,
+//            )
+
+            Image(
+                modifier = Modifier.size(64.dp),
+                painter = painterResource(id = weatherByTheHour.icon),
+                contentDescription = null
             )
 
             Spacer(modifier = Modifier.height(10.dp))
