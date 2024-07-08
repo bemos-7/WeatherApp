@@ -62,6 +62,7 @@ import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastDayIt
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastItem
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherByTheHour
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherDetailsAndMore
+import com.bemos.weatherapp.presentation.screen.home.ui_component.LoadingShimmerAnimation
 import com.bemos.weatherapp.ui.theme.Blue
 import com.bemos.weatherapp.ui.theme.LightBlue
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
@@ -77,101 +78,104 @@ fun DetailsCityContent(
     progressBarState: Boolean
 ) {
 
-    Scaffold(
-    Modifier.fillMaxSize(),
-    topBar = {
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = LightBlue
-            ),
-            shape = RoundedCornerShape(0.dp)
-        ) {
-            Row(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        10.dp
-                    )
-            ) {
-                Icon(
-                    modifier = Modifier.clickable {
-                        onBackClick()
-                    },
-                    painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
-                    contentDescription = "backBtn",
-                    tint = Color.White
-                )
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.End
+    if (!progressBarState) {
+        LoadingShimmerAnimation()
+    } else {
+        Scaffold(
+            Modifier.fillMaxSize(),
+            topBar = {
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = LightBlue
+                    ),
+                    shape = RoundedCornerShape(0.dp)
                 ) {
-                    if (addCheck) {
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                10.dp
+                            )
+                    ) {
                         Icon(
                             modifier = Modifier.clickable {
-                                onPlusClick(
-                                    weatherDetailsAndMore.city
-                                )
+                                onBackClick()
                             },
-                            painter = painterResource(id = R.drawable.baseline_add_24),
-                            contentDescription = "addBtn",
+                            painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
+                            contentDescription = "backBtn",
                             tint = Color.White
                         )
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.End
+                        ) {
+                            if (addCheck) {
+                                Icon(
+                                    modifier = Modifier.clickable {
+                                        onPlusClick(
+                                            weatherDetailsAndMore.city
+                                        )
+                                    },
+                                    painter = painterResource(id = R.drawable.baseline_add_24),
+                                    contentDescription = "addBtn",
+                                    tint = Color.White
+                                )
+                            }
+                        }
                     }
                 }
             }
-        }
-    }
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-                .verticalScroll(rememberScrollState())
         ) {
-            Card(
-                Modifier
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(
-                    topStart = 0.dp,
-                    topEnd = 0.dp,
-                    bottomStart = 50.dp,
-                    bottomEnd = 50.dp
-                )
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it)
+                    .verticalScroll(rememberScrollState())
             ) {
-                Column(
+                Card(
                     Modifier
-                        .fillMaxWidth()
-                        .background(
-                            Brush.verticalGradient(
-                                listOf(
-                                    LightBlue,
-                                    Blue
-                                )
-                            )
-                        ),
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                        .fillMaxWidth(),
+                    shape = RoundedCornerShape(
+                        topStart = 0.dp,
+                        topEnd = 0.dp,
+                        bottomStart = 50.dp,
+                        bottomEnd = 50.dp
+                    )
                 ) {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        Modifier
+                            .fillMaxWidth()
+                            .background(
+                                Brush.verticalGradient(
+                                    listOf(
+                                        LightBlue,
+                                        Blue
+                                    )
+                                )
+                            ),
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Spacer(modifier = Modifier.size(width = 0.dp, height = 20.dp))
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Spacer(modifier = Modifier.size(width = 0.dp, height = 20.dp))
 
-                        Text(
-                            text = weatherDetailsAndMore.city,
-                            fontSize = 24.sp,
-                            color = Color.White
-                        )
+                            Text(
+                                text = weatherDetailsAndMore.city,
+                                fontSize = 24.sp,
+                                color = Color.White
+                            )
 
-                        Spacer(modifier = Modifier.size(width = 0.dp, height = 5.dp))
+                            Spacer(modifier = Modifier.size(width = 0.dp, height = 5.dp))
 
-                        Text(
-                            modifier = Modifier.padding(start = 10.dp),
-                            text = "${weatherDetailsAndMore.temp}°",
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White,
-                            fontSize = 80.sp,
-                        )
+                            Text(
+                                modifier = Modifier.padding(start = 10.dp),
+                                text = "${weatherDetailsAndMore.temp}°",
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White,
+                                fontSize = 80.sp,
+                            )
 
 //                        AsyncImage(
 //                            modifier = Modifier.size(200.dp),
@@ -179,89 +183,90 @@ fun DetailsCityContent(
 //                            contentDescription = null
 //                        )
 
-                        Image(
-                            modifier = Modifier.size(200.dp),
-                            painter = painterResource(id = weatherDetailsAndMore.icon),
-                            contentDescription = null
-                        )
-
-                        Spacer(modifier = Modifier.size(width = 0.dp, height = 5.dp))
-
-                        Column(
-                            modifier = Modifier.width(200.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = weatherDetailsAndMore.weather,
-                                fontSize = 24.sp,
-                                color = Color.White,
-                                textAlign = TextAlign.Center,
-                                lineHeight = 30.sp
+                            Image(
+                                modifier = Modifier.size(200.dp),
+                                painter = painterResource(id = weatherDetailsAndMore.icon),
+                                contentDescription = null
                             )
-                        }
 
-                        if (!progressBarState) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(128.dp),
-                                strokeWidth = 8.dp
-                            )
-                        }
+                            Spacer(modifier = Modifier.size(width = 0.dp, height = 5.dp))
 
-                        Spacer(modifier = Modifier.size(width = 0.dp, height = 50.dp))
+                            Column(
+                                modifier = Modifier.width(200.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = weatherDetailsAndMore.weather,
+                                    fontSize = 24.sp,
+                                    color = Color.White,
+                                    textAlign = TextAlign.Center,
+                                    lineHeight = 30.sp
+                                )
+                            }
+
+//                        if (!progressBarState) {
+//                            CircularProgressIndicator(
+//                                modifier = Modifier.size(128.dp),
+//                                strokeWidth = 8.dp
+//                            )
+//                        }
+
+                            Spacer(modifier = Modifier.size(width = 0.dp, height = 50.dp))
+                        }
                     }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
-            Text(
-                modifier = Modifier.padding(start = 35.dp),
-                text = "Today",
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
-            )
+                Text(
+                    modifier = Modifier.padding(start = 35.dp),
+                    text = "Today",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
 
-            Spacer(modifier = Modifier.height(5.dp))
-            
-            LazyRow {
-                item {
-                    Spacer(modifier = Modifier.width(20.dp))
-                }
-                items(
-                    items = weatherByTheHour,
-                ) {
-                    ForecastDayItem(
-                        it
-                    )
-                }
-                item {
-                    Spacer(modifier = Modifier.width(20.dp))
-                }
-            }
+                Spacer(modifier = Modifier.height(5.dp))
 
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Text(
-                modifier = Modifier.padding(start = 35.dp),
-                text = "Next 10 days",
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Column(
-                modifier = Modifier
-                    .height(500.dp)
-                    .padding(start = 25.dp, end = 25.dp)
-            ) {
-                LazyColumn() {
+                LazyRow {
+                    item {
+                        Spacer(modifier = Modifier.width(20.dp))
+                    }
                     items(
-                        items = weatherDetailsAndMore.forecastDay
+                        items = weatherByTheHour,
                     ) {
-                        ForecastItem(
-                            forecastday = it
+                        ForecastDayItem(
+                            it
                         )
+                    }
+                    item {
+                        Spacer(modifier = Modifier.width(20.dp))
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    modifier = Modifier.padding(start = 35.dp),
+                    text = "Next 10 days",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Column(
+                    modifier = Modifier
+                        .height(500.dp)
+                        .padding(start = 25.dp, end = 25.dp)
+                ) {
+                    LazyColumn() {
+                        items(
+                            items = weatherDetailsAndMore.forecastDay
+                        ) {
+                            ForecastItem(
+                                forecastday = it
+                            )
+                        }
                     }
                 }
             }

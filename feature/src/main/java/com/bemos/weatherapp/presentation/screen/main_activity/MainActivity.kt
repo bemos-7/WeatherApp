@@ -19,6 +19,7 @@ import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsScreenVie
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsWeatherIntentViewModel
 import com.bemos.weatherapp.presentation.screen.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.weatherapp.presentation.screen.home.HomeScreen
+import com.bemos.weatherapp.presentation.screen.home.ui_component.LoadingShimmerAnimation
 import com.bemos.weatherapp.presentation.screen.home.vm.HomeScreenViewModel
 import com.bemos.weatherapp.presentation.screen.home.vm.factory.HomeScreenViewModelFactory
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
