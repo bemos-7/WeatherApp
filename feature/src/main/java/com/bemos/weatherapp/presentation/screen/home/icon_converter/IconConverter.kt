@@ -20,7 +20,10 @@ class IconConverter {
                 "cloudy" -> R.drawable.clouds
                 "heavy rain" -> R.drawable.clouds_rain
                 "moderate rain" -> R.drawable.clouds_rain
-                else -> { R.drawable.sun }
+                "light rain shower" -> R.drawable.group_8
+                "fog" -> R.drawable.fog
+                "patchy light drizzle" -> R.drawable.clouds_rain
+                else -> { R.drawable.full_moon_second }
             }
         } else {
             return when(textCondition.toLowerCase().trim()) {
@@ -34,6 +37,9 @@ class IconConverter {
                 "cloudy" -> R.drawable.clouds
                 "heavy rain" -> R.drawable.clouds_rain
                 "moderate rain" -> R.drawable.clouds_rain
+                "light rain shower" -> R.drawable.group_8
+                "fog" -> R.drawable.fog
+                "patchy light drizzle" -> R.drawable.clouds_rain
                 else -> { R.drawable.full_moon_second }
             }
         }

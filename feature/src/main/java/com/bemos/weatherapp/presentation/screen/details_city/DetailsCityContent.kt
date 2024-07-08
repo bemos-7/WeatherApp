@@ -1,20 +1,9 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
-import android.graphics.Paint.Align
-import android.util.Log
-import android.widget.ProgressBar
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,19 +20,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -52,12 +33,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.bemos.weatherapp.R
-import com.bemos.data.remote.retrofit.weather.models.Hour
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastDayItem
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastItem
 import com.bemos.weatherapp.presentation.screen.details_city.model.WeatherByTheHour
@@ -66,7 +44,6 @@ import com.bemos.weatherapp.presentation.screen.home.ui_component.LoadingShimmer
 import com.bemos.weatherapp.ui.theme.Blue
 import com.bemos.weatherapp.ui.theme.LightBlue
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
-import kotlinx.coroutines.delay
 
 @Composable
 fun DetailsCityContent(
@@ -75,7 +52,7 @@ fun DetailsCityContent(
     onBackClick: () -> Unit,
     onPlusClick: (String) -> Unit,
     addCheck: Boolean,
-    progressBarState: Boolean
+    progressBarState: Boolean,
 ) {
 
     if (!progressBarState) {
@@ -286,16 +263,20 @@ fun DetailsCityContentPreview() {
                 weather = "Clear",
                 forecastDay = listOf(),
                 "",
-                R.drawable.sun
+                R.drawable.sun,
             ),
             listOf(),
             onBackClick = {},
             onPlusClick = {},
             true,
-            true
+            true,
+
         )
     }
 }
+
+
+
 
 //Scaffold(
 //Modifier.fillMaxSize(),

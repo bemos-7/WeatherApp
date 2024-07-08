@@ -1,6 +1,5 @@
 package com.bemos.weatherapp.presentation.screen.details_city
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -15,7 +14,7 @@ import com.bemos.weatherapp.presentation.ui_component.OpenDeleteDialogNetwork
 fun DetailsCityScreen(
     navController: NavController,
     detailsWeatherIntentViewModel: DetailsWeatherIntentViewModel = viewModel(),
-    detailsScreenViewModel: DetailsScreenViewModel = viewModel()
+    detailsScreenViewModel: DetailsScreenViewModel = viewModel(),
 ) {
 
     val weatherDetails by detailsWeatherIntentViewModel.weather.collectAsState()
@@ -59,7 +58,7 @@ fun DetailsCityScreen(
             detailsScreenViewModel.insertLocationRunWithScope(it)
         },
         addCheck = insertChecker,
-        progressBarState
+        progressBarState,
     )
 
 }
