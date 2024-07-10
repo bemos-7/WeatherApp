@@ -26,6 +26,7 @@ class IconConverter {
                 "light rain" -> R.drawable.light_rain
                 "patchy rain nearby" -> R.drawable.group_8
                 "light drizzle" -> R.drawable.light_drizzle
+                "patchy light rain" -> R.drawable.group_8
                 else -> { R.drawable.baseline_arrow_circle_down_24_s }
             }
         } else {
@@ -46,6 +47,7 @@ class IconConverter {
                 "light rain" -> R.drawable.light_rain
                 "patchy rain nearby" -> R.drawable.night_rain
                 "light drizzle" -> R.drawable.light_drizzle
+                "patchy light rain" -> R.drawable.night_rain
                 else -> { R.drawable.baseline_arrow_circle_down_24_s }
             }
         }

@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bemos.domain.model.weather_models.ForecastdayDomain
 import com.bemos.weatherapp.R
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastDayItem
 import com.bemos.weatherapp.presentation.screen.details_city.items.ForecastItem
@@ -53,6 +54,7 @@ fun DetailsCityContent(
     onPlusClick: (String) -> Unit,
     addCheck: Boolean,
     progressBarState: Boolean,
+    onForecastCLick: (ForecastdayDomain) -> Unit
 ) {
 
     if (!progressBarState) {
@@ -241,7 +243,10 @@ fun DetailsCityContent(
                             items = weatherDetailsAndMore.forecastDay
                         ) {
                             ForecastItem(
-                                forecastday = it
+                                forecastDay = it,
+                                onForecastCLick = { forecast ->
+                                    onForecastCLick(forecast)
+                                }
                             )
                         }
                     }
@@ -270,7 +275,7 @@ fun DetailsCityContentPreview() {
             onPlusClick = {},
             true,
             true,
-
+            onForecastCLick = {}
         )
     }
 }

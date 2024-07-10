@@ -92,6 +92,7 @@ class DetailsScreenViewModel(
                 val weatherByTheHourList = mutableListOf<HourDomain>()
 
                 var time = ""
+                var cityTime = ""
 
                 val weatherAndTime = mutableListOf<WeatherByTheHour>()
 
@@ -106,8 +107,10 @@ class DetailsScreenViewModel(
 
                                 if (hour.toInt() >= 12) {
                                     hour += " PM"
+                                    cityTime = timeLocal!!.groupValues[1] + " PM"
                                 } else {
                                     hour += " AM"
+                                    cityTime = timeLocal!!.groupValues[1] + " AM"
                                 }
 
                                 time = hour
@@ -124,7 +127,8 @@ class DetailsScreenViewModel(
                                 WeatherByTheHour(
                                     it,
                                     time,
-                                    icon
+                                    icon,
+                                    cityTime
                                 )
                             )
                         }

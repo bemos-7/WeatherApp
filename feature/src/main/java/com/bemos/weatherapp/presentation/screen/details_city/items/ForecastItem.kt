@@ -1,6 +1,8 @@
 package com.bemos.weatherapp.presentation.screen.details_city.items
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,30 +20,34 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.bemos.data.remote.retrofit.weather.models.Forecastday
 import com.bemos.domain.model.weather_models.ForecastdayDomain
 import com.bemos.weatherapp.presentation.screen.home.icon_converter.IconConverter
+import com.bemos.weatherapp.ui.theme.ContainerBlack
 
 @Composable
 fun ForecastItem(
-    forecastday: ForecastdayDomain
+    forecastDay: ForecastdayDomain,
+    onForecastCLick: (ForecastdayDomain) -> Unit
 ) {
 
     Card(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {
+                onForecastCLick(forecastDay)
+            },
         shape = RoundedCornerShape(20.dp)
     ) {
         Row(
             Modifier
                 .fillMaxWidth()
+                .background(ContainerBlack)
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
                 Text(
-                    text = forecastday.date
+                    text = forecastDay.date
                 )
                 Spacer(modifier = Modifier.height(10.dp))
 //                AsyncImage(
@@ -52,7 +58,7 @@ fun ForecastItem(
                 Image(
                     modifier = Modifier.size(64.dp),
                     painter = painterResource(
-                        id = IconConverter().iconConvert(forecastday.dayDomain.conditionDomain.text)),
+                        id = IconConverter().iconConvert(forecastDay.dayDomain.conditionDomain.text)),
                     contentDescription = null
                 )
             }
@@ -62,7 +68,7 @@ fun ForecastItem(
                 horizontalAlignment = Alignment.End
             ) {
                 Text(
-                    text = "${forecastday.dayDomain.maxtemp_c}°",
+                    text = "${forecastDay.dayDomain.maxtemp_c}°",
                     fontSize = 40.sp,
                     fontWeight = FontWeight.Bold
                 )

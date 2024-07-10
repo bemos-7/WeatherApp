@@ -52,13 +52,19 @@ fun DetailsCityScreen(
         weatherDetailsAndMore = weatherAndMore,
         weatherByTheHour = weatherByTheHour,
         onBackClick = {
-            navController.popBackStack()
+            navController.navigate("home")
         },
         onPlusClick = {
             detailsScreenViewModel.insertLocationRunWithScope(it)
         },
         addCheck = insertChecker,
         progressBarState,
+        onForecastCLick = {
+            detailsWeatherIntentViewModel.updateForecastDay(
+                it
+            )
+            navController.navigate("detailsCityFuture")
+        }
     )
 
 }

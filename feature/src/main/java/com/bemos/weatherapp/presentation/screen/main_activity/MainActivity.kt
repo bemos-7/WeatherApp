@@ -12,6 +12,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.bemos.weatherapp.di.appComponent
+import com.bemos.weatherapp.presentation.screen.detail_city_future.DetailsCityFutureScreen
+import com.bemos.weatherapp.presentation.screen.detail_city_future.vm.DetailsCityFutureScreenViewModel
 import com.bemos.weatherapp.presentation.screen.details_city.DetailsCityScreen
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsScreenViewModel
 import com.bemos.weatherapp.presentation.screen.details_city.vm.DetailsWeatherIntentViewModel
@@ -48,6 +50,8 @@ class MainActivity : ComponentActivity() {
                 factory = homeScreenViewModelFactory
             )
 
+            val detailsCityFutureScreenViewModel = viewModel<DetailsCityFutureScreenViewModel>()
+
             WeatherAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -75,6 +79,16 @@ class MainActivity : ComponentActivity() {
                                 navController = navController,
                                 detailsWeatherIntentViewModel = detailsWeatherIntentViewModel,
                                 detailsScreenViewModel = detailsViewModel
+                            )
+                        }
+
+                        composable(
+                            route = "detailsCityFuture"
+                        ) {
+                            DetailsCityFutureScreen(
+                                navController = navController,
+                                detailsCityFutureScreenViewModel = detailsCityFutureScreenViewModel,
+                                detailsWeatherIntentViewModel = detailsWeatherIntentViewModel
                             )
                         }
                     }
