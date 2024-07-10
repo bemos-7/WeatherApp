@@ -1,7 +1,7 @@
 package com.bemos.weatherapp.di
 
 import android.content.Context
-import com.bemos.weatherapp.app.App
+import com.bemos.weatherapp.App
 import com.bemos.weatherapp.di.modules.AppModule
 import com.bemos.weatherapp.di.modules.DataModule
 import com.bemos.weatherapp.di.modules.DomainModule

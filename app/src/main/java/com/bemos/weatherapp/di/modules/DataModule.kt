@@ -1,8 +1,6 @@
 package com.bemos.weatherapp.di.modules
 
-import com.bemos.data.local.room.dao.LocationDao
 import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
-import com.bemos.data.local.room.repositoryImpl.LocationRepositoryImpl
 import com.bemos.data.remote.retrofit.city.CityApi
 import com.bemos.data.remote.retrofit.city.repositoryImpl.CityApiRepositoryImpl
 import com.bemos.data.remote.retrofit.weather.WeatherApi

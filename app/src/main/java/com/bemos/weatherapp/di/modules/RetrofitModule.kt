@@ -1,22 +1,21 @@
 package com.bemos.weatherapp.di.modules
 
-import com.bemos.data.remote.retrofit.city.CityApi
-import com.bemos.data.remote.retrofit.weather.WeatherApi
-import dagger.Component
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Named
 
 @Module
 class RetrofitModule {
+    companion object {
+        private const val BASE_URL = "https://api.weatherapi.com/"
+    }
 
     @Provides
     fun provideWeatherRetrofit() : Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.weatherapi.com/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

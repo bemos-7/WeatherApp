@@ -2,7 +2,6 @@ package com.bemos.weatherapp.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.bemos.data.local.room.dao.LocationDao
 import com.bemos.data.local.room.db.LocationDatabase
 import dagger.Module
 import dagger.Provides
@@ -13,10 +12,10 @@ class RoomModule {
     @Provides
     fun provideLocationDatabase(
         context: Context
-    ) : com.bemos.data.local.room.db.LocationDatabase {
+    ) : LocationDatabase {
         return Room.databaseBuilder(
             context = context,
-            com.bemos.data.local.room.db.LocationDatabase::class.java,
+            LocationDatabase::class.java,
             "db"
         ).build()
     }

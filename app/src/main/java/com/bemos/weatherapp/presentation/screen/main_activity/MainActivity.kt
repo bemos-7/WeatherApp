@@ -6,12 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.bemos.weatherapp.di.appComponent
+import com.bemos.weatherapp.presentation.screen.app.AppUi
 import com.bemos.weatherapp.presentation.screen.detail_city_future.DetailsCityFutureScreen
 import com.bemos.weatherapp.presentation.screen.detail_city_future.vm.DetailsCityFutureScreenViewModel
 import com.bemos.weatherapp.presentation.screen.details_city.DetailsCityScreen
@@ -43,13 +45,10 @@ class MainActivity : ComponentActivity() {
             val detailsViewModel = viewModel<DetailsScreenViewModel>(
                 factory = detailsScreenViewModelFactory
             )
-
             val detailsWeatherIntentViewModel = viewModel<DetailsWeatherIntentViewModel>()
-
             val homeViewModel = viewModel<HomeScreenViewModel>(
                 factory = homeScreenViewModelFactory
             )
-
             val detailsCityFutureScreenViewModel = viewModel<DetailsCityFutureScreenViewModel>()
 
             WeatherAppTheme {
@@ -58,40 +57,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavHost(
+                    AppUi(
                         navController = navController,
-                        startDestination = "home"
-                    ) {
-                        composable(
-                            route = "home"
-                        ) {
-                            HomeScreen(
-                                navController = navController,
-                                homeViewModel = homeViewModel,
-                                detailsWeatherIntentViewModel = detailsWeatherIntentViewModel
-                            )
-                        }
-
-                        composable(
-                            route = "detailsCity"
-                        ) {
-                            DetailsCityScreen(
-                                navController = navController,
-                                detailsWeatherIntentViewModel = detailsWeatherIntentViewModel,
-                                detailsScreenViewModel = detailsViewModel
-                            )
-                        }
-
-                        composable(
-                            route = "detailsCityFuture"
-                        ) {
-                            DetailsCityFutureScreen(
-                                navController = navController,
-                                detailsCityFutureScreenViewModel = detailsCityFutureScreenViewModel,
-                                detailsWeatherIntentViewModel = detailsWeatherIntentViewModel
-                            )
-                        }
-                    }
+                        homeViewModel = homeViewModel,
+                        detailsViewModel = detailsViewModel,
+                        detailsWeatherIntentViewModel = detailsWeatherIntentViewModel,
+                        detailsCityFutureScreenViewModel = detailsCityFutureScreenViewModel,
+                    )
                 }
             }
         }

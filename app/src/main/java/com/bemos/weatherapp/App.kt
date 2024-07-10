@@ -1,4 +1,4 @@
-package com.bemos.weatherapp.app
+package com.bemos.weatherapp
 
 import android.app.Application
 import com.bemos.weatherapp.di.AppComponent
