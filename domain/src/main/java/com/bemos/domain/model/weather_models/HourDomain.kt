@@ -1,5 +1,10 @@
 package com.bemos.domain.model.weather_models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+
+@Parcelize
 data class HourDomain(
     val chance_of_rain: Int,
     val chance_of_snow: Int,
@@ -35,4 +40,4 @@ data class HourDomain(
     val wind_mph: Double,
     val windchill_c: Double,
     val windchill_f: Double
-)
+) : Parcelable

@@ -1,5 +1,10 @@
 package com.bemos.domain.model.weather_models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+
+@Parcelize
 data class DayDomain(
     val avghumidity: Int,
     val avgtemp_c: Double,
@@ -21,4 +26,4 @@ data class DayDomain(
     val totalprecip_mm: Double,
     val totalsnow_cm: Double,
     val uv: Double
-)
+) : Parcelable

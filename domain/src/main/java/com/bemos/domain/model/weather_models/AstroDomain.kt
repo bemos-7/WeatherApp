@@ -1,5 +1,10 @@
 package com.bemos.domain.model.weather_models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+
+@Parcelize
 data class AstroDomain(
     val is_moon_up: Int,
     val is_sun_up: Int,
@@ -9,4 +14,4 @@ data class AstroDomain(
     val moonset: String,
     val sunrise: String,
     val sunset: String
-)
+) : Parcelable
