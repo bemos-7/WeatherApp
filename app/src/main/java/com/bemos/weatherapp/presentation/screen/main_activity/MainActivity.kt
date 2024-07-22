@@ -22,6 +22,7 @@ import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModel
 import com.bemos.domain.model.weather_models.AstroDomain
 import com.bemos.domain.model.weather_models.ForecastdayDomain
 import com.bemos.home.HomeScreen
+import com.bemos.weatherapp.presentation.screen.app.AppUi
 import com.bemos.weatherapp.ui.theme.WeatherAppTheme
 import com.google.gson.Gson
 import javax.inject.Inject
@@ -51,74 +52,52 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavHost(
+                    AppUi(
                         navController = navController,
-                        startDestination = "home"
-                    ) {
-                        composable(
-                            route = "home"
-                        ) {
-                            HomeScreen(
-                                navController = navController,
-                                homeViewModelFactory = homeScreenViewModelFactory,
-                            )
-                        }
-
-                        composable(
-                            route = "detailsCity/{location}",
-                            arguments = listOf(
-                                navArgument("location") {
-                                    type = NavType.StringType
-                                }
-                            )
-                        ) { navBackStackEntry ->
-                            DetailsCityScreen(
-                                navController = navController,
-                                location = navBackStackEntry.arguments?.getString("location"),
-                                detailsScreenViewModelFactory = detailsScreenViewModelFactory
-                            )
-                        }
-
-                        composable(
-                            route = "detailsCityFuture"
-                        ) {
-                            navController.previousBackStackEntry?.savedStateHandle?.get<ForecastdayDomain>("forecast")?.let {
-                                DetailsCityFutureScreen(
-                                    navController = navController,
-                                    detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory,
-                                    forecast = it
-                                )
-                            }
-                        }
-
-//                        composable<ForecastdayDomain> { navBackStackEntry ->
-//                            val forecastDayDomain = navBackStackEntry.toRoute<ForecastdayDomain>()
-//
-//                            DetailsCityFutureScreen(
+                        homeScreenViewModelFactory = homeScreenViewModelFactory,
+                        detailsScreenViewModelFactory = detailsScreenViewModelFactory,
+                        detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory
+                    )
+//                    NavHost(
+//                        navController = navController,
+//                        startDestination = "home"
+//                    ) {
+//                        composable(
+//                            route = "home"
+//                        ) {
+//                            HomeScreen(
 //                                navController = navController,
-//                                detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory,
-//                                forecast = forecastDayDomain
+//                                homeViewModelFactory = homeScreenViewModelFactory,
 //                            )
 //                        }
-
-
+//
 //                        composable(
-//                            route = "detailsCityFuture/{forecast}",
+//                            route = "detailsCity/{location}",
 //                            arguments = listOf(
-//                                navArgument("forecast") {
+//                                navArgument("location") {
 //                                    type = NavType.StringType
 //                                }
 //                            )
 //                        ) { navBackStackEntry ->
-//                            val json = navBackStackEntry.arguments?.getString("forecast")
-//                            val forecastDay = Gson().fromJson(json, ForecastdayDomain::class.java)
-//                            DetailsCityFutureScreen(
+//                            DetailsCityScreen(
 //                                navController = navController,
-//                                detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory,
-//                                forecast = forecastDay
+//                                location = navBackStackEntry.arguments?.getString("location"),
+//                                detailsScreenViewModelFactory = detailsScreenViewModelFactory
 //                            )
 //                        }
-                    }
+//
+//                        composable(
+//                            route = "detailsCityFuture"
+//                        ) {
+//                            navController.previousBackStackEntry?.savedStateHandle?.get<ForecastdayDomain>("forecast")?.let {
+//                                DetailsCityFutureScreen(
+//                                    navController = navController,
+//                                    detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory,
+//                                    forecast = it
+//                                )
+//                            }
+//                        }
+//                    }
                 }
             }
         }

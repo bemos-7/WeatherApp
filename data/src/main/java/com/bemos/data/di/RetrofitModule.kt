@@ -9,10 +9,15 @@ import javax.inject.Named
 @Module
 class RetrofitModule {
 
+    companion object {
+        private const val BASE_WEATHER_API_URL = "https://api.weatherapi.com/"
+        private const val BASE_CITY_API_URL = "https://countriesnow.space/api/"
+    }
+
     @Provides
     fun provideWeatherRetrofit() : Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.weatherapi.com/")
+            .baseUrl(BASE_WEATHER_API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -28,7 +33,7 @@ class RetrofitModule {
     @Named("City")
     fun provideCityRetrofit() : Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://countriesnow.space/api/")
+            .baseUrl(BASE_CITY_API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
