@@ -58,46 +58,6 @@ class MainActivity : ComponentActivity() {
                         detailsScreenViewModelFactory = detailsScreenViewModelFactory,
                         detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory
                     )
-//                    NavHost(
-//                        navController = navController,
-//                        startDestination = "home"
-//                    ) {
-//                        composable(
-//                            route = "home"
-//                        ) {
-//                            HomeScreen(
-//                                navController = navController,
-//                                homeViewModelFactory = homeScreenViewModelFactory,
-//                            )
-//                        }
-//
-//                        composable(
-//                            route = "detailsCity/{location}",
-//                            arguments = listOf(
-//                                navArgument("location") {
-//                                    type = NavType.StringType
-//                                }
-//                            )
-//                        ) { navBackStackEntry ->
-//                            DetailsCityScreen(
-//                                navController = navController,
-//                                location = navBackStackEntry.arguments?.getString("location"),
-//                                detailsScreenViewModelFactory = detailsScreenViewModelFactory
-//                            )
-//                        }
-//
-//                        composable(
-//                            route = "detailsCityFuture"
-//                        ) {
-//                            navController.previousBackStackEntry?.savedStateHandle?.get<ForecastdayDomain>("forecast")?.let {
-//                                DetailsCityFutureScreen(
-//                                    navController = navController,
-//                                    detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory,
-//                                    forecast = it
-//                                )
-//                            }
-//                        }
-//                    }
                 }
             }
         }
