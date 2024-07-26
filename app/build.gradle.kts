@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
@@ -91,6 +92,15 @@ dependencies {
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-database:21.0.0")
+
+    //Google-Location
+    implementation ("com.google.android.gms:play-services-location:21.3.0")
 
     implementation(project(":data"))
     implementation(project(":domain"))

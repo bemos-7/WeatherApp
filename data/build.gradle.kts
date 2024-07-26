@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("com.google.gms.google-services")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
 }
@@ -54,6 +55,12 @@ dependencies {
     //Dagger
     implementation ("com.google.dagger:dagger:2.51.1")
     kapt ("com.google.dagger:dagger-compiler:2.51.1")
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-database:21.0.0")
 
     implementation(project(":domain"))
 

@@ -79,6 +79,9 @@ dependencies {
     //Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    //Google-Location
+    implementation ("com.google.android.gms:play-services-location:21.3.0")
+
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":feature:shared"))
