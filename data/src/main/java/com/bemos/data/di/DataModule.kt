@@ -17,8 +17,8 @@ import javax.inject.Named
 class DataModule {
 
     @Provides
-    fun provideLocationRepository(locationDao: com.bemos.data.local.room.dao.LocationDao) : LocationRepository {
-        return com.bemos.data.local.room.repositoryImpl.LocationRepositoryImpl(locationDao)
+    fun provideLocationRepository(locationDao: LocationDao) : LocationRepository {
+        return LocationRepositoryImpl(locationDao)
     }
 
     @Provides

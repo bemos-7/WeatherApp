@@ -16,6 +16,7 @@ import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModel
 import com.bemos.domain.model.weather_models.ForecastdayDomain
 import com.bemos.home.HomeScreen
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
+import com.google.android.gms.location.FusedLocationProviderClient
 
 private const val HOME = "home"
 private const val DETAILS_CITY = "detailsCity/{location}"

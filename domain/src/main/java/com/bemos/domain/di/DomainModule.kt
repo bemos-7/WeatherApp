@@ -3,6 +3,7 @@ package com.bemos.domain.di
 import android.content.Context
 import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
 import com.bemos.domain.repositories.CityApiRepository
+import com.bemos.domain.repositories.CurrentLocationRepository
 import com.bemos.domain.repositories.IconConverterRepository
 import com.bemos.domain.repositories.NetworkRepository
 import com.bemos.domain.repositories.WeatherApiRepository
@@ -10,6 +11,7 @@ import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.domain.use_cases.GetLocationsByCityUseCase
 import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
@@ -105,6 +107,15 @@ class DomainModule {
     ) : IconConvertUseCase {
         return IconConvertUseCase(
             iconConverterRepository
+        )
+    }
+
+    @Provides
+    fun provideGetCurrentLocationUseCase(
+        currentLocationRepository: CurrentLocationRepository
+    ) : GetCurrentLocationUseCase {
+        return GetCurrentLocationUseCase(
+            currentLocationRepository
         )
     }
 

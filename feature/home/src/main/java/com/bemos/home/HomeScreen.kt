@@ -1,5 +1,6 @@
 package com.bemos.home
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -15,7 +16,6 @@ import com.bemos.shared.ui_components.OpenDialogNetwork
 fun HomeScreen(
     navController: NavController,
     homeViewModelFactory: HomeScreenViewModelFactory
-//    detailsWeatherIntentViewModel: DetailsWeatherIntentViewModel = viewModel(),
 ) {
 
     val homeViewModel = viewModel<HomeScreenViewModel>(
@@ -36,7 +36,7 @@ fun HomeScreen(
 
     homeViewModel.getAllLocations()
 
-    com.bemos.shared.ui_components.OpenDialogNetwork(
+    OpenDialogNetwork(
         networkState = networkState,
         onDismissRequest = {
             homeViewModel.checkInternet()
@@ -46,7 +46,7 @@ fun HomeScreen(
         }
     )
 
-    com.bemos.shared.ui_components.OpenDeleteDialog(
+    OpenDeleteDialog(
         isTrueValue = isTrue,
         onDismissRequest = {
             homeViewModel.updateIsTrue(
@@ -71,7 +71,6 @@ fun HomeScreen(
     HomeContent(
         listCity = locationsList,
         onClick = {
-//            detailsWeatherIntentViewModel.updateCityDate(it)
             navController.navigate("detailsCity/$it")
         },
         cityList = searchCities,
@@ -79,7 +78,6 @@ fun HomeScreen(
             homeViewModel.searchCity(it)
         },
         onClickCity = {
-//            detailsWeatherIntentViewModel.updateCityDate(it)
             navController.navigate("detailsCity/$it")
         },
         onLongClick = {
@@ -87,6 +85,15 @@ fun HomeScreen(
                 isTrueValue = true,
                 location = it
             )
+        },
+        onLocationClick = {
+            homeViewModel.getCurrentLocation {
+
+                if (it.isEmpty()) {
+                    Log.d("locationCurrent", "it")
+                }
+                navController.navigate("detailsCity/$it")
+            }
         }
     )
 }

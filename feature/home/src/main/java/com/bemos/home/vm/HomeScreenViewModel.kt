@@ -7,8 +7,10 @@ import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.domain.use_cases.IconConvertUseCase
+import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -18,7 +20,8 @@ class HomeScreenViewModel(
     private val getAllCitiesUseCase: GetAllCitiesUseCase,
     private val deleteLocationUseCase: DeleteLocationUseCase,
     private val getLocationByCityUseCase: GetLocationByCityUseCase,
-    private val checkInternetUseCase: CheckInternetUseCase
+    private val checkInternetUseCase: CheckInternetUseCase,
+    private val getCurrentLocationUseCase: GetCurrentLocationUseCase
 ) : ViewModel() {
 
     val locations = MutableStateFlow<List<Location>>(
@@ -158,6 +161,14 @@ class HomeScreenViewModel(
         }
         locationDelete.update {
             location
+        }
+    }
+
+    fun getCurrentLocation(
+        location: (String) -> Unit
+    ) {
+        getCurrentLocationUseCase.execute {
+            location(it)
         }
     }
 }
