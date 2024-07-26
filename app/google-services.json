@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1002581360694",
+    "project_id": "weather-application-d783e",
+    "storage_bucket": "weather-application-d783e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002581360694:android:4405b1a0cf56d079d71897",
+        "android_client_info": {
+          "package_name": "com.bemos.weatherapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUHz1tV4NL3eBTZpRRNYnymCv1mpxA1kI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
