@@ -13,6 +13,7 @@ import com.bemos.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModelFactory
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.IconConvertUseCase
+import com.bemos.settings.vm.factory.SettingsScreenViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import dagger.Module
@@ -54,6 +55,15 @@ class AppModule {
             getLocationByCityUseCase = getLocationByCityUseCase,
             checkInternetUseCase = checkInternetUseCase,
             getCurrentLocationUseCase = getCurrentLocationUseCase
+        )
+    }
+
+    @Provides
+    fun provideSettingsScreenViewModelFactory(
+        getAllLocationsUseCase: GetAllLoationsUseCase
+    ) : SettingsScreenViewModelFactory {
+        return SettingsScreenViewModelFactory(
+            getAllLocationsUseCase = getAllLocationsUseCase
         )
     }
 
