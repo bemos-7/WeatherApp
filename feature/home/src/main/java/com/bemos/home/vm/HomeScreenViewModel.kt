@@ -1,5 +1,6 @@
 package com.bemos.home.vm
 
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bemos.domain.model.Location
@@ -168,7 +169,9 @@ class HomeScreenViewModel(
         location: (String) -> Unit
     ) {
         getCurrentLocationUseCase.execute {
-            location(it)
+            if (it != null) {
+                location(it)
+            }
         }
     }
 }
