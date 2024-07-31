@@ -2,6 +2,6 @@ package com.bemos.domain.repositories
 
 interface CurrentLocationRepository {
 
-    fun getCurrentLocation(geoPointCallBack: (String) -> Unit)
+    fun getCurrentLocation(geoPointCallBack: (String?) -> Unit)
 
 }

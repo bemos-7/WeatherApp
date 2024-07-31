@@ -14,7 +14,7 @@ class CurrentLocationRepositoryImpl(
     private val context: Context
 ) : CurrentLocationRepository {
     override fun getCurrentLocation(
-        geoPointCallBack: (String) -> Unit
+        geoPointCallBack: (String?) -> Unit
     ) {
         if (ActivityCompat.checkSelfPermission(
                 context,
@@ -24,7 +24,7 @@ class CurrentLocationRepositoryImpl(
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            geoPointCallBack("permission_not_accept")
+            geoPointCallBack(null)
         }
         val location = fusedLocationProviderClient.lastLocation
         location.addOnSuccessListener {
@@ -34,6 +34,5 @@ class CurrentLocationRepositoryImpl(
                 geoPointCallBack(geoPoint)
             }
         }
-
     }
 }

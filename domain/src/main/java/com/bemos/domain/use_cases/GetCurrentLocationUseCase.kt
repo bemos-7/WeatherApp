@@ -6,7 +6,7 @@ class GetCurrentLocationUseCase(
     private val currentLocationRepository: CurrentLocationRepository
 ) {
 
-    fun execute(currentLocation: (String) -> Unit) {
+    fun execute(currentLocation: (String?) -> Unit) {
         currentLocationRepository.getCurrentLocation {
             currentLocation(it)
         }
