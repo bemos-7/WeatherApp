@@ -94,6 +94,9 @@ fun HomeScreen(
                 }
                 navController.navigate("detailsCity/$it")
             }
+        },
+        onBurgerClick = {
+            navController.navigate("settings")
         }
     )
 }

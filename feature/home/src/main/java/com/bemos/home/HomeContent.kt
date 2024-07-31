@@ -46,7 +46,8 @@ fun HomeContent(
     searchCity: (String) -> Unit,
     onClickCity: (String) -> Unit,
     onLongClick: (Location) -> Unit,
-    onLocationClick: () -> Unit
+    onLocationClick: () -> Unit,
+    onBurgerClick: () -> Unit
 ) {
 
     val searchText = remember {
@@ -63,11 +64,32 @@ fun HomeContent(
             .padding(10.dp)
     ) {
 
-        Text(
-            text = "Weather",
-            fontWeight = FontWeight.Bold,
-            fontSize = 40.sp
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Weather",
+                fontWeight = FontWeight.Bold,
+                fontSize = 40.sp
+            )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Icon(
+                modifier = Modifier
+                    .size(30.dp)
+                    .clickable {
+                        onBurgerClick()
+                    },
+                painter = painterResource(
+                    id = R.drawable.burger
+                ),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary
+            )
+        }
 
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -150,6 +172,9 @@ fun HomeContentPreview() {
 
         },
         onLocationClick = {
+
+        },
+        onBurgerClick = {
 
         }
     )
