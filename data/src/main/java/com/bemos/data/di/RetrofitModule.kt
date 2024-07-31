@@ -2,6 +2,8 @@ package com.bemos.data.di
 
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
