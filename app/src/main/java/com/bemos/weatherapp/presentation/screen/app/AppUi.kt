@@ -16,6 +16,8 @@ import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModel
 import com.bemos.domain.model.weather_models.ForecastdayDomain
 import com.bemos.home.HomeScreen
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
+import com.bemos.settings.SettingsScreen
+import com.bemos.settings.vm.factory.SettingsScreenViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 
 private const val HOME = "home"
@@ -23,6 +25,7 @@ private const val DETAILS_CITY = "detailsCity/{location}"
 private const val LOCATION = "location"
 private const val DETAILS_CITY_FUTURE = "detailsCityFuture"
 private const val FORECAST = "forecast"
+private const val SETTINGS = "settings"
 
 @Composable
 fun AppUi(
@@ -30,7 +33,8 @@ fun AppUi(
     navController: NavHostController,
     homeScreenViewModelFactory: HomeScreenViewModelFactory,
     detailsScreenViewModelFactory: DetailsScreenViewModelFactory,
-    detailsCityFutureScreenViewModelFactory: DetailsCityFutureScreenViewModelFactory
+    detailsCityFutureScreenViewModelFactory: DetailsCityFutureScreenViewModelFactory,
+    settingsScreenViewModelFactory: SettingsScreenViewModelFactory
 ) {
     NavHost(
         modifier = modifier,
@@ -48,6 +52,10 @@ fun AppUi(
         detailsCityFuture(
             navController,
             detailsCityFutureScreenViewModelFactory
+        )
+        settings(
+            navController,
+            settingsScreenViewModelFactory
         )
     }
 
@@ -101,5 +109,19 @@ private fun NavGraphBuilder.detailsCityFuture(
                 forecast = it
             )
         }
+    }
+}
+
+private fun NavGraphBuilder.settings(
+    navController: NavController,
+    settingsScreenViewModelFactory: SettingsScreenViewModelFactory
+) {
+    composable(
+        route = SETTINGS
+    ) {
+        SettingsScreen(
+            navController = navController,
+            settingsScreenViewModelFactory = settingsScreenViewModelFactory
+        )
     }
 }
