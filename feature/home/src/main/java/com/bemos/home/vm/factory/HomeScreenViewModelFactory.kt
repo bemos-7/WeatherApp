@@ -8,6 +8,7 @@ import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
+import com.bemos.domain.use_cases.GetLocationSharedUseCase
 import com.bemos.home.vm.HomeScreenViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 
@@ -17,7 +18,8 @@ class HomeScreenViewModelFactory(
     val deleteLocationUseCase: DeleteLocationUseCase,
     val getLocationByCityUseCase: GetLocationByCityUseCase,
     val checkInternetUseCase: CheckInternetUseCase,
-    val getCurrentLocationUseCase: GetCurrentLocationUseCase
+    val getCurrentLocationUseCase: GetCurrentLocationUseCase,
+    val getLocationSharedUseCase: GetLocationSharedUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -27,7 +29,8 @@ class HomeScreenViewModelFactory(
             deleteLocationUseCase = deleteLocationUseCase,
             getLocationByCityUseCase = getLocationByCityUseCase,
             checkInternetUseCase = checkInternetUseCase,
-            getCurrentLocationUseCase = getCurrentLocationUseCase
+            getCurrentLocationUseCase = getCurrentLocationUseCase,
+            getLocationSharedUseCase = getLocationSharedUseCase
         ) as T
     }
 

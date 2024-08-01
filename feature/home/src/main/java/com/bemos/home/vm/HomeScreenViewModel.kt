@@ -1,6 +1,7 @@
 package com.bemos.home.vm
 
 import android.widget.Toast
+import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bemos.domain.model.Location
@@ -10,6 +11,7 @@ import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
+import com.bemos.domain.use_cases.GetLocationSharedUseCase
 import com.bemos.domain.use_cases.IconConvertUseCase
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +24,8 @@ class HomeScreenViewModel(
     private val deleteLocationUseCase: DeleteLocationUseCase,
     private val getLocationByCityUseCase: GetLocationByCityUseCase,
     private val checkInternetUseCase: CheckInternetUseCase,
-    private val getCurrentLocationUseCase: GetCurrentLocationUseCase
+    private val getCurrentLocationUseCase: GetCurrentLocationUseCase,
+    private val getLocationSharedUseCase: GetLocationSharedUseCase
 ) : ViewModel() {
 
     val locations = MutableStateFlow<List<Location>>(
@@ -52,6 +55,8 @@ class HomeScreenViewModel(
             city = ""
         )
     )
+
+    val locationSharedIsOpen = MutableStateFlow(true)
 
     fun getAllLocations() = viewModelScope.launch {
         getAllLocationsUseCase.execute()
@@ -172,6 +177,18 @@ class HomeScreenViewModel(
             if (it != null) {
                 location(it)
             }
+        }
+    }
+
+    fun getLocationShared(
+        callback: (String) -> Unit,
+    ) {
+        val location = getLocationSharedUseCase.execute()
+        if (location.isNotEmpty() && locationSharedIsOpen.value) {
+            locationSharedIsOpen.update {
+                false
+            }
+            callback(location)
         }
     }
 }
