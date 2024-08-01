@@ -1,5 +1,6 @@
 package com.bemos.settings
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -20,17 +21,22 @@ fun SettingsScreen(
 
     val locations by settingsViewModel.locations.collectAsState()
 
+    val shared by settingsViewModel.shared.collectAsState()
+
     LaunchedEffect(Unit) {
         settingsViewModel.getAllLocations()
+        settingsViewModel.getLocation()
     }
+
+    Log.d("sharedCheck", shared)
 
     SettingsContent(
         onBackClick = {
-            navController.navigate("home")
+            navController.popBackStack()
         },
         dropdownItems = locations,
         onDropDownItemClick = {
-
+            settingsViewModel.setLocation(it)
         }
     )
 }

@@ -12,7 +12,9 @@ import com.bemos.domain.use_cases.InsertLocationUseCase
 import com.bemos.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModelFactory
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
+import com.bemos.domain.use_cases.GetLocationSharedUseCase
 import com.bemos.domain.use_cases.IconConvertUseCase
+import com.bemos.domain.use_cases.SetLocationSharedUseCase
 import com.bemos.settings.vm.factory.SettingsScreenViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -46,7 +48,8 @@ class AppModule {
         deleteLocationUseCase: DeleteLocationUseCase,
         getLocationByCityUseCase: GetLocationByCityUseCase,
         checkInternetUseCase: CheckInternetUseCase,
-        getCurrentLocationUseCase: GetCurrentLocationUseCase
+        getCurrentLocationUseCase: GetCurrentLocationUseCase,
+        getLocationSharedUseCase: GetLocationSharedUseCase
     ) : com.bemos.home.vm.factory.HomeScreenViewModelFactory {
         return com.bemos.home.vm.factory.HomeScreenViewModelFactory(
             getAllLocationsUseCase = getAllLocationsUseCase,
@@ -54,16 +57,21 @@ class AppModule {
             deleteLocationUseCase = deleteLocationUseCase,
             getLocationByCityUseCase = getLocationByCityUseCase,
             checkInternetUseCase = checkInternetUseCase,
-            getCurrentLocationUseCase = getCurrentLocationUseCase
+            getCurrentLocationUseCase = getCurrentLocationUseCase,
+            getLocationSharedUseCase = getLocationSharedUseCase
         )
     }
 
     @Provides
     fun provideSettingsScreenViewModelFactory(
-        getAllLocationsUseCase: GetAllLoationsUseCase
+        getAllLocationsUseCase: GetAllLoationsUseCase,
+        setLocationSharedUseCase: SetLocationSharedUseCase,
+        getLocationSharedUseCase: GetLocationSharedUseCase
     ) : SettingsScreenViewModelFactory {
         return SettingsScreenViewModelFactory(
-            getAllLocationsUseCase = getAllLocationsUseCase
+            getAllLocationsUseCase = getAllLocationsUseCase,
+            setLocationSharedUseCase = setLocationSharedUseCase,
+            getLocationSharedUseCase = getLocationSharedUseCase
         )
     }
 
