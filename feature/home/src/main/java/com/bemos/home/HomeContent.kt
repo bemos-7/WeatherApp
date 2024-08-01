@@ -84,7 +84,7 @@ fun HomeContent(
                         onBurgerClick()
                     },
                 painter = painterResource(
-                    id = R.drawable.burger
+                    id = R.drawable.round_dehaze_24
                 ),
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary

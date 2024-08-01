@@ -1,5 +1,6 @@
 package com.bemos.home
 
+import android.app.Application
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,6 +33,8 @@ fun HomeScreen(
 
     val networkState by homeViewModel.networkState.collectAsState()
 
+    val locationIsOpen by homeViewModel.locationSharedIsOpen.collectAsState()
+
     homeViewModel.checkInternet()
 
     homeViewModel.getAllLocations()
@@ -63,9 +66,15 @@ fun HomeScreen(
             )
         }
     )
+    Log.d("locationIsOpen", locationIsOpen.toString())
+
+    homeViewModel.getLocationShared {
+        navController.navigate("detailsCity/$it")
+    }
 
     LaunchedEffect(Unit) {
         homeViewModel.getAllCities()
+
     }
 
     HomeContent(
