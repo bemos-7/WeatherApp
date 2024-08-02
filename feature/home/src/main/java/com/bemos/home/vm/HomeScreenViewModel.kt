@@ -9,6 +9,7 @@ import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.domain.use_cases.GetBooleanSharedUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.domain.use_cases.GetLocationSharedUseCase
@@ -25,7 +26,8 @@ class HomeScreenViewModel(
     private val getLocationByCityUseCase: GetLocationByCityUseCase,
     private val checkInternetUseCase: CheckInternetUseCase,
     private val getCurrentLocationUseCase: GetCurrentLocationUseCase,
-    private val getLocationSharedUseCase: GetLocationSharedUseCase
+    private val getLocationSharedUseCase: GetLocationSharedUseCase,
+    private val getBooleanSharedUseCase: GetBooleanSharedUseCase
 ) : ViewModel() {
 
     val locations = MutableStateFlow<List<Location>>(
@@ -184,7 +186,8 @@ class HomeScreenViewModel(
         callback: (String) -> Unit,
     ) {
         val location = getLocationSharedUseCase.execute()
-        if (location.isNotEmpty() && locationSharedIsOpen.value) {
+        val booleanValue = getBooleanSharedUseCase.execute()
+        if (location.isNotEmpty() && locationSharedIsOpen.value && booleanValue) {
             locationSharedIsOpen.update {
                 false
             }
