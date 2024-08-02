@@ -15,7 +15,7 @@
 
 - Clean architecture
 - MVVM
-- Modules
+- Multi Modules
 
 ### UI
 - Jetpack Compose
@@ -30,6 +30,7 @@
 
 ### Database
 - Room
+- Shared Preferences
 
 ### Network
 - Retrofit
