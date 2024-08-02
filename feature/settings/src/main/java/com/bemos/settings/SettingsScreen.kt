@@ -23,10 +23,14 @@ fun SettingsScreen(
 
     val shared by settingsViewModel.shared.collectAsState()
 
+    val booleanShared by settingsViewModel.booleanShared.collectAsState()
+
     LaunchedEffect(Unit) {
         settingsViewModel.getAllLocations()
         settingsViewModel.getLocation()
+        settingsViewModel.getBooleanShared()
     }
+    Log.d("booleanCheck", booleanShared.toString())
 
     Log.d("sharedCheck", shared)
 
@@ -37,6 +41,12 @@ fun SettingsScreen(
         dropdownItems = locations,
         onDropDownItemClick = {
             settingsViewModel.setLocation(it)
-        }
+        },
+        onCheckedChange = {
+            settingsViewModel.setBooleanShared(
+                it
+            )
+        },
+        booleanShared
     )
 }

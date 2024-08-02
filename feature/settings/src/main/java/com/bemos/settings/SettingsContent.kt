@@ -1,5 +1,6 @@
 package com.bemos.settings
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,11 +13,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,11 +42,19 @@ import com.bemos.shared.R
 fun SettingsContent(
     onBackClick: () -> Unit,
     dropdownItems: List<Location>,
-    onDropDownItemClick: (String) -> Unit
+    onDropDownItemClick: (String) -> Unit,
+    onCheckedChange: (Boolean) -> Unit,
+    isPreviewEnabled: Boolean
 ) {
     var isMenuVisible by remember {
         mutableStateOf(false)
     }
+
+    var changePreview by remember(isPreviewEnabled) {
+        mutableStateOf(isPreviewEnabled)
+    }
+
+    Log.d("changePreview", changePreview.toString())
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -95,9 +106,6 @@ fun SettingsContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {
-                            isMenuVisible = !isMenuVisible
-                        }
                 ) {
                     Column(
                         modifier = Modifier
@@ -114,6 +122,7 @@ fun SettingsContent(
                             .fillMaxWidth()
                             .padding(10.dp),
                         horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
                             text = "Preview location",
@@ -122,32 +131,60 @@ fun SettingsContent(
 
                         Spacer(modifier = Modifier.weight(1f))
 
-                        Icon(
-                            painter = painterResource(
-                                id = R.drawable.round_arrow_drop_down_24
-                            ),
-                            contentDescription = null
+                        Switch(
+                                checked = changePreview,
+                            onCheckedChange = {
+                                onCheckedChange(it)
+                                changePreview = it
+                            }
                         )
                     }
 
-                    DropdownMenu(
-                        expanded = isMenuVisible,
-                        onDismissRequest = {
-                            isMenuVisible = false
-                        },
-                    ) {
-                        dropdownItems.forEach {
-                            DropdownMenuItem(
-                                text = {
-                                    Text(
-                                        text = it.city
-                                    )
-                                },
-                                onClick = {
-                                    onDropDownItemClick(it.city)
+                    if (changePreview) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
+                                .clickable {
                                     isMenuVisible = !isMenuVisible
-                                }
+                                },
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Change the location",
+                                fontSize = 16.sp,
                             )
+
+                            Spacer(modifier = Modifier.weight(1f))
+
+                            Icon(
+                                painter = painterResource(
+                                    id = R.drawable.round_arrow_drop_down_24
+                                ),
+                                contentDescription = null
+                            )
+                        }
+
+                        DropdownMenu(
+                            expanded = isMenuVisible,
+                            onDismissRequest = {
+                                isMenuVisible = false
+                            },
+                        ) {
+                            dropdownItems.forEach {
+                                DropdownMenuItem(
+                                    text = {
+                                        Text(
+                                            text = it.city
+                                        )
+                                    },
+                                    onClick = {
+                                        onDropDownItemClick(it.city)
+                                        isMenuVisible = !isMenuVisible
+                                    }
+                                )
+                            }
                         }
                     }
                 }
@@ -208,6 +245,10 @@ fun SettingsContentPreview() {
         ),
         onDropDownItemClick = {
 
-        }
+        },
+        onCheckedChange = {
+
+        },
+        true
     )
 }
