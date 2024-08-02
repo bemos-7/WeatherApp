@@ -6,6 +6,7 @@ import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.domain.use_cases.GetBooleanSharedUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.domain.use_cases.GetLocationSharedUseCase
@@ -19,7 +20,8 @@ class HomeScreenViewModelFactory(
     val getLocationByCityUseCase: GetLocationByCityUseCase,
     val checkInternetUseCase: CheckInternetUseCase,
     val getCurrentLocationUseCase: GetCurrentLocationUseCase,
-    val getLocationSharedUseCase: GetLocationSharedUseCase
+    val getLocationSharedUseCase: GetLocationSharedUseCase,
+    val getBooleanSharedUseCase: GetBooleanSharedUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -30,7 +32,8 @@ class HomeScreenViewModelFactory(
             getLocationByCityUseCase = getLocationByCityUseCase,
             checkInternetUseCase = checkInternetUseCase,
             getCurrentLocationUseCase = getCurrentLocationUseCase,
-            getLocationSharedUseCase = getLocationSharedUseCase
+            getLocationSharedUseCase = getLocationSharedUseCase,
+            getBooleanSharedUseCase = getBooleanSharedUseCase
         ) as T
     }
 

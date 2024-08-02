@@ -6,12 +6,14 @@ import com.bemos.domain.repositories.CityApiRepository
 import com.bemos.domain.repositories.CurrentLocationRepository
 import com.bemos.domain.repositories.IconConverterRepository
 import com.bemos.domain.repositories.LocationManagerRepository
+import com.bemos.domain.repositories.LocationPreviewManagerRepository
 import com.bemos.domain.repositories.NetworkRepository
 import com.bemos.domain.repositories.WeatherApiRepository
 import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
 import com.bemos.domain.use_cases.GetAllLoationsUseCase
+import com.bemos.domain.use_cases.GetBooleanSharedUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.domain.use_cases.GetLocationSharedUseCase
@@ -20,6 +22,7 @@ import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.domain.use_cases.GetWeatherUseCase
 import com.bemos.domain.use_cases.IconConvertUseCase
 import com.bemos.domain.use_cases.InsertLocationUseCase
+import com.bemos.domain.use_cases.SetBooleanSharedUseCase
 import com.bemos.domain.use_cases.SetLocationSharedUseCase
 import dagger.Module
 import dagger.Provides
@@ -137,6 +140,24 @@ class DomainModule {
     ) : GetLocationSharedUseCase {
         return GetLocationSharedUseCase(
             locationManagerRepository
+        )
+    }
+
+    @Provides
+    fun provideSetBooleanSharedUseCase(
+        locationPreviewManagerRepository: LocationPreviewManagerRepository
+    ) : SetBooleanSharedUseCase {
+        return SetBooleanSharedUseCase(
+            locationPreviewManagerRepository
+        )
+    }
+
+    @Provides
+    fun provideGetBooleanSharedUseCase(
+        locationPreviewManagerRepository: LocationPreviewManagerRepository
+    ) : GetBooleanSharedUseCase {
+        return GetBooleanSharedUseCase(
+            locationPreviewManagerRepository
         )
     }
 
