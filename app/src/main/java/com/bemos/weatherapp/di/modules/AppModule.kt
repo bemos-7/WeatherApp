@@ -11,9 +11,11 @@ import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.domain.use_cases.InsertLocationUseCase
 import com.bemos.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModelFactory
+import com.bemos.domain.use_cases.GetBooleanSharedUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationSharedUseCase
 import com.bemos.domain.use_cases.IconConvertUseCase
+import com.bemos.domain.use_cases.SetBooleanSharedUseCase
 import com.bemos.domain.use_cases.SetLocationSharedUseCase
 import com.bemos.settings.vm.factory.SettingsScreenViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -49,7 +51,8 @@ class AppModule {
         getLocationByCityUseCase: GetLocationByCityUseCase,
         checkInternetUseCase: CheckInternetUseCase,
         getCurrentLocationUseCase: GetCurrentLocationUseCase,
-        getLocationSharedUseCase: GetLocationSharedUseCase
+        getLocationSharedUseCase: GetLocationSharedUseCase,
+        getBooleanSharedUseCase: GetBooleanSharedUseCase
     ) : com.bemos.home.vm.factory.HomeScreenViewModelFactory {
         return com.bemos.home.vm.factory.HomeScreenViewModelFactory(
             getAllLocationsUseCase = getAllLocationsUseCase,
@@ -58,7 +61,8 @@ class AppModule {
             getLocationByCityUseCase = getLocationByCityUseCase,
             checkInternetUseCase = checkInternetUseCase,
             getCurrentLocationUseCase = getCurrentLocationUseCase,
-            getLocationSharedUseCase = getLocationSharedUseCase
+            getLocationSharedUseCase = getLocationSharedUseCase,
+            getBooleanSharedUseCase = getBooleanSharedUseCase
         )
     }
 
@@ -66,12 +70,16 @@ class AppModule {
     fun provideSettingsScreenViewModelFactory(
         getAllLocationsUseCase: GetAllLoationsUseCase,
         setLocationSharedUseCase: SetLocationSharedUseCase,
-        getLocationSharedUseCase: GetLocationSharedUseCase
+        getLocationSharedUseCase: GetLocationSharedUseCase,
+        setBooleanSharedUseCase: SetBooleanSharedUseCase,
+        getBooleanSharedUseCase: GetBooleanSharedUseCase
     ) : SettingsScreenViewModelFactory {
         return SettingsScreenViewModelFactory(
             getAllLocationsUseCase = getAllLocationsUseCase,
             setLocationSharedUseCase = setLocationSharedUseCase,
-            getLocationSharedUseCase = getLocationSharedUseCase
+            getLocationSharedUseCase = getLocationSharedUseCase,
+            setBooleanSharedUseCase = setBooleanSharedUseCase,
+            getBooleanSharedUseCase = getBooleanSharedUseCase
         )
     }
 
