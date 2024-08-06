@@ -7,6 +7,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.bemos.core.Constants.DETAILS_CITY_FUTURE
+import com.bemos.core.Constants.FORECAST
 import com.bemos.details_city.vm.DetailsScreenViewModel
 import com.bemos.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.shared.ui_components.OpenDialogNetwork
@@ -71,8 +73,8 @@ fun DetailsCityScreen(
 //                it
 //            )
 //            val forecastJson = Gson().toJson(it).toString()
-            navController.currentBackStackEntry?.savedStateHandle?.set("forecast", it)
-            navController.navigate("detailsCityFuture")
+            navController.currentBackStackEntry?.savedStateHandle?.set(FORECAST, it)
+            navController.navigate(DETAILS_CITY_FUTURE)
         }
     )
 

@@ -1,6 +1,8 @@
 package com.bemos.data.di
 
 import android.content.Context
+import com.bemos.core.Constants
+import com.bemos.core.Constants.ANNOTATION_NAME_CITY
 import com.bemos.data.local.room.dao.LocationDao
 import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
 import com.bemos.data.local.room.repositoryImpl.LocationRepositoryImpl
@@ -29,7 +31,7 @@ class DataModule {
     }
 
     @Provides
-    fun provideCityApiRepository(@Named("City") cityApi: CityApi) : CityApiRepository {
+    fun provideCityApiRepository(@Named(ANNOTATION_NAME_CITY) cityApi: CityApi) : CityApiRepository {
         return CityApiRepositoryImpl(cityApi)
     }
 

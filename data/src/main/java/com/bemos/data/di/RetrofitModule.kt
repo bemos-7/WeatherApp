@@ -1,5 +1,8 @@
 package com.bemos.data.di
 
+import com.bemos.core.Constants.ANNOTATION_NAME_CITY
+import com.bemos.core.Constants.BASE_CITY_API_URL
+import com.bemos.core.Constants.BASE_WEATHER_API_URL
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.GlobalScope
@@ -10,11 +13,6 @@ import javax.inject.Named
 
 @Module
 class RetrofitModule {
-
-    companion object {
-        private const val BASE_WEATHER_API_URL = "https://api.weatherapi.com/"
-        private const val BASE_CITY_API_URL = "https://countriesnow.space/api/"
-    }
 
     @Provides
     fun provideWeatherRetrofit() : Retrofit {
@@ -32,7 +30,7 @@ class RetrofitModule {
     }
 
     @Provides
-    @Named("City")
+    @Named(ANNOTATION_NAME_CITY)
     fun provideCityRetrofit() : Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_CITY_API_URL)
@@ -41,9 +39,9 @@ class RetrofitModule {
     }
 
     @Provides
-    @Named("City")
+    @Named(ANNOTATION_NAME_CITY)
     fun provideCityApi(
-       @Named("City") retrofit: Retrofit
+       @Named(ANNOTATION_NAME_CITY) retrofit: Retrofit
     ) : com.bemos.data.remote.retrofit.city.CityApi {
         return retrofit.create(com.bemos.data.remote.retrofit.city.CityApi::class.java)
     }

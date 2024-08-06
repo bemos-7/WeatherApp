@@ -1,5 +1,6 @@
 package com.bemos.data.remote.retrofit.weather
 
+import com.bemos.core.Constants.API_KEY
 import com.bemos.data.remote.retrofit.weather.models.Weather
 import retrofit2.Response
 import retrofit2.http.GET
@@ -22,10 +23,6 @@ interface WeatherApi {
         @Query("alerts") alerts: String = "no",
         @Query("key") apiKey: String = API_KEY
     ) : Response<Weather>
-
-    companion object {
-        private const val API_KEY = "b6f4aefd431a408a9ad173212241307"
-    }
 }
 
 // 91c262dcdf7b401686e200400241106
