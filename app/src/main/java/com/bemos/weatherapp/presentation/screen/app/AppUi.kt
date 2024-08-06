@@ -9,6 +9,12 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.bemos.core.Constants.DETAILS_CITY_WITH_LOCATION
+import com.bemos.core.Constants.DETAILS_CITY_FUTURE
+import com.bemos.core.Constants.FORECAST
+import com.bemos.core.Constants.HOME
+import com.bemos.core.Constants.LOCATION
+import com.bemos.core.Constants.SETTINGS
 import com.bemos.details_city.DetailsCityScreen
 import com.bemos.details_city.vm.factory.DetailsScreenViewModelFactory
 import com.bemos.details_city_future.DetailsCityFutureScreen
@@ -18,14 +24,6 @@ import com.bemos.home.HomeScreen
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
 import com.bemos.settings.SettingsScreen
 import com.bemos.settings.vm.factory.SettingsScreenViewModelFactory
-import com.google.android.gms.location.FusedLocationProviderClient
-
-private const val HOME = "home"
-private const val DETAILS_CITY = "detailsCity/{location}"
-private const val LOCATION = "location"
-private const val DETAILS_CITY_FUTURE = "detailsCityFuture"
-private const val FORECAST = "forecast"
-private const val SETTINGS = "settings"
 
 @Composable
 fun AppUi(
@@ -80,7 +78,7 @@ private fun NavGraphBuilder.detailsCity(
     detailsScreenViewModelFactory: DetailsScreenViewModelFactory,
 ) {
     composable(
-        route = DETAILS_CITY,
+        route = DETAILS_CITY_WITH_LOCATION,
         arguments = listOf(
             navArgument(LOCATION) {
                 type = NavType.StringType

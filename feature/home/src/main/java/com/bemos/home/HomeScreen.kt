@@ -8,6 +8,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.bemos.core.Constants.DETAILS_CITY
+import com.bemos.core.Constants.SETTINGS
 import com.bemos.shared.ui_components.OpenDeleteDialog
 import com.bemos.home.vm.HomeScreenViewModel
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
@@ -69,7 +71,7 @@ fun HomeScreen(
     Log.d("locationIsOpen", locationIsOpen.toString())
 
     homeViewModel.getLocationShared {
-        navController.navigate("detailsCity/$it")
+        navController.navigate("${DETAILS_CITY}/$it")
     }
 
     LaunchedEffect(Unit) {
@@ -80,14 +82,14 @@ fun HomeScreen(
     HomeContent(
         listCity = locationsList,
         onClick = {
-            navController.navigate("detailsCity/$it")
+            navController.navigate("${DETAILS_CITY}/$it")
         },
         cityList = searchCities,
         searchCity = {
             homeViewModel.searchCity(it)
         },
         onClickCity = {
-            navController.navigate("detailsCity/$it")
+            navController.navigate("${DETAILS_CITY}/$it")
         },
         onLongClick = {
             homeViewModel.updateIsTrueAndLocation(
@@ -101,11 +103,11 @@ fun HomeScreen(
                 if (it.isEmpty()) {
                     Log.d("locationCurrent", "it")
                 }
-                navController.navigate("detailsCity/$it")
+                navController.navigate("${DETAILS_CITY}/$it")
             }
         },
         onBurgerClick = {
-            navController.navigate("settings")
+            navController.navigate(SETTINGS)
         }
     )
 }

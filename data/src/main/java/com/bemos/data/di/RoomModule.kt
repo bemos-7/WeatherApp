@@ -2,6 +2,7 @@ package com.bemos.data.di
 
 import android.content.Context
 import androidx.room.Room
+import com.bemos.core.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 
@@ -15,7 +16,7 @@ class RoomModule {
         return Room.databaseBuilder(
             context = context,
             com.bemos.data.local.room.db.LocationDatabase::class.java,
-            "db"
+            DATABASE_NAME
         ).build()
     }
 

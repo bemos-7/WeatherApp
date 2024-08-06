@@ -104,6 +104,7 @@ dependencies {
 
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(project(":core"))
     implementation(project(":feature:home"))
     implementation(project(":feature:details_city"))
     implementation(project(":feature:details_city_future"))
