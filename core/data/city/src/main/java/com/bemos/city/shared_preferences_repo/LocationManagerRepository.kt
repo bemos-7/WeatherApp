@@ -1,4 +1,4 @@
-package com.bemos.domain.repositories
+package com.bemos.city.shared_preferences_repo
 
 interface LocationManagerRepository {
 

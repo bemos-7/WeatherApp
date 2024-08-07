@@ -8,10 +8,10 @@ interface WeatherApiRepository {
 
     suspend fun getWeatherByCity(
         @Query("q") city: String,
-    ) : Response<WeatherDomain>
+    ) : Response<com.bemos.domain.model.weather_models.WeatherDomain>
 
     suspend fun getWeatherAndWeek(
         @Query("q") city: String,
-    ) : Response<WeatherDomain>
+    ) : Response<com.bemos.domain.model.weather_models.WeatherDomain>
 
 }

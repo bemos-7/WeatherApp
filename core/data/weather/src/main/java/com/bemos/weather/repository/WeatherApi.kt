@@ -1,7 +1,7 @@
-package com.bemos.data.remote.retrofit.weather
+package com.bemos.weather.repository
 
 import com.bemos.core.Constants.API_KEY
-import com.bemos.data.remote.retrofit.weather.models.Weather
+import com.bemos.weather.models.Weather
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
