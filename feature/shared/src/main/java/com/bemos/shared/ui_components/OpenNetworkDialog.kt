@@ -6,7 +6,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 
 @Composable
-fun OpenDialogNetwork(
+fun OpenNetworkDialog(
     networkState: Boolean,
     onDismissRequest: () -> Unit,
     onConfirmButton: () -> Unit
