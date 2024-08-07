@@ -8,6 +8,12 @@ object Constants {
 
     const val DATABASE_NAME = "db"
 
+    const val SHARED_PREF = "sharedPref"
+    const val LOCATION_KEY = "locationKey"
+    const val SHARED_PREF_BOOL = "sharedPrefBool"
+    const val BOOLEAN_KEY = "booleanKey"
+
+
     const val API_KEY = "b6f4aefd431a408a9ad173212241307"
 
     const val HOME = "home"
