@@ -28,7 +28,7 @@ import com.bemos.shared.colors.ContainerBlack
 @Composable
 fun ForecastItem(
     forecastDay: ForecastDayAndIcon,
-    onForecastCLick: (ForecastdayDomain) -> Unit
+    onForecastCLick: (com.bemos.domain.model.weather_models.ForecastdayDomain) -> Unit
 ) {
 
     Card(

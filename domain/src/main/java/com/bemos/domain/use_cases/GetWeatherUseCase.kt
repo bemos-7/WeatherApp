@@ -8,7 +8,7 @@ class GetWeatherUseCase(
     private val weatherApiRepository: WeatherApiRepository
 ) {
 
-    suspend fun execute(city: String): Response<WeatherDomain> {
+    suspend fun execute(city: String): Response<com.bemos.domain.model.weather_models.WeatherDomain> {
         return weatherApiRepository.getWeatherByCity(city)
     }
 

@@ -1,16 +1,15 @@
-package com.bemos.data.remote.retrofit.weather.repositoryImpl
+package com.bemos.data.remote.retrofit.weather
 
-import com.bemos.data.remote.retrofit.weather.repositoryImpl.mappers.ResponseWeatherMapper
-import com.bemos.data.remote.retrofit.weather.repositoryImpl.mappers.WeatherMapper
-import com.bemos.data.remote.retrofit.weather.WeatherApi
-import com.bemos.domain.model.weather_models.WeatherDomain
+import com.bemos.weather.mappers.ResponseWeatherMapper
+import com.bemos.weather.mappers.WeatherMapper
+import com.bemos.weather.repository.WeatherApi
 import com.bemos.domain.repositories.WeatherApiRepository
 import retrofit2.Response
 
 class WeatherApiRepositoryImpl(
     private val weatherApi: WeatherApi
 ) : WeatherApiRepository {
-    override suspend fun getWeatherByCity(city: String): Response<WeatherDomain> {
+    override suspend fun getWeatherByCity(city: String): Response<com.bemos.domain.model.weather_models.WeatherDomain> {
         val weatherResponse = weatherApi.getWeatherByCity(
             city
         )
@@ -24,7 +23,7 @@ class WeatherApiRepositoryImpl(
 
     override suspend fun getWeatherAndWeek(
         city: String,
-    ): Response<WeatherDomain> {
+    ): Response<com.bemos.domain.model.weather_models.WeatherDomain> {
         val weatherResponse = weatherApi.getWeatherAndWeek(
             city
         )

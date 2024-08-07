@@ -37,6 +37,9 @@ android {
 
 dependencies {
 
+    implementation(project(":core:domain"))
+    implementation(project(":core:data:city"))
+
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 
     //Retrofit

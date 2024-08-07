@@ -1,7 +1,6 @@
-package com.bemos.data.remote.retrofit.city
+package com.bemos.city.repository
 
-import com.bemos.data.remote.retrofit.city.models.City
-import com.bemos.domain.model.city_models.CityDomain
+import com.bemos.city.models.City
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -1,25 +1,23 @@
-package com.bemos.settings.repository_impl
+package com.bemos.data.local.shared_preferences.repository_impl
 
 import android.content.Context
 import androidx.core.content.edit
-import com.bemos.domain.repositories.LocationManagerRepository
-
-
-private const val SHARED_PREF = "sharedPref"
-private const val LOCATION_KEY = "locationKey"
+import com.bemos.core.Constants.LOCATION_KEY
+import com.bemos.core.Constants.SHARED_PREF
+import com.bemos.city.shared_preferences_repo.LocationManagerRepository
 
 class LocationManagerRepositoryImpl(
     private val context: Context
 ) : LocationManagerRepository {
+
+    private val sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
     override fun setLocation(location: String) {
-        val sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         sharedPreferences.edit {
             putString(LOCATION_KEY, location)
         }
     }
 
     override fun getLocation(): String {
-        val sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         val location = sharedPreferences.getString(LOCATION_KEY, "")
         return location.toString()
     }

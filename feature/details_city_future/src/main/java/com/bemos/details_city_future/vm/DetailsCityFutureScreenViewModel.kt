@@ -19,8 +19,8 @@ class DetailsCityFutureScreenViewModel(
 
     val forecastDay = MutableStateFlow<ForecastDayCF>(
         ForecastDayCF(
-            ForecastdayDomain(
-                AstroDomain(
+            com.bemos.domain.model.weather_models.ForecastdayDomain(
+                com.bemos.domain.model.weather_models.AstroDomain(
                     0,
                     0,
                     0,
@@ -32,13 +32,13 @@ class DetailsCityFutureScreenViewModel(
                 ),
                 "",
                 0,
-                DayDomain(
+                com.bemos.domain.model.weather_models.DayDomain(
                     0,
                     0.0,
                     0.0,
                     0.0,
                     0.0,
-                    conditionDomain = ConditionDomain(
+                    conditionDomain = com.bemos.domain.model.weather_models.ConditionDomain(
                         0,
                         "",
                         ""
@@ -66,7 +66,7 @@ class DetailsCityFutureScreenViewModel(
     )
 
     fun covertToForecastDetailCF(
-        forecastDayDomain: ForecastdayDomain
+        forecastDayDomain: com.bemos.domain.model.weather_models.ForecastdayDomain
     ) {
         forecastDay.update {
             ForecastDayCF(
@@ -80,7 +80,7 @@ class DetailsCityFutureScreenViewModel(
     }
 
     fun getListWeatherHour(
-        forecastDayDomain: ForecastdayDomain
+        forecastDayDomain: com.bemos.domain.model.weather_models.ForecastdayDomain
     ): List<WeatherHour> {
         val weatherHour = mutableListOf<WeatherHour>()
 
@@ -103,7 +103,7 @@ class DetailsCityFutureScreenViewModel(
     }
 
     fun getNormalTime(
-        hourDomain: HourDomain
+        hourDomain: com.bemos.domain.model.weather_models.HourDomain
     ): String {
         val timePattern = """(\d{2}):(\d{2})""".toRegex()
         val timePatternHalf = """(\d{1}):(\d{2})""".toRegex()
@@ -130,7 +130,7 @@ class DetailsCityFutureScreenViewModel(
     }
 
     fun getNormalTimeInt(
-        hourDomain: HourDomain
+        hourDomain: com.bemos.domain.model.weather_models.HourDomain
     ): String {
         val timePattern = """(\d{2}):(\d{2})""".toRegex()
         val timePatternHalf = """(\d{1}):(\d{2})""".toRegex()
@@ -156,7 +156,7 @@ class DetailsCityFutureScreenViewModel(
     }
 
     fun getNormalTimeIntResult(
-        hourDomain: HourDomain
+        hourDomain: com.bemos.domain.model.weather_models.HourDomain
     ): Int {
         val timePattern = """(\d{2}):(\d{2})""".toRegex()
         val timePatternHalf = """(\d{1}):(\d{2})""".toRegex()

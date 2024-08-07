@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -34,14 +33,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bemos.domain.model.Location
+import com.bemos.domain.model.LocationDaoDomain
 import com.bemos.settings.screen_items.SettingsItem
 import com.bemos.shared.R
 
 @Composable
 fun SettingsContent(
     onBackClick: () -> Unit,
-    dropdownItems: List<Location>,
+    dropdownItems: List<com.bemos.domain.model.LocationDaoDomain>,
     onDropDownItemClick: (String) -> Unit,
     onCheckedChange: (Boolean) -> Unit,
     isPreviewEnabled: Boolean

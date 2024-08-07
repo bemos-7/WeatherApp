@@ -1,23 +1,23 @@
-package com.bemos.settings.repository_impl
+package com.bemos.data.local.shared_preferences.repository_impl
 
 import android.content.Context
 import androidx.core.content.edit
-import com.bemos.domain.repositories.LocationPreviewManagerRepository
+import com.bemos.core.Constants.BOOLEAN_KEY
+import com.bemos.core.Constants.SHARED_PREF_BOOL
+import com.bemos.city.shared_preferences_repo.LocationPreviewManagerRepository
 
-private const val SHARED_PREF_BOOL = "sharedPrefBool"
-private const val BOOLEAN_KEY = "booleanKey"
 class LocationPreviewManagerRepositoryImpl(
     private val context: Context
 ) : LocationPreviewManagerRepository {
+
+    private val sharedPreferences = context.getSharedPreferences(SHARED_PREF_BOOL, Context.MODE_PRIVATE)
     override fun setLocation(value: Boolean) {
-        val sharedPreferences = context.getSharedPreferences(SHARED_PREF_BOOL, Context.MODE_PRIVATE)
         sharedPreferences.edit {
             putBoolean(BOOLEAN_KEY, value)
         }
     }
 
     override fun getLocation(): Boolean {
-        val sharedPreferences = context.getSharedPreferences(SHARED_PREF_BOOL, Context.MODE_PRIVATE)
         val booleanValue = sharedPreferences.getBoolean(BOOLEAN_KEY, false)
         return booleanValue
     }

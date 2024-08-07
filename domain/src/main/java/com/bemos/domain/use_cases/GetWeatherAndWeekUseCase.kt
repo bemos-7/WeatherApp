@@ -10,7 +10,7 @@ class GetWeatherAndWeekUseCase(
 
     suspend fun execute(
         city: String
-    ) : Response<WeatherDomain> {
+    ) : Response<com.bemos.domain.model.weather_models.WeatherDomain> {
         return weatherApiRepository.getWeatherAndWeek(
             city = city
         )

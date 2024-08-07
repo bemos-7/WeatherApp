@@ -11,7 +11,7 @@ class DetailsWeatherIntentViewModel : ViewModel() {
         ""
     )
 
-    val forecastDay = MutableStateFlow<ForecastdayDomain?>(null)
+    val forecastDay = MutableStateFlow<com.bemos.domain.model.weather_models.ForecastdayDomain?>(null)
 
     fun updateCityDate(
         city: String
@@ -22,7 +22,7 @@ class DetailsWeatherIntentViewModel : ViewModel() {
     }
 
     fun updateForecastDay(
-        forecastDayDomain: ForecastdayDomain
+        forecastDayDomain: com.bemos.domain.model.weather_models.ForecastdayDomain
     ) {
         forecastDay.update {
             forecastDayDomain

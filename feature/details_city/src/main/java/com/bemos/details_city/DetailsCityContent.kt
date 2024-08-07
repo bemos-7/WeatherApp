@@ -54,7 +54,7 @@ fun DetailsCityContent(
     onPlusClick: (String) -> Unit,
     addCheck: Boolean,
     progressBarState: Boolean,
-    onForecastCLick: (ForecastdayDomain) -> Unit
+    onForecastCLick: (com.bemos.domain.model.weather_models.ForecastdayDomain) -> Unit
 ) {
 
     if (!progressBarState) {

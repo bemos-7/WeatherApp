@@ -1,7 +1,7 @@
 package com.bemos.domain.use_cases
 
 import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
-import com.bemos.domain.model.Location
+import com.bemos.domain.model.LocationDaoDomain
 import kotlinx.coroutines.flow.Flow
 
 class GetLocationByCityUseCase(
@@ -10,7 +10,7 @@ class GetLocationByCityUseCase(
 
     fun execute(
         city: String
-    ) : Flow<Location> {
+    ) : Flow<com.bemos.domain.model.LocationDaoDomain> {
         return repository.getLocationByCity(
             city
         )
