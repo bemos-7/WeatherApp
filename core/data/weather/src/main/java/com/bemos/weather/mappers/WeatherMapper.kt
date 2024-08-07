@@ -1,14 +1,14 @@
-package com.bemos.data.remote.retrofit.weather.repositoryImpl.mappers
+package com.bemos.weather.mappers
 
-import com.bemos.data.remote.retrofit.weather.models.Astro
-import com.bemos.data.remote.retrofit.weather.models.Condition
-import com.bemos.data.remote.retrofit.weather.models.Current
-import com.bemos.data.remote.retrofit.weather.models.Day
-import com.bemos.data.remote.retrofit.weather.models.Forecast
-import com.bemos.data.remote.retrofit.weather.models.Forecastday
-import com.bemos.data.remote.retrofit.weather.models.Hour
-import com.bemos.data.remote.retrofit.weather.models.Location
-import com.bemos.data.remote.retrofit.weather.models.Weather
+import com.bemos.weather.models.Astro
+import com.bemos.weather.models.Condition
+import com.bemos.weather.models.Current
+import com.bemos.weather.models.Day
+import com.bemos.weather.models.Forecast
+import com.bemos.weather.models.Forecastday
+import com.bemos.weather.models.Hour
+import com.bemos.weather.models.Location
+import com.bemos.weather.models.Weather
 import com.bemos.domain.model.weather_models.AstroDomain
 import com.bemos.domain.model.weather_models.ConditionDomain
 import com.bemos.domain.model.weather_models.CurrentDomain
@@ -21,15 +21,15 @@ import com.bemos.domain.model.weather_models.WeatherDomain
 
 class WeatherMapper {
 
-    fun toDomain(weather: Weather): WeatherDomain {
-        return WeatherDomain(
+    fun toDomain(weather: Weather): com.bemos.domain.model.weather_models.WeatherDomain {
+        return com.bemos.domain.model.weather_models.WeatherDomain(
             currentDomain = toDomain(weather.current),
             forecastDomain = toDomain(weather.forecast),
             locationDomain = toDomain(weather.location)
         )
     }
     
-    fun toWeather(weatherDomain: WeatherDomain): Weather {
+    fun toWeather(weatherDomain: com.bemos.domain.model.weather_models.WeatherDomain): Weather {
         return Weather(
             current = toWeather(weatherDomain.currentDomain),
             forecast = toWeather(weatherDomain.forecastDomain),
@@ -37,8 +37,8 @@ class WeatherMapper {
         )
     }
 
-    private fun toDomain(current: Current) : CurrentDomain {
-        return CurrentDomain(
+    private fun toDomain(current: Current) : com.bemos.domain.model.weather_models.CurrentDomain {
+        return com.bemos.domain.model.weather_models.CurrentDomain(
             current.cloud,
             toDomain(current.condition),
             current.dewpoint_c,
@@ -71,24 +71,24 @@ class WeatherMapper {
         )
     }
 
-    private fun toDomain(condition: Condition) : ConditionDomain {
-        return ConditionDomain(
+    private fun toDomain(condition: Condition) : com.bemos.domain.model.weather_models.ConditionDomain {
+        return com.bemos.domain.model.weather_models.ConditionDomain(
             condition.code,
             condition.icon,
             condition.text
         )
     }
 
-    private fun toDomain(forecast: Forecast): ForecastDomain {
-        return ForecastDomain(
+    private fun toDomain(forecast: Forecast): com.bemos.domain.model.weather_models.ForecastDomain {
+        return com.bemos.domain.model.weather_models.ForecastDomain(
             forecastdayDomain = forecast.forecastday.map {
                 toDomain(it)
             }
         )
     }
 
-    private fun toDomain(forecastDay: Forecastday): ForecastdayDomain {
-        return ForecastdayDomain(
+    private fun toDomain(forecastDay: Forecastday): com.bemos.domain.model.weather_models.ForecastdayDomain {
+        return com.bemos.domain.model.weather_models.ForecastdayDomain(
             toDomain(forecastDay.astro),
             forecastDay.date,
             forecastDay.date_epoch,
@@ -99,8 +99,8 @@ class WeatherMapper {
         )
     }
 
-    private fun toDomain(astro: Astro): AstroDomain {
-        return AstroDomain(
+    private fun toDomain(astro: Astro): com.bemos.domain.model.weather_models.AstroDomain {
+        return com.bemos.domain.model.weather_models.AstroDomain(
             astro.is_moon_up,
             astro.is_sun_up,
             astro.moon_illumination,
@@ -112,8 +112,8 @@ class WeatherMapper {
         )
     }
 
-    private fun toDomain(day: Day): DayDomain {
-        return DayDomain(
+    private fun toDomain(day: Day): com.bemos.domain.model.weather_models.DayDomain {
+        return com.bemos.domain.model.weather_models.DayDomain(
             day.avghumidity,
             day.avgtemp_c,
             day.avgtemp_f,
@@ -137,8 +137,8 @@ class WeatherMapper {
         )
     }
 
-    private fun toDomain(hour: Hour): HourDomain {
-        return HourDomain(
+    private fun toDomain(hour: Hour): com.bemos.domain.model.weather_models.HourDomain {
+        return com.bemos.domain.model.weather_models.HourDomain(
             hour.chance_of_rain,
             hour.chance_of_snow,
             hour.cloud,
@@ -176,8 +176,8 @@ class WeatherMapper {
         )
     }
 
-    private fun toDomain(location: Location): LocationDomain {
-        return LocationDomain(
+    private fun toDomain(location: Location): com.bemos.domain.model.weather_models.LocationDomain {
+        return com.bemos.domain.model.weather_models.LocationDomain(
             location.country,
             location.lat,
             location.localtime,
@@ -191,7 +191,7 @@ class WeatherMapper {
     
     //------------------------------------------------------------
 
-    private fun toWeather(currentDomain: CurrentDomain) : Current {
+    private fun toWeather(currentDomain: com.bemos.domain.model.weather_models.CurrentDomain) : Current {
         return Current(
             currentDomain.cloud,
             toWeather(currentDomain.conditionDomain),
@@ -225,7 +225,7 @@ class WeatherMapper {
         )
     }
 
-    private fun toWeather(conditionDomain: ConditionDomain) : Condition {
+    private fun toWeather(conditionDomain: com.bemos.domain.model.weather_models.ConditionDomain) : Condition {
         return Condition(
             conditionDomain.code,
             conditionDomain.icon,
@@ -233,7 +233,7 @@ class WeatherMapper {
         )
     }
 
-    private fun toWeather(forecastDomain: ForecastDomain): Forecast {
+    private fun toWeather(forecastDomain: com.bemos.domain.model.weather_models.ForecastDomain): Forecast {
         return Forecast(
             forecastday = forecastDomain.forecastdayDomain.map {
                 toWeather(it)
@@ -241,7 +241,7 @@ class WeatherMapper {
         )
     }
 
-    private fun toWeather(forecastdayDomain: ForecastdayDomain): Forecastday {
+    private fun toWeather(forecastdayDomain: com.bemos.domain.model.weather_models.ForecastdayDomain): Forecastday {
         return Forecastday(
             toWeather(forecastdayDomain.astroDomain),
             forecastdayDomain.date,
@@ -253,7 +253,7 @@ class WeatherMapper {
         )
     }
 
-    private fun toWeather(astroDomain: AstroDomain): Astro {
+    private fun toWeather(astroDomain: com.bemos.domain.model.weather_models.AstroDomain): Astro {
         return Astro(
             astroDomain.is_moon_up,
             astroDomain.is_sun_up,
@@ -266,7 +266,7 @@ class WeatherMapper {
         )
     }
 
-    private fun toWeather(dayDomain: DayDomain): Day {
+    private fun toWeather(dayDomain: com.bemos.domain.model.weather_models.DayDomain): Day {
         return Day(
             dayDomain.avghumidity,
             dayDomain.avgtemp_c,
@@ -291,7 +291,7 @@ class WeatherMapper {
         )
     }
 
-    private fun toWeather(hourDomain: HourDomain): Hour {
+    private fun toWeather(hourDomain: com.bemos.domain.model.weather_models.HourDomain): Hour {
         return Hour(
             hourDomain.chance_of_rain,
             hourDomain.chance_of_snow,
@@ -330,7 +330,7 @@ class WeatherMapper {
         )
     }
 
-    private fun toWeather(locationDomain: LocationDomain): Location {
+    private fun toWeather(locationDomain: com.bemos.domain.model.weather_models.LocationDomain): Location {
         return Location(
             locationDomain.country,
             locationDomain.lat,

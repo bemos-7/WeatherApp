@@ -1,6 +1,6 @@
-package com.bemos.data.remote.retrofit.city.mappers
+package com.bemos.city.mappers
 
-import com.bemos.data.remote.retrofit.city.models.City
+import com.bemos.city.models.City
 import com.bemos.domain.model.city_models.CityDomain
 import retrofit2.Response
 
