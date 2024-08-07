@@ -100,7 +100,7 @@ private fun NavGraphBuilder.detailsCityFuture(
     composable(
         route = DETAILS_CITY_FUTURE
     ) {
-        navController.previousBackStackEntry?.savedStateHandle?.get<ForecastdayDomain>(FORECAST)?.let {
+        navController.previousBackStackEntry?.savedStateHandle?.get<com.bemos.domain.model.weather_models.ForecastdayDomain>(FORECAST)?.let {
             DetailsCityFutureScreen(
                 navController = navController,
                 detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory,

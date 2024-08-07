@@ -1,9 +1,9 @@
 package com.bemos.domain.use_cases
 
-import com.bemos.domain.repositories.LocationManagerRepository
+import com.bemos.city.shared_preferences_repo.LocationManagerRepository
 
 class GetLocationSharedUseCase(
-    private val locationManagerRepository: LocationManagerRepository
+    private val locationManagerRepository: com.bemos.city.shared_preferences_repo.LocationManagerRepository
 ) {
 
     fun execute(): String {

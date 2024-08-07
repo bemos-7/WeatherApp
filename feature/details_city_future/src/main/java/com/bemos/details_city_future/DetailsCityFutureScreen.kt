@@ -14,7 +14,7 @@ import com.bemos.domain.model.weather_models.ForecastdayDomain
 fun DetailsCityFutureScreen(
     navController: NavController,
     detailsCityFutureScreenViewModelFactory: DetailsCityFutureScreenViewModelFactory,
-    forecast: ForecastdayDomain
+    forecast: com.bemos.domain.model.weather_models.ForecastdayDomain
 ) {
 
     val detailsCityFutureScreenViewModel = viewModel<DetailsCityFutureScreenViewModel>(

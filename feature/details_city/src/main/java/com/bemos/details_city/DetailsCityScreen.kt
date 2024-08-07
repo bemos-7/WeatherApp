@@ -1,6 +1,5 @@
 package com.bemos.details_city
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -11,8 +10,6 @@ import com.bemos.core.Constants.DETAILS_CITY_FUTURE
 import com.bemos.core.Constants.FORECAST
 import com.bemos.details_city.vm.DetailsScreenViewModel
 import com.bemos.details_city.vm.factory.DetailsScreenViewModelFactory
-import com.bemos.shared.ui_components.OpenDialogNetwork
-import com.google.gson.Gson
 
 @Composable
 fun DetailsCityScreen(
@@ -39,7 +36,7 @@ fun DetailsCityScreen(
 
     detailsScreenViewModel.checkInternet()
 
-    com.bemos.shared.ui_components.OpenDialogNetwork(
+    com.bemos.shared.ui_components.OpenNetworkDialog(
         networkState = networkState,
         onDismissRequest = {
             detailsScreenViewModel.checkInternet()

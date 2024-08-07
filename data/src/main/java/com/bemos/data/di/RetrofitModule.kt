@@ -1,12 +1,12 @@
 package com.bemos.data.di
 
+import com.bemos.city.repository.CityApi
 import com.bemos.core.Constants.ANNOTATION_NAME_CITY
 import com.bemos.core.Constants.BASE_CITY_API_URL
 import com.bemos.core.Constants.BASE_WEATHER_API_URL
+import com.bemos.weather.repository.WeatherApi
 import dagger.Module
 import dagger.Provides
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
@@ -25,8 +25,8 @@ class RetrofitModule {
     @Provides
     fun provideWeatherApi(
         retrofit: Retrofit
-    ) : com.bemos.data.remote.retrofit.weather.WeatherApi {
-        return retrofit.create(com.bemos.data.remote.retrofit.weather.WeatherApi::class.java)
+    ) : WeatherApi {
+        return retrofit.create(WeatherApi::class.java)
     }
 
     @Provides
@@ -42,8 +42,8 @@ class RetrofitModule {
     @Named(ANNOTATION_NAME_CITY)
     fun provideCityApi(
        @Named(ANNOTATION_NAME_CITY) retrofit: Retrofit
-    ) : com.bemos.data.remote.retrofit.city.CityApi {
-        return retrofit.create(com.bemos.data.remote.retrofit.city.CityApi::class.java)
+    ) : CityApi {
+        return retrofit.create(CityApi::class.java)
     }
 
 

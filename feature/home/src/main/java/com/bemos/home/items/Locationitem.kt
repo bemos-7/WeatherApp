@@ -19,18 +19,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bemos.domain.model.Location
+import com.bemos.domain.model.LocationDaoDomain
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LocationItem(
-    location: Location,
+    locationDaoDomain: com.bemos.domain.model.LocationDaoDomain,
     onClick: (String) -> Unit,
-    onLongClick: (Location) -> Unit,
+    onLongClick: (com.bemos.domain.model.LocationDaoDomain) -> Unit,
 ) {
 
     var city by remember {
-        mutableStateOf(location)
+        mutableStateOf(locationDaoDomain)
     }
 
     Card(
@@ -42,7 +42,7 @@ fun LocationItem(
                     onClick(city.city)
                 },
                 onLongClick = {
-                    onLongClick(location)
+                    onLongClick(locationDaoDomain)
                 }
             ),
         shape = RoundedCornerShape(15.dp)
@@ -51,7 +51,7 @@ fun LocationItem(
             Modifier.padding(10.dp),
         ) {
             Text(
-                text = location.city,
+                text = locationDaoDomain.city,
                 fontSize = 18.sp
             )
         }
@@ -66,7 +66,7 @@ fun LocationItem(
 fun LocationItemPreview() {
 
     LocationItem(
-        Location(
+        com.bemos.domain.model.LocationDaoDomain(
             1,
             ""
         ),

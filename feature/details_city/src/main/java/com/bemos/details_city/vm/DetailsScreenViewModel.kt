@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.bemos.details_city.model.ForecastDayAndIcon
-import com.bemos.domain.model.Location
+import com.bemos.domain.model.LocationDaoDomain
 import com.bemos.domain.model.weather_models.HourDomain
 import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.GetLocationsByCityUseCase
@@ -113,7 +113,7 @@ class DetailsScreenViewModel(
                     true
                 }
 
-                val weatherByTheHourList = mutableListOf<HourDomain>()
+                val weatherByTheHourList = mutableListOf<com.bemos.domain.model.weather_models.HourDomain>()
 
                 var time = ""
                 var cityTime = ""
@@ -171,7 +171,7 @@ class DetailsScreenViewModel(
     ) {
         viewModelScope.launch {
             insertLocationUseCase.execute(
-                Location(
+                com.bemos.domain.model.LocationDaoDomain(
                     city = city
                 )
             )

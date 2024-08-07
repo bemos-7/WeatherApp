@@ -1,10 +1,8 @@
 package com.bemos.home.vm
 
-import android.widget.Toast
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bemos.domain.model.Location
+import com.bemos.domain.model.LocationDaoDomain
 import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
 import com.bemos.domain.use_cases.GetAllCitiesUseCase
@@ -13,8 +11,6 @@ import com.bemos.domain.use_cases.GetBooleanSharedUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.domain.use_cases.GetLocationSharedUseCase
-import com.bemos.domain.use_cases.IconConvertUseCase
-import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -30,7 +26,7 @@ class HomeScreenViewModel(
     private val getBooleanSharedUseCase: GetBooleanSharedUseCase
 ) : ViewModel() {
 
-    val locations = MutableStateFlow<List<Location>>(
+    val locations = MutableStateFlow<List<com.bemos.domain.model.LocationDaoDomain>>(
         emptyList()
     )
 
@@ -42,8 +38,8 @@ class HomeScreenViewModel(
         listOf()
     )
 
-    val locationToDelete = MutableStateFlow(
-        Location(
+    val locationDaoDomainToDelete = MutableStateFlow(
+        com.bemos.domain.model.LocationDaoDomain(
             city = ""
         )
     )
@@ -52,8 +48,8 @@ class HomeScreenViewModel(
 
     val networkState = MutableStateFlow(true)
 
-    val locationDelete = MutableStateFlow(
-        Location(
+    val locationDaoDomainDelete = MutableStateFlow(
+        com.bemos.domain.model.LocationDaoDomain(
             city = ""
         )
     )
@@ -109,18 +105,18 @@ class HomeScreenViewModel(
     }
 
     suspend fun deleteLocation(
-        location: Location
+        locationDaoDomain: com.bemos.domain.model.LocationDaoDomain
     ) = viewModelScope.launch {
         deleteLocationUseCase.execute(
-            location
+            locationDaoDomain
         )
     }
 
     fun deleteLocationScope(
-        location: Location
+        locationDaoDomain: com.bemos.domain.model.LocationDaoDomain
     ) = viewModelScope.launch {
         deleteLocation(
-            location
+            locationDaoDomain
         )
     }
 
@@ -130,7 +126,7 @@ class HomeScreenViewModel(
         getLocationByCityUseCase.execute(
             city
         ).collect { locationItem ->
-            locationToDelete.update {
+            locationDaoDomainToDelete.update {
                 locationItem
             }
         }
@@ -162,13 +158,13 @@ class HomeScreenViewModel(
 
     fun updateIsTrueAndLocation(
         isTrueValue: Boolean,
-        location: Location
+        locationDaoDomain: com.bemos.domain.model.LocationDaoDomain
     ) {
         isTrue.update {
             isTrueValue
         }
-        locationDelete.update {
-            location
+        locationDaoDomainDelete.update {
+            locationDaoDomain
         }
     }
 

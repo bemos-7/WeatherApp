@@ -1,6 +1,5 @@
 package com.bemos.home
 
-import android.app.Application
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,7 +12,7 @@ import com.bemos.core.Constants.SETTINGS
 import com.bemos.shared.ui_components.OpenDeleteDialog
 import com.bemos.home.vm.HomeScreenViewModel
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
-import com.bemos.shared.ui_components.OpenDialogNetwork
+import com.bemos.shared.ui_components.OpenNetworkDialog
 
 @Composable
 fun HomeScreen(
@@ -31,7 +30,7 @@ fun HomeScreen(
 
     val isTrue by homeViewModel.isTrue.collectAsState()
 
-    val locationDelete by homeViewModel.locationDelete.collectAsState()
+    val locationDelete by homeViewModel.locationDaoDomainDelete.collectAsState()
 
     val networkState by homeViewModel.networkState.collectAsState()
 
@@ -41,7 +40,7 @@ fun HomeScreen(
 
     homeViewModel.getAllLocations()
 
-    OpenDialogNetwork(
+    OpenNetworkDialog(
         networkState = networkState,
         onDismissRequest = {
             homeViewModel.checkInternet()
@@ -94,7 +93,7 @@ fun HomeScreen(
         onLongClick = {
             homeViewModel.updateIsTrueAndLocation(
                 isTrueValue = true,
-                location = it
+                locationDaoDomain = it
             )
         },
         onLocationClick = {

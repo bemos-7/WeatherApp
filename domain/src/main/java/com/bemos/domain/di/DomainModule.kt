@@ -5,8 +5,8 @@ import com.bemos.weatherapp.data.local.room.repositoryImpl.LocationRepository
 import com.bemos.domain.repositories.CityApiRepository
 import com.bemos.domain.repositories.CurrentLocationRepository
 import com.bemos.domain.repositories.IconConverterRepository
-import com.bemos.domain.repositories.LocationManagerRepository
-import com.bemos.domain.repositories.LocationPreviewManagerRepository
+import com.bemos.city.shared_preferences_repo.LocationManagerRepository
+import com.bemos.city.shared_preferences_repo.LocationPreviewManagerRepository
 import com.bemos.domain.repositories.NetworkRepository
 import com.bemos.domain.repositories.WeatherApiRepository
 import com.bemos.domain.use_cases.CheckInternetUseCase

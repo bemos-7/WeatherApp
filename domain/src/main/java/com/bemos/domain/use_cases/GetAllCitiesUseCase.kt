@@ -8,7 +8,7 @@ class GetAllCitiesUseCase(
     private val cityApiRepository: CityApiRepository
 ) {
 
-    suspend fun execute() : Response<CityDomain> {
+    suspend fun execute() : Response<com.bemos.domain.model.city_models.CityDomain> {
         return cityApiRepository.getAllCities()
     }
 
