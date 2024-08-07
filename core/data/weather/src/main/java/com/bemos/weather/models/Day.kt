@@ -1,17 +1,12 @@
-package com.bemos.domain.model.weather_models
+package com.bemos.weather.models
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.Serializable
-
-@Parcelize
-data class DayDomain(
+data class Day(
     val avghumidity: Int,
     val avgtemp_c: Double,
     val avgtemp_f: Double,
     val avgvis_km: Double,
     val avgvis_miles: Double,
-    val conditionDomain: ConditionDomain,
+    val condition: Condition,
     val daily_chance_of_rain: Int,
     val daily_chance_of_snow: Int,
     val daily_will_it_rain: Int,
@@ -26,4 +21,4 @@ data class DayDomain(
     val totalprecip_mm: Double,
     val totalsnow_cm: Double,
     val uv: Double
-) : Parcelable
+)

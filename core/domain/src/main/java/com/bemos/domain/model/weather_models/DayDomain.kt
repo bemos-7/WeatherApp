@@ -1,12 +1,16 @@
-package com.bemos.data.remote.retrofit.weather.models
+package com.bemos.domain.model.weather_models
 
-data class Day(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class DayDomain(
     val avghumidity: Int,
     val avgtemp_c: Double,
     val avgtemp_f: Double,
     val avgvis_km: Double,
     val avgvis_miles: Double,
-    val condition: Condition,
+    val conditionDomain: ConditionDomain,
     val daily_chance_of_rain: Int,
     val daily_chance_of_snow: Int,
     val daily_will_it_rain: Int,
@@ -21,4 +25,4 @@ data class Day(
     val totalprecip_mm: Double,
     val totalsnow_cm: Double,
     val uv: Double
-)
+) : Parcelable

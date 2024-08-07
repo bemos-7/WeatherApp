@@ -1,6 +1,6 @@
 package com.bemos.domain.model
 
-data class Location(
+data class LocationDaoDomain(
     val id: Int? = null,
     val city: String
 )

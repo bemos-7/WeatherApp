@@ -1,9 +1,8 @@
-package com.bemos.data.remote.retrofit.city.mappers
+package com.bemos.city.mappers
 
-import com.bemos.data.remote.retrofit.city.models.City
-import com.bemos.data.remote.retrofit.city.models.Data
+import com.bemos.city.models.City
+import com.bemos.city.models.Data
 import com.bemos.domain.model.city_models.CityDomain
-import com.bemos.domain.model.city_models.DataDomain
 
 class CityMapper {
 
@@ -15,8 +14,8 @@ class CityMapper {
         )
     }
 
-    private fun toDomain(data: Data): DataDomain {
-        return DataDomain(
+    private fun toDomain(data: Data): com.bemos.domain.model.city_models.DataDomain {
+        return com.bemos.domain.model.city_models.DataDomain(
             data.cities.map {
                 toDomain(it)
             },
@@ -38,7 +37,7 @@ class CityMapper {
         )
     }
 
-    private fun toCity(dataDomain: DataDomain): Data {
+    private fun toCity(dataDomain: com.bemos.domain.model.city_models.DataDomain): Data {
         return Data(
             dataDomain.cities.map {
                 toCity(it)

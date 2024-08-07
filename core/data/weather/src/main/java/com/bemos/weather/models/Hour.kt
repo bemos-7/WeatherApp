@@ -1,4 +1,4 @@
-package com.bemos.data.remote.retrofit.weather.models
+package com.bemos.weather.models
 
 data class Hour(
     val chance_of_rain: Int,
