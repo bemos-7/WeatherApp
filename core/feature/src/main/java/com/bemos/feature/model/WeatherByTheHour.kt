@@ -1,9 +1,9 @@
-package com.bemos.details_city.model
+package com.bemos.feature.model
 
 import com.bemos.domain.model.weather_models.HourDomain
 
 data class WeatherByTheHour(
-    val hour: com.bemos.domain.model.weather_models.HourDomain,
+    val hour: HourDomain,
     val time: String,
     val icon: Int,
     val cityTime: String

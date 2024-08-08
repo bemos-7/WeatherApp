@@ -1,4 +1,4 @@
-package com.bemos.shared
+package com.bemos.feature
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.bemos.details_city.model
+package com.bemos.feature.model
 
 data class WeatherDetails(
     val city: String,
