@@ -18,12 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.bemos.details_city_future.model.WeatherHour
+import com.bemos.feature.model.WeatherHour
 import com.bemos.shared.colors.ContainerBlack
 
 @Composable
 fun ForecastDayHourItem(
-    weatherHour: WeatherHour
+    weatherHour: com.bemos.feature.model.WeatherHour
 ) {
     Card(
         shape = RoundedCornerShape(20.dp)

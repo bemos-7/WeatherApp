@@ -19,14 +19,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.bemos.details_city.model.WeatherByTheHour
+import com.bemos.feature.model.WeatherByTheHour
 import com.bemos.shared.colors.Blue
 import com.bemos.shared.colors.ContainerBlack
 import com.bemos.shared.colors.LightBlue
 
 @Composable
 fun ForecastDayItem(
-    weatherByTheHour: WeatherByTheHour
+    weatherByTheHour: com.bemos.feature.model.WeatherByTheHour
 ) {
     Log.d("timeChecker", weatherByTheHour.time + " " + weatherByTheHour.cityTime)
     if (weatherByTheHour.time == weatherByTheHour.cityTime) {
@@ -96,7 +96,7 @@ fun ForecastDayItem(
 @Composable
 fun ForecastDayItemCard(
     brush: Brush,
-    weatherByTheHour: WeatherByTheHour
+    weatherByTheHour: com.bemos.feature.model.WeatherByTheHour
 ) {
     Card(
         Modifier

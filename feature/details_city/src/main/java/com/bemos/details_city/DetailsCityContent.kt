@@ -35,21 +35,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bemos.domain.model.weather_models.ForecastdayDomain
 import com.bemos.details_city.items.ForecastDayItem
 import com.bemos.details_city.items.ForecastItem
-import com.bemos.details_city.model.ForecastDayAndIcon
-import com.bemos.details_city.model.WeatherByTheHour
-import com.bemos.details_city.model.WeatherDetailsAndMore
+import com.bemos.feature.model.ForecastDayAndIcon
+import com.bemos.feature.model.WeatherByTheHour
+import com.bemos.feature.model.WeatherDetailsAndMore
 import com.bemos.details_city.ui_component.LoadingShimmerAnimation
-import com.bemos.shared.colors.Blue
-import com.bemos.shared.colors.LightBlue
+import com.bemos.shared.R
 
 @Composable
 fun DetailsCityContent(
-    weatherDetailsAndMore: WeatherDetailsAndMore,
-    weatherByTheHour: List<WeatherByTheHour>,
-    forecastDayAndIcon: List<ForecastDayAndIcon>,
+    weatherDetailsAndMore: com.bemos.feature.model.WeatherDetailsAndMore,
+    weatherByTheHour: List<com.bemos.feature.model.WeatherByTheHour>,
+    forecastDayAndIcon: List<com.bemos.feature.model.ForecastDayAndIcon>,
     onBackClick: () -> Unit,
     onPlusClick: (String) -> Unit,
     addCheck: Boolean,
@@ -261,13 +259,13 @@ fun DetailsCityContent(
 @Composable
 fun DetailsCityContentPreview() {
     DetailsCityContent(
-        weatherDetailsAndMore = WeatherDetailsAndMore(
+        weatherDetailsAndMore = com.bemos.feature.model.WeatherDetailsAndMore(
             "Moscow",
             "23",
             weather = "Clear",
             forecastDay = listOf(),
             "",
-            com.bemos.shared.R.drawable.baseline_arrow_circle_down_24_s,
+            R.drawable.baseline_arrow_circle_down_24_s,
         ),
         listOf(),
         forecastDayAndIcon = listOf(),

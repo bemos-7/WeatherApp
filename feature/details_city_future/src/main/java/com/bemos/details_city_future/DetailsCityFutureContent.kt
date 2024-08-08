@@ -28,7 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.details_city_future.item.ForecastDayHourItem
-import com.bemos.details_city_future.model.ForecastDayCF
+import com.bemos.feature.model.ForecastDayCF
 import com.bemos.shared.R
 
 

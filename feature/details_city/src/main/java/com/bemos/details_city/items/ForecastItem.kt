@@ -20,14 +20,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bemos.details_city.model.ForecastDayAndIcon
-import com.bemos.domain.model.weather_models.ForecastdayDomain
+import com.bemos.feature.model.ForecastDayAndIcon
 import com.bemos.shared.colors.ContainerBlack
 
 
 @Composable
 fun ForecastItem(
-    forecastDay: ForecastDayAndIcon,
+    forecastDay: com.bemos.feature.model.ForecastDayAndIcon,
     onForecastCLick: (com.bemos.domain.model.weather_models.ForecastdayDomain) -> Unit
 ) {
 

@@ -3,15 +3,13 @@ package com.bemos.details_city.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.bemos.details_city.model.ForecastDayAndIcon
-import com.bemos.domain.model.LocationDaoDomain
-import com.bemos.domain.model.weather_models.HourDomain
+import com.bemos.feature.model.ForecastDayAndIcon
 import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.GetLocationsByCityUseCase
 import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.domain.use_cases.InsertLocationUseCase
-import com.bemos.details_city.model.WeatherByTheHour
-import com.bemos.details_city.model.WeatherDetailsAndMore
+import com.bemos.feature.model.WeatherByTheHour
+import com.bemos.feature.model.WeatherDetailsAndMore
 import com.bemos.domain.use_cases.IconConvertUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
@@ -27,7 +25,7 @@ class DetailsScreenViewModel(
 ) : ViewModel() {
 
     val weatherAndForecast = MutableStateFlow(
-        WeatherDetailsAndMore(
+        com.bemos.feature.model.WeatherDetailsAndMore(
             city = "",
             temp = "",
             weather = "",
@@ -37,9 +35,9 @@ class DetailsScreenViewModel(
         )
     )
 
-    val forecastDayAndIcon = MutableStateFlow<List<ForecastDayAndIcon>>(listOf())
+    val forecastDayAndIcon = MutableStateFlow<List<com.bemos.feature.model.ForecastDayAndIcon>>(listOf())
 
-    val weatherByTheHour = MutableStateFlow<List<WeatherByTheHour>>(
+    val weatherByTheHour = MutableStateFlow<List<com.bemos.feature.model.WeatherByTheHour>>(
         listOf()
     )
 
@@ -73,7 +71,7 @@ class DetailsScreenViewModel(
                 }
 
                 weatherAndForecast.update {
-                    WeatherDetailsAndMore(
+                    com.bemos.feature.model.WeatherDetailsAndMore(
                         city = response.body()!!.locationDomain.name,
                         temp = response.body()!!.currentDomain.temp_c.toString(),
                         weather = response.body()!!.currentDomain.conditionDomain.text,
@@ -86,7 +84,7 @@ class DetailsScreenViewModel(
                     )
                 }
 
-                val forecastDayIcon = mutableListOf<ForecastDayAndIcon>()
+                val forecastDayIcon = mutableListOf<com.bemos.feature.model.ForecastDayAndIcon>()
 
                 var forecastIcon = 0
 
@@ -98,7 +96,7 @@ class DetailsScreenViewModel(
                         )
                     }
                     forecastDayIcon.add(
-                        ForecastDayAndIcon(
+                        com.bemos.feature.model.ForecastDayAndIcon(
                             forecast,
                             forecastIcon
                         )
@@ -118,7 +116,7 @@ class DetailsScreenViewModel(
                 var time = ""
                 var cityTime = ""
 
-                val weatherAndTime = mutableListOf<WeatherByTheHour>()
+                val weatherAndTime = mutableListOf<com.bemos.feature.model.WeatherByTheHour>()
 
                 response.body()!!.forecastDomain.forecastdayDomain.forEach { forecastday ->
                     forecastday.hourDomain.forEach {
@@ -148,7 +146,7 @@ class DetailsScreenViewModel(
                             )
 
                             weatherAndTime.add(
-                                WeatherByTheHour(
+                                com.bemos.feature.model.WeatherByTheHour(
                                     it,
                                     time,
                                     icon,
@@ -217,7 +215,7 @@ class DetailsScreenViewModel(
 
     fun clearWeatherData() {
         weatherAndForecast.update {
-            WeatherDetailsAndMore(
+            com.bemos.feature.model.WeatherDetailsAndMore(
                 "",
                 "",
                 "",

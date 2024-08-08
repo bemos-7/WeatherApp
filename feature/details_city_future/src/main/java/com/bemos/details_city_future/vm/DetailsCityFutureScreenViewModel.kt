@@ -6,9 +6,8 @@ import com.bemos.domain.model.weather_models.AstroDomain
 import com.bemos.domain.model.weather_models.ConditionDomain
 import com.bemos.domain.model.weather_models.DayDomain
 import com.bemos.domain.model.weather_models.ForecastdayDomain
-import com.bemos.domain.model.weather_models.HourDomain
-import com.bemos.details_city_future.model.ForecastDayCF
-import com.bemos.details_city_future.model.WeatherHour
+import com.bemos.feature.model.ForecastDayCF
+import com.bemos.feature.model.WeatherHour
 import com.bemos.domain.use_cases.IconConvertUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
@@ -17,10 +16,10 @@ class DetailsCityFutureScreenViewModel(
     private val iconConvertUseCase: IconConvertUseCase
 ) : ViewModel() {
 
-    val forecastDay = MutableStateFlow<ForecastDayCF>(
-        ForecastDayCF(
-            com.bemos.domain.model.weather_models.ForecastdayDomain(
-                com.bemos.domain.model.weather_models.AstroDomain(
+    val forecastDay = MutableStateFlow<com.bemos.feature.model.ForecastDayCF>(
+        com.bemos.feature.model.ForecastDayCF(
+            ForecastdayDomain(
+                AstroDomain(
                     0,
                     0,
                     0,
@@ -32,13 +31,13 @@ class DetailsCityFutureScreenViewModel(
                 ),
                 "",
                 0,
-                com.bemos.domain.model.weather_models.DayDomain(
+                DayDomain(
                     0,
                     0.0,
                     0.0,
                     0.0,
                     0.0,
-                    conditionDomain = com.bemos.domain.model.weather_models.ConditionDomain(
+                    conditionDomain = ConditionDomain(
                         0,
                         "",
                         ""
@@ -69,7 +68,7 @@ class DetailsCityFutureScreenViewModel(
         forecastDayDomain: com.bemos.domain.model.weather_models.ForecastdayDomain
     ) {
         forecastDay.update {
-            ForecastDayCF(
+            com.bemos.feature.model.ForecastDayCF(
                 forecastDayDomain = forecastDayDomain,
                 weatherHour = getListWeatherHour(forecastDayDomain),
                 icon = iconConvertUseCase.execute(
@@ -81,13 +80,13 @@ class DetailsCityFutureScreenViewModel(
 
     fun getListWeatherHour(
         forecastDayDomain: com.bemos.domain.model.weather_models.ForecastdayDomain
-    ): List<WeatherHour> {
-        val weatherHour = mutableListOf<WeatherHour>()
+    ): List<com.bemos.feature.model.WeatherHour> {
+        val weatherHour = mutableListOf<com.bemos.feature.model.WeatherHour>()
 
         forecastDayDomain.hourDomain.forEach {
 
             weatherHour.add(
-                WeatherHour(
+                com.bemos.feature.model.WeatherHour(
                     it,
                     getNormalTime(it),
                     getNormalTimeInt(it),
