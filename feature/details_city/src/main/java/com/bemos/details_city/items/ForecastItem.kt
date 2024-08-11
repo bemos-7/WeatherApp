@@ -20,8 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bemos.feature.model.ForecastDayAndIcon
-import com.bemos.shared.colors.ContainerBlack
+import com.bemos.shared.ContainerBlack
 
 
 @Composable
@@ -41,7 +40,7 @@ fun ForecastItem(
         Row(
             Modifier
                 .fillMaxWidth()
-                .background(ContainerBlack)
+                .background(com.bemos.shared.ContainerBlack)
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

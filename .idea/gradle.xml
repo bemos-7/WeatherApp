@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/settings" />
             <option value="$PROJECT_DIR$/feature/shared" />
+            <option value="$PROJECT_DIR$/shared" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

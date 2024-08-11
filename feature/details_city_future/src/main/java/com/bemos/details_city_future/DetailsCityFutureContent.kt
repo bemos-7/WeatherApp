@@ -30,6 +30,9 @@ import androidx.compose.ui.unit.sp
 import com.bemos.details_city_future.item.ForecastDayHourItem
 import com.bemos.feature.model.ForecastDayCF
 import com.bemos.shared.R
+import com.bemos.shared.Blue
+import com.bemos.shared.LightBlue
+import com.bemos.shared.TransparentWhite
 
 
 @Composable
@@ -89,8 +92,8 @@ fun DetailsCityFutureContent(
                         .background(
                             Brush.verticalGradient(
                                 listOf(
-                                    com.bemos.shared.colors.LightBlue,
-                                    com.bemos.shared.colors.Blue
+                                    LightBlue,
+                                    Blue
                                 )
                             )
                         )
@@ -113,7 +116,7 @@ fun DetailsCityFutureContent(
                                 Text(
                                     text = forecastDay.forecastDayDomain.dayDomain.conditionDomain.text,
                                     fontSize = 20.sp,
-                                    color = com.bemos.shared.colors.TransparentWhite
+                                    color = TransparentWhite
                                 )
                                 
                                 Text(

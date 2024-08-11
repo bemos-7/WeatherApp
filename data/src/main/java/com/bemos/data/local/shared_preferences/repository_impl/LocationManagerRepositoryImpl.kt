@@ -2,8 +2,8 @@ package com.bemos.data.local.shared_preferences.repository_impl
 
 import android.content.Context
 import androidx.core.content.edit
-import com.bemos.core.Constants.LOCATION_KEY
-import com.bemos.core.Constants.SHARED_PREF
+import com.bemos.shared.Constants.LOCATION_KEY
+import com.bemos.shared.Constants.SHARED_PREF
 import com.bemos.city.shared_preferences_repo.LocationManagerRepository
 
 class LocationManagerRepositoryImpl(

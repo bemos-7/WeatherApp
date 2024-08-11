@@ -30,6 +30,7 @@ class IconConverterImpl : IconConverterRepository {
                 "patchy light rain" -> R.drawable.group_8
                 "thundery outbreaks in nearby" -> R.drawable.thunder
                 "patchy light rain in area with thunder" -> R.drawable.patchy_light_rain_in_area_with_thunder
+                "moderate rain at times" -> R.drawable.group_8
                 else -> {
                     R.drawable.baseline_arrow_circle_down_24_s
                 }
@@ -55,6 +56,7 @@ class IconConverterImpl : IconConverterRepository {
                 "patchy light rain" -> R.drawable.night_rain
                 "thundery outbreaks in nearby" -> R.drawable.thunder
                 "patchy light rain in area with thunder" -> R.drawable.patchy_light_rain_in_area_with_thunder
+                "moderate rain at times" -> R.drawable.night_rain
                 else -> {
                     R.drawable.baseline_arrow_circle_down_24_s
                 }

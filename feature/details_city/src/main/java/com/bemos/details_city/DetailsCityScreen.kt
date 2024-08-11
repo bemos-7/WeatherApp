@@ -6,10 +6,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.bemos.core.Constants.DETAILS_CITY_FUTURE
-import com.bemos.core.Constants.FORECAST
+import com.bemos.shared.Constants.DETAILS_CITY_FUTURE
+import com.bemos.shared.Constants.FORECAST
 import com.bemos.details_city.vm.DetailsScreenViewModel
 import com.bemos.details_city.vm.factory.DetailsScreenViewModelFactory
+import com.bemos.shared.OpenNetworkDialog
 
 @Composable
 fun DetailsCityScreen(
@@ -36,7 +37,7 @@ fun DetailsCityScreen(
 
     detailsScreenViewModel.checkInternet()
 
-    com.bemos.shared.ui_components.OpenNetworkDialog(
+    com.bemos.shared.OpenNetworkDialog(
         networkState = networkState,
         onDismissRequest = {
             detailsScreenViewModel.checkInternet()

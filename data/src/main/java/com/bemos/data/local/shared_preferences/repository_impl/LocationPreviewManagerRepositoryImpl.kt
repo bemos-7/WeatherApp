@@ -2,8 +2,8 @@ package com.bemos.data.local.shared_preferences.repository_impl
 
 import android.content.Context
 import androidx.core.content.edit
-import com.bemos.core.Constants.BOOLEAN_KEY
-import com.bemos.core.Constants.SHARED_PREF_BOOL
+import com.bemos.shared.Constants.BOOLEAN_KEY
+import com.bemos.shared.Constants.SHARED_PREF_BOOL
 import com.bemos.city.shared_preferences_repo.LocationPreviewManagerRepository
 
 class LocationPreviewManagerRepositoryImpl(

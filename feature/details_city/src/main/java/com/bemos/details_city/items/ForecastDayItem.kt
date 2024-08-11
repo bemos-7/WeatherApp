@@ -19,10 +19,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.bemos.feature.model.WeatherByTheHour
-import com.bemos.shared.colors.Blue
-import com.bemos.shared.colors.ContainerBlack
-import com.bemos.shared.colors.LightBlue
+import com.bemos.shared.Blue
+import com.bemos.shared.ContainerBlack
+import com.bemos.shared.LightBlue
 
 @Composable
 fun ForecastDayItem(
@@ -33,8 +32,8 @@ fun ForecastDayItem(
         ForecastDayItemCard(
             brush = Brush.verticalGradient(
                 listOf(
-                    LightBlue,
-                    Blue
+                    com.bemos.shared.LightBlue,
+                    com.bemos.shared.Blue
                 )
             ),
             weatherByTheHour = weatherByTheHour
@@ -43,8 +42,8 @@ fun ForecastDayItem(
         ForecastDayItemCard(
             brush = Brush.verticalGradient(
                 listOf(
-                    ContainerBlack,
-                    ContainerBlack
+                    com.bemos.shared.ContainerBlack,
+                    com.bemos.shared.ContainerBlack
                 )
             ),
             weatherByTheHour = weatherByTheHour
