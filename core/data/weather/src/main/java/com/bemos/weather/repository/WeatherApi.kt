@@ -1,6 +1,6 @@
 package com.bemos.weather.repository
 
-import com.bemos.core.Constants.API_KEY
+import com.bemos.shared.Constants.API_KEY
 import com.bemos.weather.models.Weather
 import retrofit2.Response
 import retrofit2.http.GET

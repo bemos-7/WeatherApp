@@ -113,4 +113,5 @@ dependencies {
     implementation(project(":feature:details_city"))
     implementation(project(":feature:details_city_future"))
     implementation(project(":feature:settings"))
+    implementation(project(":shared"))
 }

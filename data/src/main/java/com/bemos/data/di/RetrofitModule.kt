@@ -1,9 +1,9 @@
 package com.bemos.data.di
 
 import com.bemos.city.repository.CityApi
-import com.bemos.core.Constants.ANNOTATION_NAME_CITY
-import com.bemos.core.Constants.BASE_CITY_API_URL
-import com.bemos.core.Constants.BASE_WEATHER_API_URL
+import com.bemos.shared.Constants.ANNOTATION_NAME_CITY
+import com.bemos.shared.Constants.BASE_CITY_API_URL
+import com.bemos.shared.Constants.BASE_WEATHER_API_URL
 import com.bemos.weather.repository.WeatherApi
 import dagger.Module
 import dagger.Provides

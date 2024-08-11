@@ -34,13 +34,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.domain.model.LocationDaoDomain
-import com.bemos.settings.screen_items.SettingsItem
 import com.bemos.shared.R
+import com.bemos.settings.screen_items.SettingsItem
 
 @Composable
 fun SettingsContent(
     onBackClick: () -> Unit,
-    dropdownItems: List<com.bemos.domain.model.LocationDaoDomain>,
+    dropdownItems: List<LocationDaoDomain>,
     onDropDownItemClick: (String) -> Unit,
     onCheckedChange: (Boolean) -> Unit,
     isPreviewEnabled: Boolean

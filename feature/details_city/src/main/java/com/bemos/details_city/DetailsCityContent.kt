@@ -37,11 +37,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.details_city.items.ForecastDayItem
 import com.bemos.details_city.items.ForecastItem
-import com.bemos.feature.model.ForecastDayAndIcon
-import com.bemos.feature.model.WeatherByTheHour
-import com.bemos.feature.model.WeatherDetailsAndMore
 import com.bemos.details_city.ui_component.LoadingShimmerAnimation
-import com.bemos.shared.R
+import com.bemos.shared.Blue
+import com.bemos.shared.LightBlue
 
 @Composable
 fun DetailsCityContent(
@@ -63,7 +61,7 @@ fun DetailsCityContent(
             topBar = {
                 Card(
                     colors = CardDefaults.cardColors(
-                        containerColor = com.bemos.shared.colors.LightBlue
+                        containerColor = com.bemos.shared.LightBlue
                     ),
                     shape = RoundedCornerShape(0.dp)
                 ) {
@@ -126,8 +124,8 @@ fun DetailsCityContent(
                             .background(
                                 Brush.verticalGradient(
                                     listOf(
-                                        com.bemos.shared.colors.LightBlue,
-                                        com.bemos.shared.colors.Blue
+                                        com.bemos.shared.LightBlue,
+                                        com.bemos.shared.Blue
                                     )
                                 )
                             ),
@@ -265,7 +263,7 @@ fun DetailsCityContentPreview() {
             weather = "Clear",
             forecastDay = listOf(),
             "",
-            R.drawable.baseline_arrow_circle_down_24_s,
+            com.bemos.shared.R.drawable.baseline_arrow_circle_down_24_s,
         ),
         listOf(),
         forecastDayAndIcon = listOf(),

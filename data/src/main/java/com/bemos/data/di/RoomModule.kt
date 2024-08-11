@@ -2,7 +2,7 @@ package com.bemos.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.bemos.core.Constants.DATABASE_NAME
+import com.bemos.shared.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 

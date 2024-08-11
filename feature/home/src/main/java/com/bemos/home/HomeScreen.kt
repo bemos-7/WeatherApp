@@ -7,12 +7,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.bemos.core.Constants.DETAILS_CITY
-import com.bemos.core.Constants.SETTINGS
-import com.bemos.shared.ui_components.OpenDeleteDialog
+import com.bemos.shared.Constants.DETAILS_CITY
+import com.bemos.shared.Constants.SETTINGS
+import com.bemos.shared.OpenDeleteDialog
 import com.bemos.home.vm.HomeScreenViewModel
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
-import com.bemos.shared.ui_components.OpenNetworkDialog
+import com.bemos.shared.OpenNetworkDialog
 
 @Composable
 fun HomeScreen(
@@ -50,7 +50,7 @@ fun HomeScreen(
         }
     )
 
-    OpenDeleteDialog(
+    com.bemos.shared.OpenDeleteDialog(
         isTrueValue = isTrue,
         onDismissRequest = {
             homeViewModel.updateIsTrue(

@@ -1,11 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.bemos.home"
+    namespace = "com.bemos.shared"
     compileSdk = 34
 
     defaultConfig {
@@ -31,12 +30,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
 }
 
 dependencies {
@@ -56,36 +49,4 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-    //Room
-    implementation ("androidx.room:room-runtime:2.6.1")
-    kapt ("androidx.room:room-compiler:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
-
-    //viewModel
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
-
-    //Dagger
-    implementation ("com.google.dagger:dagger:2.51.1")
-    kapt ("com.google.dagger:dagger-compiler:2.51.1")
-
-    //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
-    //Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-
-    //Coil
-    implementation("io.coil-kt:coil-compose:2.6.0")
-
-    //Google-Location
-    implementation ("com.google.android.gms:play-services-location:21.3.0")
-
-    implementation(project(":data"))
-    implementation(project(":domain"))
-    implementation(project(":core"))
-    implementation(project(":core:domain"))
-    implementation(project(":feature:shared"))
-    implementation(project(":shared"))
 }

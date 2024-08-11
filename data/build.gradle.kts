@@ -64,6 +64,7 @@ dependencies {
 
     implementation(project(":domain"))
     implementation(project(":core"))
+    implementation(project(":shared"))
     implementation(project(":core:domain"))
     implementation(project(":core:data"))
     implementation(project(":core:data:city"))
