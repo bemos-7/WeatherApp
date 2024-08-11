@@ -6,6 +6,7 @@ import com.bemos.domain.model.weather_models.AstroDomain
 import com.bemos.domain.model.weather_models.ConditionDomain
 import com.bemos.domain.model.weather_models.DayDomain
 import com.bemos.domain.model.weather_models.ForecastdayDomain
+import com.bemos.domain.model.weather_models.HourDomain
 import com.bemos.feature.model.ForecastDayCF
 import com.bemos.feature.model.WeatherHour
 import com.bemos.domain.use_cases.IconConvertUseCase
@@ -16,8 +17,8 @@ class DetailsCityFutureScreenViewModel(
     private val iconConvertUseCase: IconConvertUseCase
 ) : ViewModel() {
 
-    val forecastDay = MutableStateFlow<com.bemos.feature.model.ForecastDayCF>(
-        com.bemos.feature.model.ForecastDayCF(
+    val forecastDay = MutableStateFlow(
+        ForecastDayCF(
             ForecastdayDomain(
                 AstroDomain(
                     0,
@@ -65,10 +66,10 @@ class DetailsCityFutureScreenViewModel(
     )
 
     fun covertToForecastDetailCF(
-        forecastDayDomain: com.bemos.domain.model.weather_models.ForecastdayDomain
+        forecastDayDomain: ForecastdayDomain
     ) {
         forecastDay.update {
-            com.bemos.feature.model.ForecastDayCF(
+            ForecastDayCF(
                 forecastDayDomain = forecastDayDomain,
                 weatherHour = getListWeatherHour(forecastDayDomain),
                 icon = iconConvertUseCase.execute(
@@ -79,14 +80,14 @@ class DetailsCityFutureScreenViewModel(
     }
 
     fun getListWeatherHour(
-        forecastDayDomain: com.bemos.domain.model.weather_models.ForecastdayDomain
-    ): List<com.bemos.feature.model.WeatherHour> {
-        val weatherHour = mutableListOf<com.bemos.feature.model.WeatherHour>()
+        forecastDayDomain: ForecastdayDomain
+    ): List<WeatherHour> {
+        val weatherHour = mutableListOf<WeatherHour>()
 
         forecastDayDomain.hourDomain.forEach {
 
             weatherHour.add(
-                com.bemos.feature.model.WeatherHour(
+                WeatherHour(
                     it,
                     getNormalTime(it),
                     getNormalTimeInt(it),
@@ -102,7 +103,7 @@ class DetailsCityFutureScreenViewModel(
     }
 
     fun getNormalTime(
-        hourDomain: com.bemos.domain.model.weather_models.HourDomain
+        hourDomain: HourDomain
     ): String {
         val timePattern = """(\d{2}):(\d{2})""".toRegex()
         val timePatternHalf = """(\d{1}):(\d{2})""".toRegex()
@@ -129,7 +130,7 @@ class DetailsCityFutureScreenViewModel(
     }
 
     fun getNormalTimeInt(
-        hourDomain: com.bemos.domain.model.weather_models.HourDomain
+        hourDomain: HourDomain
     ): String {
         val timePattern = """(\d{2}):(\d{2})""".toRegex()
         val timePatternHalf = """(\d{1}):(\d{2})""".toRegex()
@@ -155,7 +156,7 @@ class DetailsCityFutureScreenViewModel(
     }
 
     fun getNormalTimeIntResult(
-        hourDomain: com.bemos.domain.model.weather_models.HourDomain
+        hourDomain: HourDomain
     ): Int {
         val timePattern = """(\d{2}):(\d{2})""".toRegex()
         val timePatternHalf = """(\d{1}):(\d{2})""".toRegex()
