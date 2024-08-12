@@ -1,20 +1,15 @@
 package com.bemos.weatherapp.presentation.screen.main_activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.bemos.data.remote.retrofit.weather.fetchApiKey
 import com.bemos.weatherapp.di.appComponent
 import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModelFactory
-import com.bemos.settings.SettingsScreen
 import com.bemos.settings.vm.factory.SettingsScreenViewModelFactory
 import com.bemos.weatherapp.presentation.screen.app.AppUi
 import com.bemos.weatherapp.presentation.screen.main_activity.permissions.gpsPermission

@@ -5,10 +5,10 @@ import com.bemos.weatherapp.app.App
 import com.bemos.weatherapp.di.modules.AppModule
 import com.bemos.data.di.DataModule
 import com.bemos.domain.di.DomainModule
-import com.bemos.data.di.NetworkModule
 import com.bemos.data.di.RetrofitModule
 import com.bemos.data.di.RoomModule
 import com.bemos.home.di.HomeModule
+import com.bemos.weather.di.NetworkModule
 import com.bemos.weatherapp.di.modules.IconConverterModule
 import com.bemos.weatherapp.presentation.screen.main_activity.MainActivity
 import dagger.BindsInstance
@@ -21,9 +21,9 @@ import dagger.Component
         DomainModule::class,
         DataModule::class,
         AppModule::class,
-        NetworkModule::class,
         IconConverterModule::class,
         HomeModule::class,
+        NetworkModule::class
     ]
 )
 interface AppComponent {

@@ -14,6 +14,8 @@ import com.bemos.data.remote.retrofit.weather.WeatherApiRepositoryImpl
 import com.bemos.domain.repositories.CityApiRepository
 import com.bemos.city.shared_preferences_repo.LocationManagerRepository
 import com.bemos.city.shared_preferences_repo.LocationPreviewManagerRepository
+import com.bemos.data.remote.network.NetworkRepositoryImpl
+import com.bemos.domain.repositories.NetworkRepository
 import com.bemos.domain.repositories.WeatherApiRepository
 import dagger.Module
 import dagger.Provides
@@ -45,6 +47,15 @@ class DataModule {
     @Provides
     fun  provideLocationPreviewManagerRepository(context: Context): LocationPreviewManagerRepository {
         return LocationPreviewManagerRepositoryImpl(context)
+    }
+
+    @Provides
+    fun provideNetworkRepository(
+        context: Context
+    ) : NetworkRepository {
+        return NetworkRepositoryImpl(
+            context = context
+        )
     }
 
 }
