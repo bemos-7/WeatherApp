@@ -1,5 +1,6 @@
 package com.bemos.details_city
 
+import android.graphics.drawable.shapes.Shape
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,12 +18,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ShapeDefaults
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -38,19 +42,24 @@ import androidx.compose.ui.unit.sp
 import com.bemos.details_city.items.ForecastDayItem
 import com.bemos.details_city.items.ForecastItem
 import com.bemos.details_city.ui_component.LoadingShimmerAnimation
+import com.bemos.domain.model.weather_models.ForecastdayDomain
+import com.bemos.feature.model.ForecastDayAndIcon
+import com.bemos.feature.model.WeatherByTheHour
+import com.bemos.feature.model.WeatherDetailsAndMore
+import com.bemos.shared.R
 import com.bemos.shared.Blue
 import com.bemos.shared.LightBlue
 
 @Composable
 fun DetailsCityContent(
-    weatherDetailsAndMore: com.bemos.feature.model.WeatherDetailsAndMore,
-    weatherByTheHour: List<com.bemos.feature.model.WeatherByTheHour>,
-    forecastDayAndIcon: List<com.bemos.feature.model.ForecastDayAndIcon>,
+    weatherDetailsAndMore: WeatherDetailsAndMore,
+    weatherByTheHour: List<WeatherByTheHour>,
+    forecastDayAndIcon: List<ForecastDayAndIcon>,
     onBackClick: () -> Unit,
     onPlusClick: (String) -> Unit,
     addCheck: Boolean,
     progressBarState: Boolean,
-    onForecastCLick: (com.bemos.domain.model.weather_models.ForecastdayDomain) -> Unit
+    onForecastCLick: (ForecastdayDomain) -> Unit
 ) {
 
     if (!progressBarState) {
@@ -61,7 +70,7 @@ fun DetailsCityContent(
             topBar = {
                 Card(
                     colors = CardDefaults.cardColors(
-                        containerColor = com.bemos.shared.LightBlue
+                        containerColor = LightBlue
                     ),
                     shape = RoundedCornerShape(0.dp)
                 ) {
@@ -76,7 +85,7 @@ fun DetailsCityContent(
                             modifier = Modifier.clickable {
                                 onBackClick()
                             },
-                            painter = painterResource(id = com.bemos.shared.R.drawable.baseline_arrow_back_ios_24),
+                            painter = painterResource(id = R.drawable.round_arrow_back_ios_new_24),
                             contentDescription = "backBtn",
                             tint = Color.White
                         )
@@ -92,7 +101,7 @@ fun DetailsCityContent(
                                             weatherDetailsAndMore.city
                                         )
                                     },
-                                    painter = painterResource(id = com.bemos.shared.R.drawable.baseline_add_24),
+                                    painter = painterResource(id = R.drawable.baseline_add_24),
                                     contentDescription = "addBtn",
                                     tint = Color.White
                                 )
@@ -124,8 +133,8 @@ fun DetailsCityContent(
                             .background(
                                 Brush.verticalGradient(
                                     listOf(
-                                        com.bemos.shared.LightBlue,
-                                        com.bemos.shared.Blue
+                                        LightBlue,
+                                        Blue
                                     )
                                 )
                             ),
