@@ -14,6 +14,7 @@ import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModel
 import com.bemos.domain.use_cases.GetBooleanSharedUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationSharedUseCase
+import com.bemos.domain.use_cases.GetWeatherUseCase
 import com.bemos.domain.use_cases.IconConvertUseCase
 import com.bemos.domain.use_cases.SetBooleanSharedUseCase
 import com.bemos.domain.use_cases.SetLocationSharedUseCase
@@ -52,7 +53,8 @@ class AppModule {
         checkInternetUseCase: CheckInternetUseCase,
         getCurrentLocationUseCase: GetCurrentLocationUseCase,
         getLocationSharedUseCase: GetLocationSharedUseCase,
-        getBooleanSharedUseCase: GetBooleanSharedUseCase
+        getBooleanSharedUseCase: GetBooleanSharedUseCase,
+        getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase
     ) : com.bemos.home.vm.factory.HomeScreenViewModelFactory {
         return com.bemos.home.vm.factory.HomeScreenViewModelFactory(
             getAllLocationsUseCase = getAllLocationsUseCase,
@@ -62,7 +64,8 @@ class AppModule {
             checkInternetUseCase = checkInternetUseCase,
             getCurrentLocationUseCase = getCurrentLocationUseCase,
             getLocationSharedUseCase = getLocationSharedUseCase,
-            getBooleanSharedUseCase = getBooleanSharedUseCase
+            getBooleanSharedUseCase = getBooleanSharedUseCase,
+            getWeatherAndWeekUseCase = getWeatherAndWeekUseCase
         )
     }
 
