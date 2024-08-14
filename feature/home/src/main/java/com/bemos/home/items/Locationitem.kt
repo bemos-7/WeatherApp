@@ -2,7 +2,9 @@ package com.bemos.home.items
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,22 +17,25 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.domain.model.LocationDaoDomain
+import com.bemos.domain.model.weather_models.CurrentDomain
+import com.bemos.feature.model.LocationWithWeather
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LocationItem(
-    locationDaoDomain: com.bemos.domain.model.LocationDaoDomain,
+    locationWithWeather: LocationWithWeather,
     onClick: (String) -> Unit,
-    onLongClick: (com.bemos.domain.model.LocationDaoDomain) -> Unit,
+    onLongClick: (LocationDaoDomain) -> Unit,
 ) {
 
     var city by remember {
-        mutableStateOf(locationDaoDomain)
+        mutableStateOf(locationWithWeather)
     }
 
     Card(
@@ -39,10 +44,10 @@ fun LocationItem(
             .height(100.dp)
             .combinedClickable(
                 onClick = {
-                    onClick(city.city)
+                    onClick(city.location.city)
                 },
                 onLongClick = {
-                    onLongClick(locationDaoDomain)
+                    onLongClick(locationWithWeather.location)
                 }
             ),
         shape = RoundedCornerShape(15.dp)
@@ -51,8 +56,19 @@ fun LocationItem(
             Modifier.padding(10.dp),
         ) {
             Text(
-                text = locationDaoDomain.city,
+                text = locationWithWeather.location.city,
                 fontSize = 18.sp
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 10.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Text(
+                text = "${locationWithWeather.weather.temp_c}°",
+                fontSize = 30.sp
             )
         }
     }
@@ -65,13 +81,13 @@ fun LocationItem(
 @Composable
 fun LocationItemPreview() {
 
-    LocationItem(
-        com.bemos.domain.model.LocationDaoDomain(
-            1,
-            ""
-        ),
-        onClick = {},
-        onLongClick = {},
-    )
+//    LocationItem(
+//        locationDaoDomain = LocationDaoDomain(
+//            1,
+//            ""
+//        ),
+//        onClick = {},
+//        onLongClick = {},
+//    )
 
 }
