@@ -58,7 +58,7 @@ fun DetailsCityFutureContent(
                         modifier = Modifier.clickable {
                             onBackClick()
                         },
-                        painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
+                        painter = painterResource(id = R.drawable.round_arrow_back_ios_new_24),
                         contentDescription = "backBtn",
                         tint = Color.White
                     )

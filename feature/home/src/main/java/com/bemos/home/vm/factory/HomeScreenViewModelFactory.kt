@@ -10,18 +10,21 @@ import com.bemos.domain.use_cases.GetBooleanSharedUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.domain.use_cases.GetLocationSharedUseCase
+import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
+import com.bemos.domain.use_cases.GetWeatherUseCase
 import com.bemos.home.vm.HomeScreenViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 
 class HomeScreenViewModelFactory(
-    val getAllLocationsUseCase: GetAllLoationsUseCase,
-    val getAllCitiesUseCase: GetAllCitiesUseCase,
-    val deleteLocationUseCase: DeleteLocationUseCase,
-    val getLocationByCityUseCase: GetLocationByCityUseCase,
-    val checkInternetUseCase: CheckInternetUseCase,
-    val getCurrentLocationUseCase: GetCurrentLocationUseCase,
-    val getLocationSharedUseCase: GetLocationSharedUseCase,
-    val getBooleanSharedUseCase: GetBooleanSharedUseCase
+    private val getAllLocationsUseCase: GetAllLoationsUseCase,
+    private val getAllCitiesUseCase: GetAllCitiesUseCase,
+    private val deleteLocationUseCase: DeleteLocationUseCase,
+    private val getLocationByCityUseCase: GetLocationByCityUseCase,
+    private val checkInternetUseCase: CheckInternetUseCase,
+    private val getCurrentLocationUseCase: GetCurrentLocationUseCase,
+    private val getLocationSharedUseCase: GetLocationSharedUseCase,
+    private val getBooleanSharedUseCase: GetBooleanSharedUseCase,
+    private val getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -33,7 +36,8 @@ class HomeScreenViewModelFactory(
             checkInternetUseCase = checkInternetUseCase,
             getCurrentLocationUseCase = getCurrentLocationUseCase,
             getLocationSharedUseCase = getLocationSharedUseCase,
-            getBooleanSharedUseCase = getBooleanSharedUseCase
+            getBooleanSharedUseCase = getBooleanSharedUseCase,
+            getWeatherAndWeekUseCase = getWeatherAndWeekUseCase
         ) as T
     }
 

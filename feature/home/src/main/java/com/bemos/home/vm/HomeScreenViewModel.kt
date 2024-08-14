@@ -1,7 +1,10 @@
 package com.bemos.home.vm
 
+import android.location.Location
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bemos.domain.model.LocationDaoDomain
 import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.DeleteLocationUseCase
@@ -11,6 +14,9 @@ import com.bemos.domain.use_cases.GetBooleanSharedUseCase
 import com.bemos.domain.use_cases.GetCurrentLocationUseCase
 import com.bemos.domain.use_cases.GetLocationByCityUseCase
 import com.bemos.domain.use_cases.GetLocationSharedUseCase
+import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
+import com.bemos.domain.use_cases.GetWeatherUseCase
+import com.bemos.feature.model.LocationWithWeather
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -23,10 +29,15 @@ class HomeScreenViewModel(
     private val checkInternetUseCase: CheckInternetUseCase,
     private val getCurrentLocationUseCase: GetCurrentLocationUseCase,
     private val getLocationSharedUseCase: GetLocationSharedUseCase,
-    private val getBooleanSharedUseCase: GetBooleanSharedUseCase
+    private val getBooleanSharedUseCase: GetBooleanSharedUseCase,
+    private val getWeatherAndWeekUseCase: GetWeatherAndWeekUseCase
 ) : ViewModel() {
 
-    val locations = MutableStateFlow<List<com.bemos.domain.model.LocationDaoDomain>>(
+    val locations = MutableStateFlow<List<LocationDaoDomain>>(
+        emptyList()
+    )
+
+    val locationsWithWeather = MutableStateFlow<List<LocationWithWeather>>(
         emptyList()
     )
 
@@ -105,7 +116,7 @@ class HomeScreenViewModel(
     }
 
     suspend fun deleteLocation(
-        locationDaoDomain: com.bemos.domain.model.LocationDaoDomain
+        locationDaoDomain: LocationDaoDomain
     ) = viewModelScope.launch {
         deleteLocationUseCase.execute(
             locationDaoDomain
@@ -113,7 +124,7 @@ class HomeScreenViewModel(
     }
 
     fun deleteLocationScope(
-        locationDaoDomain: com.bemos.domain.model.LocationDaoDomain
+        locationDaoDomain: LocationDaoDomain
     ) = viewModelScope.launch {
         deleteLocation(
             locationDaoDomain
@@ -158,7 +169,7 @@ class HomeScreenViewModel(
 
     fun updateIsTrueAndLocation(
         isTrueValue: Boolean,
-        locationDaoDomain: com.bemos.domain.model.LocationDaoDomain
+        locationDaoDomain: LocationDaoDomain
     ) {
         isTrue.update {
             isTrueValue
@@ -189,5 +200,32 @@ class HomeScreenViewModel(
             }
             callback(location)
         }
+    }
+
+    suspend fun getLocationsWithWeather() = viewModelScope.launch {
+        getAllLocations()
+        val listLocations = locations.value
+        val listLocationsWithWeather = mutableListOf<LocationWithWeather>()
+
+        listLocations.forEach {
+            val response = getWeatherAndWeekUseCase.execute(it.city)
+            if (response.isSuccessful && response.body() != null) {
+                val current = response.body()!!.currentDomain
+                listLocationsWithWeather.add(
+                    LocationWithWeather(
+                        location = it,
+                        weather = current
+                    )
+                )
+            }
+        }
+
+        locationsWithWeather.update {
+            listLocationsWithWeather
+        }
+    }
+
+    fun getLocationsWithWeatherScope() = viewModelScope.launch {
+        getLocationsWithWeather()
     }
 }

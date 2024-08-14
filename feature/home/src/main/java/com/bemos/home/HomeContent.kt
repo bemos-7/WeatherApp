@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -27,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.domain.model.LocationDaoDomain
+import com.bemos.feature.model.LocationWithWeather
 import com.bemos.home.items.CityItem
 import com.bemos.home.items.LocateMeItem
 import com.bemos.home.items.LocationItem
@@ -35,12 +37,13 @@ import com.bemos.shared.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeContent(
-    listCity: List<com.bemos.domain.model.LocationDaoDomain>,
+    listCity: List<LocationDaoDomain>,
+    listLocationsWithWeather: List<LocationWithWeather>,
     onClick: (String) -> Unit,
     cityList: List<String>,
     searchCity: (String) -> Unit,
     onClickCity: (String) -> Unit,
-    onLongClick: (com.bemos.domain.model.LocationDaoDomain) -> Unit,
+    onLongClick: (LocationDaoDomain) -> Unit,
     onLocationClick: () -> Unit,
     onBurgerClick: () -> Unit
 ) {
@@ -134,9 +137,9 @@ fun HomeContent(
         LazyColumn(
             Modifier.fillMaxWidth()
         ) {
-            items(items = listCity) {
+            items(items = listLocationsWithWeather) {
                 LocationItem(
-                    locationDaoDomain = it,
+                    locationWithWeather = it,
                     onClick,
                     onLongClick
                 )
@@ -150,27 +153,28 @@ fun HomeContent(
 @Preview(showBackground = true)
 @Composable
 fun HomeContentPreview() {
-    HomeContent(
-        listCity = listOf(
-            com.bemos.domain.model.LocationDaoDomain(1, "Moscow"),
-            com.bemos.domain.model.LocationDaoDomain(2, "London")
-        ),
-        onClick = {},
-        listOf(),
-        searchCity = {
-
-        },
-        onClickCity = {
-
-        },
-        onLongClick = {
-
-        },
-        onLocationClick = {
-
-        },
-        onBurgerClick = {
-
-        }
-    )
+//    HomeContent(
+//        listCity = listOf(
+//            LocationDaoDomain(1, "Moscow"),
+//            LocationDaoDomain(2, "London")
+//        ),
+//        listOf(),
+//        onClick = {},
+//        listOf(),
+//        searchCity = {
+//
+//        },
+//        onClickCity = {
+//
+//        },
+//        onLongClick = {
+//
+//        },
+//        onLocationClick = {
+//
+//        },
+//        onBurgerClick = {
+//
+//        }
+//    )
 }
