@@ -9,7 +9,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.bemos.shared.Constants.DETAILS_CITY
 import com.bemos.shared.Constants.SETTINGS
-import com.bemos.shared.OpenDeleteDialog
 import com.bemos.home.vm.HomeScreenViewModel
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
 import com.bemos.shared.OpenNetworkDialog
@@ -26,6 +25,8 @@ fun HomeScreen(
 
     val locationsList by homeViewModel.locations.collectAsState()
 
+    val locationWithWeather by homeViewModel.locationsWithWeather.collectAsState()
+
     val searchCities by homeViewModel.searchCities.collectAsState()
 
     val isTrue by homeViewModel.isTrue.collectAsState()
@@ -38,7 +39,9 @@ fun HomeScreen(
 
     homeViewModel.checkInternet()
 
-    homeViewModel.getAllLocations()
+    homeViewModel.getLocationsWithWeatherScope()
+
+    Log.d("checkWeather", locationWithWeather.toString())
 
     OpenNetworkDialog(
         networkState = networkState,
@@ -75,11 +78,11 @@ fun HomeScreen(
 
     LaunchedEffect(Unit) {
         homeViewModel.getAllCities()
-
     }
 
     HomeContent(
         listCity = locationsList,
+        listLocationsWithWeather = locationWithWeather,
         onClick = {
             navController.navigate("${DETAILS_CITY}/$it")
         },
