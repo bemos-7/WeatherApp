@@ -102,6 +102,9 @@ dependencies {
     //Google-Location
     implementation ("com.google.android.gms:play-services-location:21.3.0")
 
+    //Yandex-Map-Kit
+    implementation ("com.yandex.android:maps.mobile:4.7.0-lite")
+
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":core"))
