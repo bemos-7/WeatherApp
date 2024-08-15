@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.domain.model.LocationDaoDomain
+import com.bemos.domain.model.weather_models.ConditionDomain
 import com.bemos.domain.model.weather_models.CurrentDomain
 import com.bemos.feature.model.LocationWithWeather
 
@@ -57,15 +59,29 @@ fun LocationItem(
         ) {
             Text(
                 text = locationWithWeather.location.city,
-                fontSize = 18.sp
+                fontSize = 22.sp
             )
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(end = 10.dp),
-            horizontalArrangement = Arrangement.End
+                .padding(
+                    start = 10.dp,
+                    end = 10.dp
+                )
         ) {
+            Row(
+                modifier = Modifier.fillMaxHeight(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = locationWithWeather.weather.conditionDomain.text,
+                    fontSize = 18.sp
+                )
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
             Text(
                 text = "${locationWithWeather.weather.temp_c}°",
                 fontSize = 30.sp
@@ -81,13 +97,50 @@ fun LocationItem(
 @Composable
 fun LocationItemPreview() {
 
-//    LocationItem(
-//        locationDaoDomain = LocationDaoDomain(
-//            1,
-//            ""
-//        ),
-//        onClick = {},
-//        onLongClick = {},
-//    )
+    LocationItem(
+        locationWithWeather = LocationWithWeather(
+            location = LocationDaoDomain(
+                1,
+                ""
+            ),
+            weather = CurrentDomain(
+                1,
+                        conditionDomain = ConditionDomain(
+                            0,
+                            "",
+                            "1233"
+                        ),
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0,
+                        0,
+                        "",
+                        0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0,
+                        "",
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+            )
+        ),
+        onClick = {},
+        onLongClick = {},
+    )
 
 }
