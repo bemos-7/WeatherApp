@@ -102,8 +102,8 @@ dependencies {
     //Google-Location
     implementation ("com.google.android.gms:play-services-location:21.3.0")
 
-    //Yandex-Map-Kit
-    implementation ("com.yandex.android:maps.mobile:4.7.0-lite")
+    //OsmDroid
+    implementation ("org.osmdroid:osmdroid-android:6.1.18")
 
     implementation(project(":data"))
     implementation(project(":domain"))
