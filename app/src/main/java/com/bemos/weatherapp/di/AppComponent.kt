@@ -23,7 +23,7 @@ import dagger.Component
         AppModule::class,
         IconConverterModule::class,
         HomeModule::class,
-        NetworkModule::class
+        NetworkModule::class,
     ]
 )
 interface AppComponent {
