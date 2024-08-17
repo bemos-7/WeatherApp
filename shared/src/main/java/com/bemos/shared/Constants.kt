@@ -13,7 +13,6 @@ object Constants {
     const val SHARED_PREF_BOOL = "sharedPrefBool"
     const val BOOLEAN_KEY = "booleanKey"
 
-
     const val API_KEY = "b6f4aefd431a408a9ad173212241307"
 
     const val HOME = "home"
@@ -23,4 +22,7 @@ object Constants {
     const val DETAILS_CITY_FUTURE = "detailsCityFuture"
     const val FORECAST = "forecast"
     const val SETTINGS = "settings"
+    const val MAP = "map"
+
+    const val MAP_SHARED_PREFERENCES = "OSM"
 }
