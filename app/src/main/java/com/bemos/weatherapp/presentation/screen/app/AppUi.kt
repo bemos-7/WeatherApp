@@ -21,8 +21,10 @@ import com.bemos.details_city_future.DetailsCityFutureScreen
 import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModelFactory
 import com.bemos.home.HomeScreen
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
+import com.bemos.map.MapScreen
 import com.bemos.settings.SettingsScreen
 import com.bemos.settings.vm.factory.SettingsScreenViewModelFactory
+import com.bemos.shared.Constants.MAP
 
 @Composable
 fun AppUi(
@@ -53,6 +55,9 @@ fun AppUi(
         settings(
             navController,
             settingsScreenViewModelFactory
+        )
+        map(
+            navController
         )
     }
 
@@ -120,5 +125,15 @@ private fun NavGraphBuilder.settings(
             navController = navController,
             settingsScreenViewModelFactory = settingsScreenViewModelFactory
         )
+    }
+}
+
+private fun NavGraphBuilder.map(
+    navController: NavController
+) {
+    composable(
+        route = MAP
+    ) {
+        MapScreen()
     }
 }
