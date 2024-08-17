@@ -11,6 +11,7 @@ import com.bemos.shared.Constants.DETAILS_CITY
 import com.bemos.shared.Constants.SETTINGS
 import com.bemos.home.vm.HomeScreenViewModel
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
+import com.bemos.shared.Constants.MAP
 import com.bemos.shared.OpenNetworkDialog
 
 @Composable
@@ -110,6 +111,9 @@ fun HomeScreen(
         },
         onBurgerClick = {
             navController.navigate(SETTINGS)
+        },
+        onGlobalMapClick = {
+            navController.navigate(MAP)
         }
     )
 }

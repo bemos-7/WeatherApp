@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.bemos.domain.model.LocationDaoDomain
 import com.bemos.feature.model.LocationWithWeather
 import com.bemos.home.items.CityItem
+import com.bemos.home.items.GlobalMapItem
 import com.bemos.home.items.LocateMeItem
 import com.bemos.home.items.LocationItem
 import com.bemos.shared.R
@@ -48,7 +49,8 @@ fun HomeContent(
     onClickCity: (String) -> Unit,
     onLongClick: (LocationDaoDomain) -> Unit,
     onLocationClick: () -> Unit,
-    onBurgerClick: () -> Unit
+    onBurgerClick: () -> Unit,
+    onGlobalMapClick: () -> Unit
 ) {
 
     val searchText = remember {
@@ -120,6 +122,11 @@ fun HomeContent(
             LazyColumn {
                 item { 
                     Spacer(modifier = Modifier.height(15.dp))
+                }
+                item {
+                    GlobalMapItem(
+                        onGlobalMapClick
+                    )
                 }
                 item {
                     LocateMeItem(
