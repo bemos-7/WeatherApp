@@ -13,7 +13,6 @@ class MapScreenViewModel(
     val mapViewGetter = MutableStateFlow<MapView?>(null)
 
     init {
-        mapRepository.getMap()
         getMapView()
     }
 
@@ -22,9 +21,5 @@ class MapScreenViewModel(
         mapViewGetter.update {
             mapView
         }
-    }
-
-    fun getUserGeoPoint() {
-        mapRepository.getUserGeoPoint()
     }
 }
