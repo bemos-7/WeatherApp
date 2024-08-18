@@ -8,6 +8,7 @@ import com.bemos.domain.di.DomainModule
 import com.bemos.data.di.RetrofitModule
 import com.bemos.data.di.RoomModule
 import com.bemos.home.di.HomeModule
+import com.bemos.map.di.MapModule
 import com.bemos.weather.di.NetworkModule
 import com.bemos.weatherapp.di.modules.IconConverterModule
 import com.bemos.weatherapp.presentation.screen.main_activity.MainActivity
@@ -24,6 +25,7 @@ import dagger.Component
         IconConverterModule::class,
         HomeModule::class,
         NetworkModule::class,
+        MapModule::class
     ]
 )
 interface AppComponent {

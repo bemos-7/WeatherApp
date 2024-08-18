@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/data" />
             <option value="$PROJECT_DIR$/core/data/city" />
+            <option value="$PROJECT_DIR$/core/data/map" />
             <option value="$PROJECT_DIR$/core/data/weather" />
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/feature" />
@@ -22,6 +23,7 @@
             <option value="$PROJECT_DIR$/feature/details_city" />
             <option value="$PROJECT_DIR$/feature/details_city_future" />
             <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/feature/map" />
             <option value="$PROJECT_DIR$/feature/settings" />
             <option value="$PROJECT_DIR$/feature/shared" />
             <option value="$PROJECT_DIR$/shared" />

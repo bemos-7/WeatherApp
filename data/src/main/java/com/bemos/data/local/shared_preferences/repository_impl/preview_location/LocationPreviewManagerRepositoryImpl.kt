@@ -1,4 +1,4 @@
-package com.bemos.data.local.shared_preferences.repository_impl
+package com.bemos.data.local.shared_preferences.repository_impl.preview_location
 
 import android.content.Context
 import androidx.core.content.edit
