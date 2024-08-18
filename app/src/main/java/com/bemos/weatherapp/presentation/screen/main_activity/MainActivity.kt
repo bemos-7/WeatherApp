@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.bemos.weatherapp.di.appComponent
 import com.bemos.details_city_future.vm.factory.DetailsCityFutureScreenViewModelFactory
+import com.bemos.feature.service.map.MapRepository
 import com.bemos.map.vm.MapScreenViewModelFactory
 import com.bemos.settings.vm.factory.SettingsScreenViewModelFactory
 import com.bemos.weatherapp.presentation.screen.app.AppUi
@@ -36,6 +37,9 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var mapScreenViewModelFactory: MapScreenViewModelFactory
 
+    @Inject
+    lateinit var mapRepository: MapRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,7 +62,8 @@ class MainActivity : ComponentActivity() {
                         detailsScreenViewModelFactory = detailsScreenViewModelFactory,
                         detailsCityFutureScreenViewModelFactory = detailsCityFutureScreenViewModelFactory,
                         settingsScreenViewModelFactory = settingsScreenViewModelFactory,
-                        mapScreenViewModelFactory = mapScreenViewModelFactory
+                        mapScreenViewModelFactory = mapScreenViewModelFactory,
+                        mapRepository = mapRepository
                     )
                 }
             }
