@@ -10,6 +10,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 
@@ -18,35 +19,18 @@ fun CustomMap(
     mapView: MapView,
     mapSettings: (MapView) -> Unit,
 ) {
-//    var mapView by remember {
-//        mutableStateOf<MapView?>(null)
-//    }
-
-//    AndroidView(
-//        factory = { context ->
-//            MapView(context).apply {
-//                mapView = this
-//                setTileSource(TileSourceFactory.MAPNIK)
-//                setMultiTouchControls(true)
-//                minZoomLevel = 9.0
-//                maxZoomLevel = 20.0
-//                zoomController.setVisibility(
-//                    CustomZoomButtonsController.Visibility.NEVER
-//                )
-//                mapSettings(this)
-//            }
-//        }
-//    )
-
     AndroidView(factory = { mapView }) {
         it.apply {
             setTileSource(TileSourceFactory.MAPNIK)
             setMultiTouchControls(true)
-            minZoomLevel = 9.0
+            minZoomLevel = 4.0
             maxZoomLevel = 20.0
             zoomController.setVisibility(
                 CustomZoomButtonsController.Visibility.NEVER
             )
+            controller.setZoom(10.0)
+            val startPoint = GeoPoint(6.4, 3.4)
+            it.controller.setCenter(startPoint)
             mapSettings(this)
         }
     }
