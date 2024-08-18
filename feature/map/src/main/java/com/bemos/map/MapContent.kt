@@ -1,39 +1,54 @@
 package com.bemos.map
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.viewinterop.AndroidView
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.views.CustomZoomButtonsController
+import com.bemos.map.utils.CustomMap
+import com.bemos.shared.R
+import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 
 @Composable
-fun MapContent() {
-    var mapView by remember {
-        mutableStateOf<MapView?>(null)
-    }
-    AndroidView(
-        factory = { context ->
-            MapView(context).apply {
-                mapView = this
-                setTileSource(TileSourceFactory.MAPNIK)
-                setMultiTouchControls(true)
-                minZoomLevel = 10.0
-                maxZoomLevel = 30.0
-                zoomController.setVisibility(
-                    CustomZoomButtonsController.Visibility.NEVER
-                )
+fun MapContent(
+    mapView: MapView,
+    onUserGeoPointClick: () -> Unit
+) {
+    Box(
+        Modifier.fillMaxSize()
+    ) {
+        CustomMap(
+            mapView,
+            mapSettings = {
+                val startPoint = GeoPoint(42.0, 49.0)
+                it.controller.setCenter(startPoint)
             }
+        )
+
+        Button(
+            onClick = {
+                onUserGeoPointClick()
+            }
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.baseline_boy_24),
+                contentDescription = null
+            )
         }
-    )
+    }
+
 }
 
 @Preview
 @Composable
 fun MapContentPreview() {
-    MapContent()
+//    MapContent(
+//
+//        onUserGeoPointClick = {}
+//    )
 }
