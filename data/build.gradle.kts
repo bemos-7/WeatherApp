@@ -62,6 +62,9 @@ dependencies {
     implementation ("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-database:21.0.0")
 
+    //OsmDroid
+    implementation ("org.osmdroid:osmdroid-android:6.1.18")
+
     implementation(project(":domain"))
     implementation(project(":core"))
     implementation(project(":shared"))
@@ -69,5 +72,6 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:data:city"))
     implementation(project(":core:data:weather"))
+    implementation(project(":core:data:map"))
 
 }

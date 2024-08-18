@@ -39,6 +39,7 @@ dependencies {
 
     implementation(project(":core:domain"))
     implementation(project(":core:data:city"))
+    implementation(project(":core:data:map"))
 
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 
