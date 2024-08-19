@@ -9,7 +9,6 @@ import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 class MapRepositoryImpl(
     private val context: Context,
-    private val mapView: MapView
 ) : MapRepository {
 
     private val sharedPreferences = context.getSharedPreferences(MAP_SHARED_PREFERENCES, Context.MODE_PRIVATE)
@@ -18,11 +17,9 @@ class MapRepositoryImpl(
         Configuration.getInstance().load(context, sharedPreferences)
     }
 
-    override fun getMapView(): MapView {
-        return mapView
-    }
-
-    override fun getUserGeoPoint() {
+    override fun getUserGeoPoint(
+        mapView: MapView
+    ) {
         val locationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(context), mapView)
         locationOverlay.enableMyLocation()
         locationOverlay.enableFollowLocation()

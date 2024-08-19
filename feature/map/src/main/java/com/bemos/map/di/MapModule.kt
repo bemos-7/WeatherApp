@@ -23,21 +23,10 @@ class MapModule {
 
     @Provides
     fun provideMapRepository(
-        context: Context,
-        mapView: MapView
+        context: Context
     ): MapRepository {
         return MapRepositoryImpl(
-            context = context,
-            mapView = mapView
-        )
-    }
-
-    @Provides
-    fun provideMapView(
-        context: Context
-    ): MapView {
-        return MapView(
-            context
+            context = context
         )
     }
 

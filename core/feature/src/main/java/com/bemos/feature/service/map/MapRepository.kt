@@ -6,8 +6,8 @@ interface MapRepository {
 
     fun getMap()
 
-    fun getMapView(): MapView
-
-    fun getUserGeoPoint()
+    fun getUserGeoPoint(
+        mapView: MapView
+    )
 
 }
