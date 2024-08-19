@@ -40,6 +40,9 @@ fun MapScreen(
         },
         onMapClick = {
             navController.navigate("$DETAILS_CITY/${it}")
+        },
+        onBackClick = {
+            navController.popBackStack()
         }
     )
 }

@@ -46,7 +46,8 @@ import org.osmdroid.views.overlay.Overlay
 fun MapContent(
     mapView: MapView,
     onUserGeoPointClick: () -> Unit,
-    onMapClick: (String) -> Unit
+    onMapClick: (String) -> Unit,
+    onBackClick: () -> Unit
 ) {
     Box(
         Modifier.fillMaxSize()
@@ -75,6 +76,33 @@ fun MapContent(
                 })
             }
         )
+        Column(
+            modifier = Modifier
+                .padding(
+                    start = 10.dp,
+                    top = 10.dp
+                )
+        ) {
+            OutlinedButton(
+                modifier = Modifier.size(50.dp),
+                onClick = {
+                    onBackClick()
+                },
+                shape = CircleShape,
+                border = null,
+                contentPadding = PaddingValues(0.dp),
+                colors = ButtonDefaults.filledTonalButtonColors(
+                    contentColor = MaterialTheme.colorScheme.primary
+                )
+            ) {
+                Icon(
+                    modifier = Modifier.size(20.dp),
+                    painter = painterResource(id = R.drawable.round_arrow_back_ios_new_24),
+                    contentDescription = null
+                )
+            }
+        }
+
 
         Column(
             modifier = Modifier
