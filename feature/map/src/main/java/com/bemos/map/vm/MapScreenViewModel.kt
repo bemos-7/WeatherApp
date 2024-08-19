@@ -10,16 +10,5 @@ class MapScreenViewModel(
     private val mapRepository: MapRepository
 ) : ViewModel() {
 
-    val mapViewGetter = MutableStateFlow<MapView?>(null)
 
-    init {
-        getMapView()
-    }
-
-    private fun getMapView() {
-        val mapView = mapRepository.getMapView()
-        mapViewGetter.update {
-            mapView
-        }
-    }
 }
