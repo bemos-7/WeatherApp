@@ -32,5 +32,6 @@
 - Room
 
 ### Network
+- Firebase
 - Retrofit
 - Coil
