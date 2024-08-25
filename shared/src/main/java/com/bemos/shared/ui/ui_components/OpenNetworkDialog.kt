@@ -1,4 +1,4 @@
-package com.bemos.shared
+package com.bemos.shared.ui.ui_components
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
