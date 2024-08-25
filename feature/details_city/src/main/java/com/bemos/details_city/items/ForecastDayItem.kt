@@ -1,10 +1,8 @@
 package com.bemos.details_city.items
 
-import android.content.res.Resources.Theme
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,9 +19,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.bemos.shared.Blue
-import com.bemos.shared.ContainerBlack
-import com.bemos.shared.LightBlue
+import com.bemos.shared.ui.color.Blue
+import com.bemos.shared.ui.color.ContainerBlack
+import com.bemos.shared.ui.color.LightBlue
 
 @Composable
 fun ForecastDayItem(
@@ -35,8 +32,8 @@ fun ForecastDayItem(
         ForecastDayItemCard(
             brush = Brush.verticalGradient(
                 listOf(
-                    com.bemos.shared.LightBlue,
-                    com.bemos.shared.Blue
+                    LightBlue,
+                    Blue
                 )
             ),
             weatherByTheHour = weatherByTheHour

@@ -10,7 +10,7 @@ import com.bemos.shared.Constants.DETAILS_CITY_FUTURE
 import com.bemos.shared.Constants.FORECAST
 import com.bemos.details_city.vm.DetailsScreenViewModel
 import com.bemos.details_city.vm.factory.DetailsScreenViewModelFactory
-import com.bemos.shared.OpenNetworkDialog
+import com.bemos.shared.ui.ui_components.OpenNetworkDialog
 
 @Composable
 fun DetailsCityScreen(
@@ -37,7 +37,7 @@ fun DetailsCityScreen(
 
     detailsScreenViewModel.checkInternet()
 
-    com.bemos.shared.OpenNetworkDialog(
+    OpenNetworkDialog(
         networkState = networkState,
         onDismissRequest = {
             detailsScreenViewModel.checkInternet()

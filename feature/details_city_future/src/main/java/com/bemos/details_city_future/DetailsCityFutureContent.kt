@@ -30,9 +30,9 @@ import androidx.compose.ui.unit.sp
 import com.bemos.details_city_future.item.ForecastDayHourItem
 import com.bemos.feature.model.ForecastDayCF
 import com.bemos.shared.R
-import com.bemos.shared.Blue
-import com.bemos.shared.LightBlue
-import com.bemos.shared.TransparentWhite
+import com.bemos.shared.ui.color.Blue
+import com.bemos.shared.ui.color.LightBlue
+import com.bemos.shared.ui.color.TransparentWhite
 
 
 @Composable

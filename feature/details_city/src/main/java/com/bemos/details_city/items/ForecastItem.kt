@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bemos.shared.ContainerBlack
+import com.bemos.shared.ui.color.ContainerBlack
 
 
 @Composable
@@ -40,7 +40,7 @@ fun ForecastItem(
         Row(
             Modifier
                 .fillMaxWidth()
-                .background(com.bemos.shared.ContainerBlack)
+                .background(ContainerBlack)
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

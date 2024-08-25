@@ -84,6 +84,5 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":core:domain"))
     implementation(project(":core:feature"))
-    implementation(project(":feature:shared"))
     implementation(project(":shared"))
 }

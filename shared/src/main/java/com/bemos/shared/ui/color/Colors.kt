@@ -1,4 +1,4 @@
-package com.bemos.shared
+package com.bemos.shared.ui.color
 
 import androidx.compose.ui.graphics.Color
 

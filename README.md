@@ -33,5 +33,6 @@
 - Shared Preferences
 
 ### Network
+- Firebase
 - Retrofit
 - Coil
