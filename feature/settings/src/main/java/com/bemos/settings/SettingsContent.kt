@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,8 +30,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bemos.domain.model.LocationDaoDomain
@@ -73,7 +76,7 @@ fun SettingsContent(
                         modifier = Modifier.clickable {
                             onBackClick()
                         },
-                        painter = painterResource(id = R.drawable.baseline_arrow_back_ios_24),
+                        painter = painterResource(id = R.drawable.round_arrow_back_ios_new_24),
                         contentDescription = "backBtn",
                         tint = MaterialTheme.colorScheme.primary
                     )
@@ -84,7 +87,7 @@ fun SettingsContent(
                         verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "Settings",
+                            text = stringResource(id = R.string.settings),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -112,7 +115,7 @@ fun SettingsContent(
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         Text(
-                            text = ("Additional functions").uppercase(),
+                            text = (stringResource(id = R.string.additional_functions)).uppercase(),
                             color = Color.Gray
                         )
                     }
@@ -124,7 +127,7 @@ fun SettingsContent(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Preview location",
+                            text = stringResource(id = R.string.preview_locaiton),
                             fontSize = 16.sp,
                         )
 
@@ -151,7 +154,7 @@ fun SettingsContent(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "Change the location",
+                                text = stringResource(id = R.string.change_the_location),
                                 fontSize = 16.sp,
                             )
 
@@ -164,7 +167,6 @@ fun SettingsContent(
                                 contentDescription = null
                             )
                         }
-
                         DropdownMenu(
                             expanded = isMenuVisible,
                             onDismissRequest = {
@@ -185,6 +187,7 @@ fun SettingsContent(
                                 )
                             }
                         }
+
                     }
                 }
             }
@@ -208,23 +211,23 @@ fun SettingsContent(
                     verticalArrangement = Arrangement.Bottom
                 ) {
                     Text(
-                        text = ("ABOUT WEATHERAPP").uppercase(),
+                        text = (stringResource(id = R.string.about_weatherapp)).uppercase(),
                         color = Color.Gray
                     )
                 }
                 Spacer(modifier = Modifier.height(15.dp))
                 SettingsItem(
-                    text = "Feedback",
+                    text = stringResource(id = R.string.feedback),
                     icon = R.drawable.round_arrow_forward_ios_24
                 )
                 Spacer(modifier = Modifier.height(15.dp))
                 SettingsItem(
-                    text = "Privacy policy",
+                    text = stringResource(id = R.string.privacy_policy),
                     icon = R.drawable.round_arrow_forward_ios_24
                 )
                 Spacer(modifier = Modifier.height(15.dp))
                 SettingsItem(
-                    text = "Credits",
+                    text = stringResource(id = R.string.credits),
                     icon = R.drawable.round_arrow_forward_ios_24
                 )
             }
