@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.bemos.shared.ContainerBlack
+import com.bemos.shared.ui.color.ContainerBlack
 
 @Composable
 fun ForecastDayHourItem(
@@ -31,7 +31,7 @@ fun ForecastDayHourItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    com.bemos.shared.ContainerBlack
+                    ContainerBlack
                 )
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically

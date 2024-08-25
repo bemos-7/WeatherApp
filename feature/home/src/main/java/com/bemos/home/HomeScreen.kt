@@ -12,7 +12,8 @@ import com.bemos.shared.Constants.SETTINGS
 import com.bemos.home.vm.HomeScreenViewModel
 import com.bemos.home.vm.factory.HomeScreenViewModelFactory
 import com.bemos.shared.Constants.MAP
-import com.bemos.shared.OpenNetworkDialog
+import com.bemos.shared.ui.ui_components.OpenNetworkDialog
+import com.bemos.shared.ui.ui_components.OpenDeleteDialog
 
 @Composable
 fun HomeScreen(
@@ -54,7 +55,7 @@ fun HomeScreen(
         }
     )
 
-    com.bemos.shared.OpenDeleteDialog(
+    OpenDeleteDialog(
         isTrueValue = isTrue,
         onDismissRequest = {
             homeViewModel.updateIsTrue(
