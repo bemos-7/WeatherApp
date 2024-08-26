@@ -7,11 +7,11 @@ class IconConvertUseCase(
 ) {
 
     fun execute(
-        textCondition: String,
+        code: Int,
         time: Int = 5
     ) : Int {
         return iconConverterRepository.iconConvert(
-            textCondition,
+            code,
             time
         )
     }
