@@ -78,7 +78,7 @@ class DetailsScreenViewModel(
                         forecastDay = response.body()!!.forecastDomain.forecastdayDomain,
                         image = response.body()!!.currentDomain.conditionDomain.icon,
                         icon = iconConvertUseCase.execute(
-                            response.body()!!.currentDomain.conditionDomain.text,
+                            response.body()!!.currentDomain.conditionDomain.code,
                             timeLocal!!.groupValues[1].toInt()
                         )
                     )
@@ -92,7 +92,7 @@ class DetailsScreenViewModel(
 
                     forecast.hourDomain.forEach {
                         forecastIcon = iconConvertUseCase.execute(
-                            it.conditionDomain.text
+                            it.conditionDomain.code
                         )
                     }
                     forecastDayIcon.add(
@@ -141,7 +141,7 @@ class DetailsScreenViewModel(
                             weatherByTheHourList.add(it)
 
                             val icon = iconConvertUseCase.execute(
-                                it.conditionDomain.text,
+                                it.conditionDomain.code,
                                 match!!.groupValues[1].toInt()
                             )
 
