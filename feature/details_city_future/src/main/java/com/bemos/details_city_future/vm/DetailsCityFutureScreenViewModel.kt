@@ -73,7 +73,7 @@ class DetailsCityFutureScreenViewModel(
                 forecastDayDomain = forecastDayDomain,
                 weatherHour = getListWeatherHour(forecastDayDomain),
                 icon = iconConvertUseCase.execute(
-                    forecastDayDomain.dayDomain.conditionDomain.text
+                    forecastDayDomain.dayDomain.conditionDomain.code,
                 )
             )
         }
@@ -92,7 +92,7 @@ class DetailsCityFutureScreenViewModel(
                     getNormalTime(it),
                     getNormalTimeInt(it),
                     iconConvertUseCase.execute(
-                        it.conditionDomain.text,
+                        it.conditionDomain.code,
                         getNormalTimeIntResult(it)
                     )
                 )
