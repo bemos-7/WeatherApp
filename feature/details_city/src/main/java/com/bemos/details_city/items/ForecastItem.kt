@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,7 +41,7 @@ fun ForecastItem(
         Row(
             Modifier
                 .fillMaxWidth()
-                .background(ContainerBlack)
+                .background(MaterialTheme.colorScheme.onTertiaryContainer)
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

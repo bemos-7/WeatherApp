@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,16 +37,18 @@ fun ForecastDayItem(
                     Blue
                 )
             ),
+            color = Color.White,
             weatherByTheHour = weatherByTheHour
         )
     } else {
         ForecastDayItemCard(
             brush = Brush.verticalGradient(
                 listOf(
-                    ContainerBlack,
-                    ContainerBlack
+                    MaterialTheme.colorScheme.onTertiaryContainer,
+                    MaterialTheme.colorScheme.onTertiaryContainer
                 )
             ),
+            color = MaterialTheme.colorScheme.onBackground,
             weatherByTheHour = weatherByTheHour
         )
     }
@@ -95,6 +98,7 @@ fun ForecastDayItem(
 @Composable
 fun ForecastDayItemCard(
     brush: Brush,
+    color: Color,
     weatherByTheHour: com.bemos.feature.model.WeatherByTheHour
 ) {
     Card(
@@ -116,7 +120,7 @@ fun ForecastDayItemCard(
         ) {
             Text(
                 text = weatherByTheHour.time,
-                color = Color.White
+                color = color
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -137,7 +141,7 @@ fun ForecastDayItemCard(
 
             Text(
                 text = "${weatherByTheHour.hour.temp_c}°",
-                color = Color.White
+                color = color
             )
         }
     }

@@ -19,15 +19,13 @@ import androidx.core.view.WindowCompat
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
-    tertiary = Pink80,
-    onBackground = ContainerBlack
+    tertiary = Pink80
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
-    tertiary = Pink40,
-    onBackground = ContainerWhite
+    tertiary = Pink40
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -50,7 +48,16 @@ fun WeatherAppTheme(
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            val dynamicScheme = if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (darkTheme) {
+                dynamicScheme.copy(
+                     onTertiaryContainer = ContainerBlack
+                )
+            } else {
+                dynamicScheme.copy(
+                    onTertiaryContainer = ContainerWhite
+                )
+            }
         }
 
         darkTheme -> DarkColorScheme
