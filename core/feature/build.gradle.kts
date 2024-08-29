@@ -64,6 +64,7 @@ dependencies {
     //OsmDroid
     implementation ("org.osmdroid:osmdroid-android:6.1.18")
 
+    implementation(project(":domain"))
     implementation(project(":core:domain"))
     implementation(project(":shared"))
 }
