@@ -1,7 +1,7 @@
 package com.bemos.weatherapp.di.modules
 
 import com.bemos.domain.repositories.IconConverterRepository
-import com.bemos.weatherapp.icon_converter.IconConverterImpl
+import com.bemos.feature.ui.IconConverterImpl
 import dagger.Module
 import dagger.Provides
 
