@@ -35,6 +35,7 @@ import com.bemos.home.items.CityItem
 import com.bemos.home.items.GlobalMapItem
 import com.bemos.home.items.LocateMeItem
 import com.bemos.home.items.LocationItem
+import com.bemos.home.items.LocationItemWithInfo
 import com.bemos.shared.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -144,19 +145,23 @@ fun HomeContent(
         Spacer(modifier = Modifier.height(20.dp))
 
         if (listLocationsWithWeather.isEmpty()) {
-            Row(
-                modifier = Modifier.fillMaxSize(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
+            LazyColumn(
+                Modifier.fillMaxWidth()
             ) {
-                CircularProgressIndicator()
+                items(items = listCity) {
+                    LocationItem(
+                        location = it,
+                        onClick,
+                        onLongClick
+                    )
+                }
             }
         } else {
             LazyColumn(
                 Modifier.fillMaxWidth()
             ) {
                 items(items = listLocationsWithWeather) {
-                    LocationItem(
+                    LocationItemWithInfo(
                         locationWithWeather = it,
                         onClick,
                         onLongClick
