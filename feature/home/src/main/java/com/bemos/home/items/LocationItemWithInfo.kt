@@ -2,7 +2,6 @@ package com.bemos.home.items
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,7 +29,7 @@ import com.bemos.feature.model.LocationWithWeather
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LocationItem(
+fun LocationItemWithInfo(
     locationWithWeather: LocationWithWeather,
     onClick: (String) -> Unit,
     onLongClick: (LocationDaoDomain) -> Unit,
@@ -95,9 +94,9 @@ fun LocationItem(
 
 @Preview(showBackground = true)
 @Composable
-fun LocationItemPreview() {
+fun LocationItemWithInfoPreview() {
 
-    LocationItem(
+    LocationItemWithInfo(
         locationWithWeather = LocationWithWeather(
             location = LocationDaoDomain(
                 1,
