@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -28,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -73,9 +76,11 @@ fun SettingsContent(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
-                        modifier = Modifier.clickable {
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(10.dp))
+                            .clickable {
                             onBackClick()
-                        },
+                        }.align(Alignment.CenterVertically),
                         painter = painterResource(id = R.drawable.round_arrow_back_ios_new_24),
                         contentDescription = "backBtn",
                         tint = MaterialTheme.colorScheme.primary
@@ -147,11 +152,12 @@ fun SettingsContent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(10.dp)
+                                .clip(RoundedCornerShape(5.dp))
                                 .clickable {
                                     isMenuVisible = !isMenuVisible
                                 },
                             horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
                                 text = stringResource(id = R.string.change_the_location),

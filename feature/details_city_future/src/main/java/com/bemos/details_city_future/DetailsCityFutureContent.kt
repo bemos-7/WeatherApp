@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -56,7 +57,9 @@ fun DetailsCityFutureContent(
                         )
                 ) {
                     Icon(
-                        modifier = Modifier.clickable {
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(10.dp))
+                            .clickable {
                             onBackClick()
                         },
                         painter = painterResource(id = R.drawable.round_arrow_back_ios_new_24),
