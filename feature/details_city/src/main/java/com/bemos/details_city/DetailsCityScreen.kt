@@ -3,9 +3,12 @@ package com.bemos.details_city
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.bemos.details_city.model.WeatherByTheHourVisibleMode
+import com.bemos.details_city.ui_component.ForecastDayDialog
 import com.bemos.shared.Constants.DETAILS_CITY_FUTURE
 import com.bemos.shared.Constants.FORECAST
 import com.bemos.details_city.vm.DetailsScreenViewModel
@@ -35,6 +38,8 @@ fun DetailsCityScreen(
 
     val networkState by detailsScreenViewModel.networkState.collectAsState()
 
+    val forecastDayState by detailsScreenViewModel.forecastDayState.collectAsState()
+
     detailsScreenViewModel.checkInternet()
 
     OpenNetworkDialog(
@@ -48,6 +53,21 @@ fun DetailsCityScreen(
             detailsScreenViewModel.controlNavigation(navController)
         }
     )
+
+
+        ForecastDayDialog(
+            weatherByTheHourVisibleMode = forecastDayState,
+            onDismissRequest = {
+                detailsScreenViewModel.updateWeatherByTheHourVisibleMode(
+                    WeatherByTheHourVisibleMode(
+                        null,
+                        false
+                    )
+                )
+            }
+        )
+
+
 
     LaunchedEffect(Unit) {
         detailsScreenViewModel.getLocationByCity(location.toString())
@@ -67,12 +87,16 @@ fun DetailsCityScreen(
         addCheck = insertChecker,
         progressBarState,
         onForecastCLick = {
-//            detailsWeatherIntentViewModel.updateForecastDay(
-//                it
-//            )
-//            val forecastJson = Gson().toJson(it).toString()
             navController.currentBackStackEntry?.savedStateHandle?.set(FORECAST, it)
             navController.navigate(DETAILS_CITY_FUTURE)
+        },
+        onForecastDayClick = {
+            detailsScreenViewModel.updateWeatherByTheHourVisibleMode(
+                WeatherByTheHourVisibleMode(
+                    it,
+                    true
+                )
+            )
         }
     )
 
