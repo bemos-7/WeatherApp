@@ -57,7 +57,8 @@ fun DetailsCityContent(
     onPlusClick: (String) -> Unit,
     addCheck: Boolean,
     progressBarState: Boolean,
-    onForecastCLick: (ForecastdayDomain) -> Unit
+    onForecastCLick: (ForecastdayDomain) -> Unit,
+    onForecastDayClick: (WeatherByTheHour) -> Unit
 ) {
 
     if (!progressBarState) {
@@ -219,7 +220,8 @@ fun DetailsCityContent(
                         items = weatherByTheHour,
                     ) {
                         ForecastDayItem(
-                            it
+                            it,
+                            onItemClick = onForecastDayClick
                         )
                     }
                     item {
@@ -280,7 +282,8 @@ fun DetailsCityContentPreview() {
         onPlusClick = {},
         true,
         true,
-        onForecastCLick = {}
+        onForecastCLick = {},
+        onForecastDayClick = {}
     )
 }
 
