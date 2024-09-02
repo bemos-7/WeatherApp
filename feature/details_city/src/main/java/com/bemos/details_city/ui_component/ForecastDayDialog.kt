@@ -21,14 +21,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.bemos.details_city.model.WeatherByTheHourVisibleMode
 import com.bemos.feature.model.WeatherByTheHour
 
 @Composable
 fun ForecastDayDialog(
-    weatherByTheHour: WeatherByTheHour,
+    weatherByTheHourVisibleMode: WeatherByTheHourVisibleMode,
     onDismissRequest: () -> Unit
 ) {
-    if (weatherByTheHour != null) {
+    if (weatherByTheHourVisibleMode.weatherByTheHour != null) {
         Dialog(
             onDismissRequest = {
                 onDismissRequest()
@@ -49,20 +50,20 @@ fun ForecastDayDialog(
                 ) {
                     Spacer(modifier = Modifier.height(25.dp))
                     Text(
-                        text = weatherByTheHour.time,
+                        text = weatherByTheHourVisibleMode.weatherByTheHour.time,
                         fontSize = 35.sp,
                         fontWeight = FontWeight.Bold
                     )
 
                     Image(
                         painter = painterResource(
-                            id = weatherByTheHour.icon
+                            id = weatherByTheHourVisibleMode.weatherByTheHour.icon
                         ),
                         contentDescription = null
                     )
 
                     Text(
-                        text = weatherByTheHour.hour.conditionDomain.text,
+                        text = weatherByTheHourVisibleMode.weatherByTheHour.hour.conditionDomain.text,
                         fontSize = 25.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -70,7 +71,7 @@ fun ForecastDayDialog(
                     Spacer(modifier = Modifier.height(10.dp))
 
                     Text(
-                        text = "${weatherByTheHour.hour.temp_c}°",
+                        text = "${weatherByTheHourVisibleMode.weatherByTheHour.hour.temp_c}°",
                         fontSize = 45.sp,
                         fontWeight = FontWeight.Bold
                     )
