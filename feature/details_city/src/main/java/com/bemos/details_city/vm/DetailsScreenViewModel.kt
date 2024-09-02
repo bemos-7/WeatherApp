@@ -3,6 +3,8 @@ package com.bemos.details_city.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.bemos.details_city.model.WeatherByTheHourVisibleMode
+import com.bemos.domain.model.weather_models.HourDomain
 import com.bemos.feature.model.ForecastDayAndIcon
 import com.bemos.domain.use_cases.CheckInternetUseCase
 import com.bemos.domain.use_cases.GetLocationsByCityUseCase
@@ -46,6 +48,13 @@ class DetailsScreenViewModel(
     val progressBarState = MutableStateFlow(false)
 
     val networkState = MutableStateFlow(true)
+
+    val forecastDayState = MutableStateFlow(
+        WeatherByTheHourVisibleMode(
+            null,
+            false
+        )
+    )
 
     suspend fun getWeatherAndForecast(
         city: String
@@ -226,6 +235,14 @@ class DetailsScreenViewModel(
         }
         weatherByTheHour.update {
             listOf()
+        }
+    }
+
+    fun updateWeatherByTheHourVisibleMode(
+        weatherByTheHourVisibleMode: WeatherByTheHourVisibleMode
+    ) {
+        forecastDayState.update {
+            weatherByTheHourVisibleMode
         }
     }
 
