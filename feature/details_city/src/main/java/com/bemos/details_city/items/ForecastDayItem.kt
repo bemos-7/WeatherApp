@@ -3,6 +3,7 @@ package com.bemos.details_city.items
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,13 +21,15 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.bemos.feature.model.WeatherByTheHour
 import com.bemos.shared.ui.color.Blue
 import com.bemos.shared.ui.color.ContainerBlack
 import com.bemos.shared.ui.color.LightBlue
 
 @Composable
 fun ForecastDayItem(
-    weatherByTheHour: com.bemos.feature.model.WeatherByTheHour
+    weatherByTheHour: WeatherByTheHour,
+    onItemClick: (WeatherByTheHour) -> Unit
 ) {
     Log.d("timeChecker", weatherByTheHour.time + " " + weatherByTheHour.cityTime)
     if (weatherByTheHour.time == weatherByTheHour.cityTime) {
@@ -38,7 +41,8 @@ fun ForecastDayItem(
                 )
             ),
             color = Color.White,
-            weatherByTheHour = weatherByTheHour
+            weatherByTheHour = weatherByTheHour,
+            onItemClick = onItemClick
         )
     } else {
         ForecastDayItemCard(
@@ -49,7 +53,8 @@ fun ForecastDayItem(
                 )
             ),
             color = MaterialTheme.colorScheme.onBackground,
-            weatherByTheHour = weatherByTheHour
+            weatherByTheHour = weatherByTheHour,
+            onItemClick = onItemClick
         )
     }
 
@@ -99,11 +104,15 @@ fun ForecastDayItem(
 fun ForecastDayItemCard(
     brush: Brush,
     color: Color,
-    weatherByTheHour: com.bemos.feature.model.WeatherByTheHour
+    weatherByTheHour: com.bemos.feature.model.WeatherByTheHour,
+    onItemClick: (WeatherByTheHour) -> Unit
 ) {
     Card(
         Modifier
-            .padding(10.dp),
+            .padding(10.dp)
+            .clickable {
+                onItemClick(weatherByTheHour)
+            },
         shape = RoundedCornerShape(22.dp)
     ) {
         Column(
