@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.bemos.details_city.model.WeatherByTheHourVisibleMode
@@ -54,20 +55,17 @@ fun DetailsCityScreen(
         }
     )
 
-
-        ForecastDayDialog(
-            weatherByTheHourVisibleMode = forecastDayState,
-            onDismissRequest = {
-                detailsScreenViewModel.updateWeatherByTheHourVisibleMode(
-                    WeatherByTheHourVisibleMode(
-                        null,
-                        false
-                    )
+    ForecastDayDialog(
+        weatherByTheHourVisibleMode = forecastDayState,
+        onDismissRequest = {
+            detailsScreenViewModel.updateWeatherByTheHourVisibleMode(
+                WeatherByTheHourVisibleMode(
+                    null,
+                    false
                 )
-            }
-        )
-
-
+            )
+        }
+    )
 
     LaunchedEffect(Unit) {
         detailsScreenViewModel.getLocationByCity(location.toString())
