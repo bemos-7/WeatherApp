@@ -17,6 +17,8 @@ import com.bemos.domain.use_cases.GetLocationSharedUseCase
 import com.bemos.domain.use_cases.GetWeatherAndWeekUseCase
 import com.bemos.domain.use_cases.GetWeatherUseCase
 import com.bemos.feature.model.LocationWithWeather
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -204,20 +206,26 @@ class HomeScreenViewModel(
 
     suspend fun getLocationsWithWeather() = viewModelScope.launch {
         getAllLocations()
-        val listLocations = locations.value
+        val listLocations = locations.value ?: emptyList()
         val listLocationsWithWeather = mutableListOf<LocationWithWeather>()
 
-        listLocations.forEach {
-            val response = getWeatherAndWeekUseCase.execute(it.city)
-            if (response.isSuccessful && response.body() != null) {
-                val current = response.body()!!.currentDomain
-                listLocationsWithWeather.add(
+        val deferredResponses = listLocations.map { location ->
+            async {
+                val response = getWeatherAndWeekUseCase.execute(location.city)
+                if (response.isSuccessful && response.body() != null) {
+                    val current = response.body()!!.currentDomain
                     LocationWithWeather(
-                        location = it,
+                        location = location,
                         weather = current
                     )
-                )
+                } else {
+                    null
+                }
             }
+        }
+
+        deferredResponses.awaitAll().filterNotNull().let {
+            listLocationsWithWeather.addAll(it)
         }
 
         locationsWithWeather.update {

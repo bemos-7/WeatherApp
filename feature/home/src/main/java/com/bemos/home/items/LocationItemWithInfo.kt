@@ -111,7 +111,7 @@ fun LocationItemWithInfoPreview() {
         locationWithWeather = LocationWithWeather(
             location = LocationDaoDomain(
                 1,
-                ""
+                "Moscow"
             ),
             weather = CurrentDomain(
                 1,
